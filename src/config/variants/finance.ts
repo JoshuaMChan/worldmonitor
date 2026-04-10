@@ -143,7 +143,7 @@ export const FEEDS: Record<string, Feed[]> = {
 export const DEFAULT_PANELS: Record<string, PanelConfig> = {
   map: { name: 'Global Markets Map', enabled: true, priority: 1 },
   'live-news': { name: 'Market Headlines', enabled: true, priority: 1 },
-  insights: { name: 'AI Market Insights', enabled: true, priority: 1 },
+  insights: { name: 'AI Market Insights', enabled: false, priority: 1 },
   markets: { name: 'Live Markets', enabled: true, priority: 1 },
   'stock-analysis': { name: 'Stock Analysis', enabled: true, priority: 1 },
   'stock-backtest': { name: 'Backtesting', enabled: true, priority: 1 },
@@ -171,7 +171,7 @@ export const DEFAULT_PANELS: Record<string, PanelConfig> = {
   stablecoins: { name: 'Stablecoins', enabled: true, priority: 2 },
   'gcc-investments': { name: 'GCC Investments', enabled: true, priority: 2 },
   gccNews: { name: 'GCC Business News', enabled: true, priority: 2 },
-  polymarket: { name: 'Predictions', enabled: true, priority: 2 },
+  polymarket: { name: 'Predictions', enabled: false, priority: 2 },
   monitors: { name: 'My Monitors', enabled: true, priority: 2 },
 };
 

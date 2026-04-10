@@ -3,6 +3,7 @@ import { FEEDS, INTEL_SOURCES, SOURCE_REGION_MAP } from '@/config/feeds';
 import { PANEL_CATEGORY_MAP, ALL_PANELS, VARIANT_DEFAULTS, getEffectivePanelConfig, isPanelEntitled, FREE_MAX_PANELS } from '@/config/panels';
 import { isProUser } from '@/services/widget-store';
 import { SITE_VARIANT } from '@/config/variant';
+import { isCleanModeEnabled } from '@/config/clean-mode';
 import { t } from '@/services/i18n';
 import type { MapProvider } from '@/config/basemap';
 import { escapeHtml } from '@/utils/sanitize';
@@ -317,6 +318,7 @@ export class UnifiedSettings {
   }
 
   private renderUpgradeSection(): string {
+    if (isCleanModeEnabled()) return '';
     if (isEntitled()) {
       const sub = getSubscription();
       const planName = sub?.displayName ?? 'Pro';

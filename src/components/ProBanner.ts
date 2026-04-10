@@ -1,4 +1,5 @@
 import { trackGateHit } from '@/services/analytics';
+import { isCleanModeEnabled } from '@/config/clean-mode';
 
 let bannerEl: HTMLElement | null = null;
 
@@ -28,6 +29,7 @@ function dismiss(): void {
 */
 
 export function showProBanner(container: HTMLElement): void {
+  if (isCleanModeEnabled()) return;
   if (bannerEl) return;
   if (window.self !== window.top) return;
 

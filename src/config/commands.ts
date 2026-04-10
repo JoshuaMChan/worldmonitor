@@ -3,6 +3,7 @@ import { CURATED_COUNTRIES } from '@/config/countries';
 // boundary-ignore: commands are built lazily at runtime via getAllCommands()
 import { getCurrentLanguage, t } from '@/services/i18n';
 import { toFlagEmoji } from '@/utils/country-flag';
+import { isCleanModeEnabled } from '@/config/clean-mode';
 
 export interface Command {
   id: string;
@@ -271,6 +272,64 @@ const ISO_CODES = [
 let _cachedLang = '';
 let _cachedCountryCommands: Command[] = [];
 let _cachedAllCommands: Command[] = [];
+let _cachedCleanMode = false;
+
+const CLEAN_MODE_ALLOWED_PANEL_IDS = new Set([
+  'panel:live-news',
+  'panel:markets',
+  'panel:stock-analysis',
+  'panel:stock-backtest',
+  'panel:daily-market-brief',
+  'panel:markets-news',
+  'panel:forex',
+  'panel:bonds',
+  'panel:commodities',
+  'panel:commodities-news',
+  'panel:crypto',
+  'panel:crypto-news',
+  'panel:centralbanks',
+  'panel:economic',
+  'panel:economic-news',
+  'panel:ipo',
+  'panel:heatmap',
+  'panel:macro-signals',
+  'panel:fear-greed',
+  'panel:derivatives',
+  'panel:fintech',
+  'panel:fin-regulation',
+  'panel:institutional',
+  'panel:analysis',
+  'panel:etf-flows',
+  'panel:stablecoins',
+  'panel:gcc-investments',
+  'panel:gccNews',
+  'panel:monitors',
+  'panel:gulf-economies',
+  'panel:trade-policy',
+  'panel:supply-chain',
+  'panel:energy-complex',
+  'panel:fsi',
+  'panel:yield-curve',
+  'panel:earnings-calendar',
+  'panel:economic-calendar',
+  'panel:cot-positioning',
+  'panel:macro-tiles',
+  'panel:consumer-prices',
+  'panel:grocery-basket',
+  'panel:bigmac',
+  'panel:fuel-prices',
+  'panel:fao-food-price-index',
+  'panel:national-debt',
+  'panel:hormuz-tracker',
+]);
+
+function applyCleanModeCommandFilter(commands: Command[]): Command[] {
+  if (!isCleanModeEnabled()) return commands;
+  return commands.filter((command) => {
+    if (command.id.startsWith('panel:')) return CLEAN_MODE_ALLOWED_PANEL_IDS.has(command.id);
+    return true;
+  });
+}
 
 const KEYWORD_I18N_MAP: Record<string, string> = {
   military: 'commands.keywords.military',
@@ -340,11 +399,18 @@ function buildCountryCommands(): Command[] {
 
   _cachedLang = lang;
   _cachedCountryCommands = result;
-  _cachedAllCommands = [...injectLocalizedKeywords(COMMANDS), ...result];
+  _cachedAllCommands = [...applyCleanModeCommandFilter(injectLocalizedKeywords(COMMANDS)), ...result];
   return result;
 }
 
 export function getAllCommands(): Command[] {
+  const cleanMode = isCleanModeEnabled();
+  if (_cachedCleanMode !== cleanMode) {
+    _cachedAllCommands = [];
+    _cachedCountryCommands = [];
+  }
+  _cachedCleanMode = cleanMode;
   buildCountryCommands();
-  return _cachedAllCommands.length > 0 ? _cachedAllCommands : COMMANDS;
+  if (_cachedAllCommands.length > 0) return _cachedAllCommands;
+  return applyCleanModeCommandFilter(COMMANDS);
 }

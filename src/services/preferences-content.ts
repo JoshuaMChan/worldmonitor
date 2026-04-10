@@ -29,6 +29,7 @@ import {
 import { getCurrentClerkUser } from '@/services/clerk';
 import { hasTier, getEntitlementState } from '@/services/entitlements';
 import { SITE_VARIANT } from '@/config/variant';
+import { isCleanModeEnabled } from '@/config/clean-mode';
 // When VITE_QUIET_HOURS_BATCH_ENABLED=0 the relay does not honour batch_on_wake.
 // Hide that option so users cannot select a mode that silently behaves as critical_only.
 const QUIET_HOURS_BATCH_ENABLED = import.meta.env.VITE_QUIET_HOURS_BATCH_ENABLED !== '0';
@@ -105,6 +106,7 @@ function updateAiStatus(container: HTMLElement): void {
 }
 
 export function renderPreferences(host: PreferencesHost): PreferencesResult {
+  const cleanMode = isCleanModeEnabled();
   const settings = getAiFlowSettings();
   const currentLang = getCurrentLanguage();
   let html = '';
@@ -352,17 +354,19 @@ export function renderPreferences(host: PreferencesHost): PreferencesResult {
     </div>
     <div class="us-data-mgmt-toast" id="usDataMgmtToast"></div>
   `;
-  html += `<a href="https://discord.gg/re63kWKxaz" target="_blank" rel="noopener noreferrer" class="us-discussion-link">
-    <span class="us-discussion-dot"></span>
-    <span>${t('components.community.joinDiscussion')}</span>
-  </a>`;
+  if (!cleanMode) {
+    html += `<a href="https://discord.gg/re63kWKxaz" target="_blank" rel="noopener noreferrer" class="us-discussion-link">
+      <span class="us-discussion-dot"></span>
+      <span>${t('components.community.joinDiscussion')}</span>
+    </a>`;
+  }
   html += `</div></details>`;
 
   // ── Notifications group (web-only, signed-in, PRO only) ──
   if (!host.isDesktopApp) {
     if (!host.isSignedIn) {
       html += `<div class="ai-flow-toggle-desc us-notif-signin">Sign in to link notification channels.</div>`;
-    } else if (getEntitlementState() !== null && !hasTier(1)) {
+    } else if (!cleanMode && getEntitlementState() !== null && !hasTier(1)) {
       html += `<details class="wm-pref-group">`;
       html += `<summary>Notifications <span class="panel-toggle-pro-badge">PRO</span></summary>`;
       html += `<div class="wm-pref-group-content">`;
