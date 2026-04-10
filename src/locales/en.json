@@ -282,6 +282,8 @@
     "goodNewsMap": "Good News Map",
     "map2d": "2D Map",
     "globe3d": "3D Globe",
+    "mapMode2dShort": "2D",
+    "mapMode3dShort": "3D",
     "exitTvMode": "Exit TV Mode"
   },
   "panels": {
@@ -1749,6 +1751,19 @@
       "sortBy": "Sort by",
       "sortNewest": "Newest",
       "sortRelevance": "Relevance",
+      "phaseBreaking": "BREAKING",
+      "phaseDeveloping": "DEVELOPING",
+      "phaseOngoing": "ONGOING",
+      "alertTag": "ALERT",
+      "perHourSuffix": "/hr",
+      "stateAffiliated": "State-affiliated",
+      "stateMediaWarning": "⚠ State Media",
+      "caution": "! Caution",
+      "tierWire": "Wire",
+      "tierWireTooltip": "Wire Service - Highest reliability",
+      "tierGovTooltip": "Official Government Source",
+      "tierVerifiedTooltip": "Verified News Outlet",
+      "alsoReported": "Also",
       "translating": "...",
       "originalPrefix": "Original: ",
       "failedToDisplayCluster": "Failed to display this cluster.",
@@ -1942,7 +1957,16 @@
       "infoTooltip": "<strong>Sector Heatmap</strong> S&P 500 sector performance at a glance. Color intensity reflects the magnitude of daily change. Green = gains, Red = losses."
     },
     "commodities": {
-      "infoTooltip": "<strong>Commodities</strong> Tradeable non-energy commodity tape focused on metals and materials. Energy prices live in Energy Complex; macro stress indicators live in Macro Stress."
+      "infoTooltip": "<strong>Commodities</strong> Tradeable non-energy commodity tape focused on metals and materials. Energy prices live in Energy Complex; macro stress indicators live in Macro Stress.",
+      "tabs": {
+        "commodities": "Commodities",
+        "eurFx": "EUR FX",
+        "xauFx": "XAU/FX"
+      },
+      "goldPriceUnavailable": "Gold price unavailable",
+      "fxRatesUnavailable": "FX rates unavailable",
+      "computedFromYahooFx": "Computed from GC=F + Yahoo FX",
+      "sourceEcb": "Source: ECB"
     },
     "crypto": {
       "infoTooltip": "<strong>Crypto</strong> Live prices, 24h changes, and volume for major cryptocurrencies. Data sourced from CoinGecko."
@@ -2830,6 +2854,7 @@
     "unavailable": "UNAVAILABLE",
     "close": "Close",
     "cancel": "Cancel",
+    "unknown": "Unknown",
     "currentVariant": "(current)",
     "retry": "Retry",
     "refresh": "Refresh",

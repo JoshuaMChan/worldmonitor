@@ -221,6 +221,8 @@
     "goodNewsMap": "好消息地图",
     "map2d": "2D 地图",
     "globe3d": "3D 地球",
+    "mapMode2dShort": "2D",
+    "mapMode3dShort": "3D",
     "exitTvMode": "退出电视模式"
   },
   "panels": {
@@ -1620,9 +1622,22 @@
       "summaryFailed": "摘要失败",
       "sources": "{{count}}个来源",
       "relatedAssetsNear": "{{location}}附近的相关资产",
-      "sortBy": "Sort by",
-      "sortNewest": "Newest",
-      "sortRelevance": "Relevance",
+      "sortBy": "排序方式",
+      "sortNewest": "最新",
+      "sortRelevance": "相关性",
+      "phaseBreaking": "突发",
+      "phaseDeveloping": "发展中",
+      "phaseOngoing": "持续中",
+      "alertTag": "警报",
+      "perHourSuffix": "/小时",
+      "stateAffiliated": "国家关联",
+      "stateMediaWarning": "⚠ 国有媒体",
+      "caution": "! 注意",
+      "tierWire": "通讯社",
+      "tierWireTooltip": "通讯社信源 - 最高可靠性",
+      "tierGovTooltip": "官方政府信源",
+      "tierVerifiedTooltip": "已验证新闻媒体",
+      "alsoReported": "另有",
       "translating": "...",
       "originalPrefix": "原文： ",
       "failedToDisplayCluster": "无法显示此聚类。",
@@ -1894,7 +1909,16 @@
       "topTargets": "Top Target Countries"
     },
     "commodities": {
-      "infoTooltip": "<strong>Commodities</strong> Tradeable non-energy commodity tape focused on metals and materials. Energy prices live in Energy Complex; macro stress indicators live in Macro Stress."
+      "infoTooltip": "<strong>Commodities</strong> Tradeable non-energy commodity tape focused on metals and materials. Energy prices live in Energy Complex; macro stress indicators live in Macro Stress.",
+      "tabs": {
+        "commodities": "大宗商品",
+        "eurFx": "EUR 外汇",
+        "xauFx": "XAU/外汇"
+      },
+      "goldPriceUnavailable": "黄金价格暂不可用",
+      "fxRatesUnavailable": "外汇汇率暂不可用",
+      "computedFromYahooFx": "由 GC=F 与 Yahoo 外汇汇率计算",
+      "sourceEcb": "来源：欧洲央行"
     },
     "crypto": {
       "infoTooltip": "<strong>Crypto</strong> Live prices, 24h changes, and volume for major cryptocurrencies. Data sourced from CoinGecko."
@@ -2780,7 +2804,8 @@
     "refresh": "Refresh",
     "all": "全部",
     "dataTemporarilyUnavailable": "Data temporarily unavailable",
-    "cancel": "取消"
+    "cancel": "取消",
+    "unknown": "未知"
   },
   "preferences": {
     "display": "显示",
