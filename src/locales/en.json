@@ -274,7 +274,15 @@
     "panelCatMining": "Mining & Supply Chain",
     "panelCatCommodityEcon": "Economy & Trade",
     "panelCatHappyNews": "Good News",
-    "panelCatHappyPlanet": "Planet & Giving"
+    "panelCatHappyPlanet": "Planet & Giving",
+    "menu": "Menu",
+    "goodNews": "Good News",
+    "tvMode": "TV Mode (Shift+T)",
+    "closeMenu": "Close menu",
+    "goodNewsMap": "Good News Map",
+    "map2d": "2D Map",
+    "globe3d": "3D Globe",
+    "exitTvMode": "Exit TV Mode"
   },
   "panels": {
     "liveNews": "Live News",
@@ -1491,7 +1499,13 @@
       "exportFailed": "Failed to export settings",
       "importSuccess": "Imported {{count}} settings",
       "importFailed": "Failed to import settings",
-      "reloadNow": "Reload now"
+      "reloadNow": "Reload now",
+      "renewsOn": "Renews: {{date}}",
+      "onHoldUpdatePayment": "On hold -- please update payment method",
+      "cancelledUntil": "Cancelled -- access until {{date}}",
+      "expired": "Expired",
+      "manageBilling": "Manage Billing",
+      "upgradeProDesc": "Unlock all panels, AI analysis, and priority data refresh."
     },
     "cascade": {
       "noImpacts": "No country impacts detected",
@@ -1734,7 +1748,18 @@
       "relatedAssetsNear": "Related assets near {{location}}",
       "sortBy": "Sort by",
       "sortNewest": "Newest",
-      "sortRelevance": "Relevance"
+      "sortRelevance": "Relevance",
+      "translating": "...",
+      "originalPrefix": "Original: ",
+      "failedToDisplayCluster": "Failed to display this cluster.",
+      "translate": "Translate",
+      "noItemsIn": "No items in {{timeRange}}",
+      "rangeLastHour": "the last hour",
+      "rangeLast6Hours": "the last 6 hours",
+      "rangeLast24Hours": "the last 24 hours",
+      "rangeLast48Hours": "the last 48 hours",
+      "rangeLast7Days": "the last 7 days",
+      "rangeAllTime": "all time"
     },
     "export": {
       "exportData": "Export Data"
@@ -1901,7 +1926,17 @@
       "infoTooltip": "<strong>Disaster Cascade</strong> Detects converging natural disaster and infrastructure signals:<ul><li>Correlates earthquakes, wildfires, floods, and weather extremes</li><li>Tracks cascading effects on infrastructure and supply chains</li><li>Highlights regions with compounding disaster risk</li></ul>Click a card to zoom to the affected region."
     },
     "markets": {
-      "infoTooltip": "<strong>Markets</strong> Real-time stock indices, equities, and crypto prices. Customize your watchlist with the Watchlist button. Sparklines show recent price trend."
+      "infoTooltip": "<strong>Markets</strong> Real-time stock indices, equities, and crypto prices. Customize your watchlist with the Watchlist button. Sparklines show recent price trend.",
+      "customizeWatchlist": "Customize market watchlist",
+      "watchlist": "Watchlist",
+      "watchlistTitle": "Market watchlist",
+      "watchlistHelpLine1": "Add extra tickers (comma or newline separated). Friendly labels supported: SYMBOL|Label.",
+      "watchlistHelpLine2": "Example: TSLA|Tesla, AAPL|Apple, ^GSPC|S&P 500",
+      "watchlistHelpLine3": "Tip: keep it under ~30 unless you enjoy scrolling.",
+      "cryptoSectors": "Crypto Sectors",
+      "defiTokens": "DeFi Tokens",
+      "aiTokens": "AI Tokens",
+      "altTokens": "Alt Tokens"
     },
     "heatmap": {
       "infoTooltip": "<strong>Sector Heatmap</strong> S&P 500 sector performance at a glance. Color intensity reflects the magnitude of daily change. Green = gains, Red = losses."

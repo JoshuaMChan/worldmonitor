@@ -24,8 +24,8 @@ export class MarketPanel extends Panel {
   private createSettingsButton(): void {
     this.settingsBtn = document.createElement('button');
     this.settingsBtn.className = 'live-news-settings-btn';
-    this.settingsBtn.title = 'Customize market watchlist';
-    this.settingsBtn.textContent = 'Watchlist';
+    this.settingsBtn.title = t('components.markets.customizeWatchlist');
+    this.settingsBtn.textContent = t('components.markets.watchlist');
     this.settingsBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       this.openWatchlistModal();
@@ -54,23 +54,23 @@ export class MarketPanel extends Panel {
 
     modal.innerHTML = `
       <div class="modal-header">
-        <span class="modal-title">Market watchlist</span>
-        <button class="modal-close" aria-label="Close">×</button>
+        <span class="modal-title">${t('components.markets.watchlistTitle')}</span>
+        <button class="modal-close" aria-label="${t('common.close')}">×</button>
       </div>
       <div style="padding:14px 16px 16px 16px">
         <div style="color:var(--text-dim);font-size:12px;line-height:1.4;margin-bottom:10px">
-          Add extra tickers (comma or newline separated). Friendly labels supported: SYMBOL|Label.
-          Example: TSLA|Tesla, AAPL|Apple, ^GSPC|S&P 500
+          ${t('components.markets.watchlistHelpLine1')}
+          ${t('components.markets.watchlistHelpLine2')}
           <br/>
-          Tip: keep it under ~30 unless you enjoy scrolling.
+          ${t('components.markets.watchlistHelpLine3')}
         </div>
         <textarea id="wmMarketWatchlistInput"
           style="width:100%;min-height:120px;resize:vertical;background:rgba(255,255,255,0.04);border:1px solid var(--border);color:var(--text);border-radius:10px;padding:10px;font-family:inherit;font-size:12px;outline:none"
           spellcheck="false"></textarea>
         <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:12px">
-          <button type="button" class="panels-reset-layout" id="wmMarketResetBtn">Reset</button>
-          <button type="button" class="panels-reset-layout" id="wmMarketCancelBtn">Cancel</button>
-          <button type="button" class="panels-reset-layout" id="wmMarketSaveBtn" style="border-color:var(--text-dim);color:var(--text)">Save</button>
+          <button type="button" class="panels-reset-layout" id="wmMarketResetBtn">${t('header.resetLayout')}</button>
+          <button type="button" class="panels-reset-layout" id="wmMarketCancelBtn">${t('common.cancel')}</button>
+          <button type="button" class="panels-reset-layout" id="wmMarketSaveBtn" style="border-color:var(--text-dim);color:var(--text)">${t('modals.story.save')}</button>
         </div>
       </div>
     `;
@@ -250,18 +250,18 @@ export class CommoditiesPanel extends Panel {
   }
 
   private _buildTabBar(hasFx: boolean, hasXau: boolean): string {
-    const firstTabLabel = 'Commodities';
+    const firstTabLabel = t('components.commodities.tabs.commodities');
     const tabs: string[] = [
       `<button class="panel-tab${this._tab === 'commodities' ? ' active' : ''}" data-tab="commodities" style="font-size:11px;padding:3px 10px">${firstTabLabel}</button>`,
     ];
-    if (hasFx) tabs.push(`<button class="panel-tab${this._tab === 'fx' ? ' active' : ''}" data-tab="fx" style="font-size:11px;padding:3px 10px">EUR FX</button>`);
-    if (hasXau) tabs.push(`<button class="panel-tab${this._tab === 'xau' ? ' active' : ''}" data-tab="xau" style="font-size:11px;padding:3px 10px">XAU/FX</button>`);
+    if (hasFx) tabs.push(`<button class="panel-tab${this._tab === 'fx' ? ' active' : ''}" data-tab="fx" style="font-size:11px;padding:3px 10px">${t('components.commodities.tabs.eurFx')}</button>`);
+    if (hasXau) tabs.push(`<button class="panel-tab${this._tab === 'xau' ? ' active' : ''}" data-tab="xau" style="font-size:11px;padding:3px 10px">${t('components.commodities.tabs.xauFx')}</button>`);
     return tabs.length > 1 ? `<div style="display:flex;gap:4px;margin-bottom:8px">${tabs.join('')}</div>` : '';
   }
 
   private _renderXau(): string {
     const gcf = this._commodityData.find(d => d.symbol === 'GC=F' && d.price !== null);
-    if (!gcf?.price) return `<div style="padding:8px;color:var(--text-dim);font-size:12px">Gold price unavailable</div>`;
+    if (!gcf?.price) return `<div style="padding:8px;color:var(--text-dim);font-size:12px">${t('components.commodities.goldPriceUnavailable')}</div>`;
 
     const goldUsd = gcf.price;
     const fxMap = new Map(this._commodityData.filter(d => d.symbol?.endsWith('=X')).map(d => [d.symbol!, d]));
@@ -285,9 +285,9 @@ export class CommoditiesPanel extends Panel {
           <div class="commodity-price" style="font-size:11px">--</div>
         </div>`
       ).join('');
-      return `<div class="commodities-grid">${placeholders}</div><div style="margin-top:6px;font-size:9px;color:var(--text-dim)">FX rates unavailable</div>`;
+      return `<div class="commodities-grid">${placeholders}</div><div style="margin-top:6px;font-size:9px;color:var(--text-dim)">${t('components.commodities.fxRatesUnavailable')}</div>`;
     }
-    return `<div class="commodities-grid">${rows.join('')}</div><div style="margin-top:6px;font-size:9px;color:var(--text-dim)">Computed from GC=F + Yahoo FX</div>`;
+    return `<div class="commodities-grid">${rows.join('')}</div><div style="margin-top:6px;font-size:9px;color:var(--text-dim)">${t('components.commodities.computedFromYahooFx')}</div>`;
   }
 
   private _render(): void {
@@ -307,7 +307,7 @@ export class CommoditiesPanel extends Panel {
           ${changeStr ? `<div class="commodity-change ${escapeHtml(changeClass)}">${escapeHtml(changeStr)}</div>` : ''}
         </div>`;
       }).join('');
-      this.setContent(tabBar + `<div class="commodities-grid">${items}</div><div style="margin-top:6px;font-size:9px;color:var(--text-dim)">Source: ECB</div>`);
+      this.setContent(tabBar + `<div class="commodities-grid">${items}</div><div style="margin-top:6px;font-size:9px;color:var(--text-dim)">${t('components.commodities.sourceEcb')}</div>`);
       return;
     }
 
@@ -378,7 +378,7 @@ export class CryptoPanel extends Panel {
 
 export class CryptoHeatmapPanel extends Panel {
   constructor() {
-    super({ id: 'crypto-heatmap', title: 'Crypto Sectors' });
+    super({ id: 'crypto-heatmap', title: t('components.markets.cryptoSectors') });
   }
 
   public renderSectors(data: Array<{ id: string; name: string; change: number }>): void {
@@ -437,18 +437,18 @@ export class TokenListPanel extends Panel {
 
 export class DefiTokensPanel extends TokenListPanel {
   constructor() {
-    super({ id: 'defi-tokens', title: 'DeFi Tokens', infoTooltip: t('components.defiTokens.infoTooltip') });
+    super({ id: 'defi-tokens', title: t('components.markets.defiTokens'), infoTooltip: t('components.defiTokens.infoTooltip') });
   }
 }
 
 export class AiTokensPanel extends TokenListPanel {
   constructor() {
-    super({ id: 'ai-tokens', title: 'AI Tokens', infoTooltip: t('components.aiTokens.infoTooltip') });
+    super({ id: 'ai-tokens', title: t('components.markets.aiTokens'), infoTooltip: t('components.aiTokens.infoTooltip') });
   }
 }
 
 export class OtherTokensPanel extends TokenListPanel {
   constructor() {
-    super({ id: 'other-tokens', title: 'Alt Tokens', infoTooltip: t('components.altTokens.infoTooltip') });
+    super({ id: 'other-tokens', title: t('components.markets.altTokens'), infoTooltip: t('components.altTokens.infoTooltip') });
   }
 }

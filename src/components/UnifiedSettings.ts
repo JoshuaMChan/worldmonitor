@@ -241,9 +241,9 @@ export class UnifiedSettings {
       <div class="modal unified-settings-modal">
         <div class="modal-header">
           <span class="modal-title">${t('header.settings')}</span>
-          <button class="modal-close unified-settings-close" aria-label="Close">\u00d7</button>
+          <button class="modal-close unified-settings-close" aria-label="${t('common.close')}">\u00d7</button>
         </div>
-        <div class="unified-settings-tabs" role="tablist" aria-label="Settings">
+        <div class="unified-settings-tabs" role="tablist" aria-label="${t('header.settings')}">
           <button class="${tabClass('settings')}" data-tab="settings" role="tab" aria-selected="${this.activeTab === 'settings'}" id="us-tab-settings" aria-controls="us-tab-panel-settings">${t('header.tabSettings')}</button>
           <button class="${tabClass('panels')}" data-tab="panels" role="tab" aria-selected="${this.activeTab === 'panels'}" id="us-tab-panels" aria-controls="us-tab-panel-panels">${t('header.tabPanels')}</button>
           <button class="${tabClass('sources')}" data-tab="sources" role="tab" aria-selected="${this.activeTab === 'sources'}" id="us-tab-sources" aria-controls="us-tab-panel-sources">${t('header.tabSources')}</button>
@@ -321,7 +321,7 @@ export class UnifiedSettings {
     if (isCleanModeEnabled()) return '';
     if (isEntitled()) {
       const sub = getSubscription();
-      const planName = sub?.displayName ?? 'Pro';
+      const planName = sub?.displayName ?? t('premium.pro');
       const statusColor = sub?.status === 'active' ? '#22c55e' : sub?.status === 'on_hold' ? '#eab308' : '#ef4444';
       const statusBorderColor = sub?.status === 'active' ? '#22c55e33' : sub?.status === 'on_hold' ? '#eab30833' : '#ef444433';
       const statusBgColor = sub?.status === 'active' ? '#22c55e0a' : sub?.status === 'on_hold' ? '#eab3080a' : '#ef44440a';
@@ -330,13 +330,13 @@ export class UnifiedSettings {
       if (sub?.currentPeriodEnd) {
         const dateStr = new Date(sub.currentPeriodEnd).toLocaleDateString();
         if (sub.status === 'active') {
-          statusLine = `Renews: ${dateStr}`;
+          statusLine = t('components.settings.renewsOn', { date: dateStr });
         } else if (sub.status === 'on_hold') {
-          statusLine = 'On hold -- please update payment method';
+          statusLine = t('components.settings.onHoldUpdatePayment');
         } else if (sub.status === 'cancelled') {
-          statusLine = `Cancelled -- access until ${dateStr}`;
+          statusLine = t('components.settings.cancelledUntil', { date: dateStr });
         } else if (sub.status === 'expired') {
-          statusLine = 'Expired';
+          statusLine = t('components.settings.expired');
         }
       }
 
@@ -347,16 +347,16 @@ export class UnifiedSettings {
             <span style="color:${statusColor};font-weight:600;font-size:13px;">${escapeHtml(planName)}</span>
           </div>
           ${statusLine ? `<div class="upgrade-pro-status-line">${escapeHtml(statusLine)}</div>` : ''}
-          <button class="manage-billing-btn">Manage Billing</button>
+          <button class="manage-billing-btn">${t('components.settings.manageBilling')}</button>
         </div>
       `;
     }
 
     return `
       <div class="upgrade-pro-section">
-        <div class="upgrade-pro-title">Upgrade to Pro</div>
-        <div class="upgrade-pro-desc">Unlock all panels, AI analysis, and priority data refresh.</div>
-        <button class="upgrade-pro-cta">Upgrade to Pro</button>
+        <div class="upgrade-pro-title">${t('premium.upgradeToPro')}</div>
+        <div class="upgrade-pro-desc">${t('components.settings.upgradeProDesc')}</div>
+        <button class="upgrade-pro-cta">${t('premium.upgradeToPro')}</button>
       </div>
     `;
   }
@@ -440,7 +440,7 @@ export class UnifiedSettings {
         <div class="panel-toggle-item ${panel.enabled && !locked ? 'active' : ''}${changed ? ' changed' : ''}${locked ? ' pro-locked' : ''}" data-panel="${escapeHtml(key)}" aria-pressed="${panel.enabled && !locked}" ${locked ? 'data-pro-locked="1"' : ''}>
           <div class="panel-toggle-checkbox">${panel.enabled && !locked ? '\u2713' : ''}${locked ? '\uD83D\uDD12' : ''}</div>
           <span class="panel-toggle-label">${escapeHtml(displayName)}</span>
-          ${(locked || (ALL_PANELS[key] ?? panel).premium) ? '<span class="panel-toggle-pro-badge">PRO</span>' : ''}
+          ${(locked || (ALL_PANELS[key] ?? panel).premium) ? `<span class="panel-toggle-pro-badge">${t('premium.pro')}</span>` : ''}
         </div>
       `;
     }).join('');

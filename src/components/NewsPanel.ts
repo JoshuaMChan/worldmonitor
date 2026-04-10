@@ -178,9 +178,9 @@ export class NewsPanel extends Panel {
       ? '<svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6.5"/><polyline points="8,4 8,8 11,10"/></svg>'
       : '<svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2v8M4 7l4 4 4-4"/><line x1="3" y1="14" x2="13" y2="14"/></svg>';
     const label = this.sortMode === 'newest'
-      ? t('components.newsPanel.sortNewest') || 'Newest'
-      : t('components.newsPanel.sortRelevance') || 'Relevance';
-    const tooltip = `${t('components.newsPanel.sortBy') || 'Sort by'}: ${label}`;
+      ? t('components.newsPanel.sortNewest')
+      : t('components.newsPanel.sortRelevance');
+    const tooltip = `${t('components.newsPanel.sortBy')}: ${label}`;
     this.sortBtn.innerHTML = icon;
     this.sortBtn.title = tooltip;
     this.sortBtn.setAttribute('aria-label', tooltip);
@@ -279,7 +279,7 @@ export class NewsPanel extends Panel {
     const originalText = titleEl.textContent || '';
 
     // Visual feedback
-    element.innerHTML = '...';
+    element.innerHTML = t('components.newsPanel.translating');
     element.style.pointerEvents = 'none';
 
     try {
@@ -289,7 +289,7 @@ export class NewsPanel extends Panel {
         titleEl.textContent = translated;
         titleEl.dataset.original = originalText;
         element.innerHTML = '✓';
-        element.title = 'Original: ' + originalText;
+        element.title = `${t('components.newsPanel.originalPrefix')}${originalText}`;
         element.classList.add('translated');
       } else {
         element.innerHTML = '文';
@@ -461,15 +461,15 @@ export class NewsPanel extends Panel {
         <div class="item-source">
           ${escapeHtml(item.source)}
           ${item.lang && item.lang !== getCurrentLanguage() ? `<span class="lang-badge">${item.lang.toUpperCase()}</span>` : ''}
-          ${item.storyMeta?.phase === 'breaking' ? '<span class="phase-badge breaking">BREAKING</span>' : ''}
-          ${item.storyMeta?.phase === 'developing' ? `<span class="phase-badge developing">DEVELOPING${item.storyMeta.mentionCount > 1 ? ` ×${item.storyMeta.mentionCount}` : ''}</span>` : ''}
-          ${item.storyMeta?.phase === 'sustained' ? '<span class="phase-badge sustained">ONGOING</span>' : ''}
-          ${item.isAlert ? '<span class="alert-tag">ALERT</span>' : ''}
+          ${item.storyMeta?.phase === 'breaking' ? `<span class="phase-badge breaking">${t('components.newsPanel.phaseBreaking')}</span>` : ''}
+          ${item.storyMeta?.phase === 'developing' ? `<span class="phase-badge developing">${t('components.newsPanel.phaseDeveloping')}${item.storyMeta.mentionCount > 1 ? ` ×${item.storyMeta.mentionCount}` : ''}</span>` : ''}
+          ${item.storyMeta?.phase === 'sustained' ? `<span class="phase-badge sustained">${t('components.newsPanel.phaseOngoing')}</span>` : ''}
+          ${item.isAlert ? `<span class="alert-tag">${t('components.newsPanel.alertTag')}</span>` : ''}
         </div>
         <a class="item-title" href="${sanitizeUrl(item.link)}" target="_blank" rel="noopener">${escapeHtml(item.title)}</a>
         <div class="item-time">
           ${formatTime(item.pubDate)}
-          ${getCurrentLanguage() !== 'en' ? `<button class="item-translate-btn" title="Translate" data-text="${escapeHtml(item.title)}">文</button>` : ''}
+          ${getCurrentLanguage() !== 'en' ? `<button class="item-translate-btn" title="${t('components.newsPanel.translate')}" data-text="${escapeHtml(item.title)}">文</button>` : ''}
         </div>
       </div>
     `
@@ -560,7 +560,7 @@ export class NewsPanel extends Panel {
       return `
         <div class="item clustered item-render-error" data-cluster-id="${escapeHtml(clusterId)}">
           <div class="item-source">${t('common.error')}</div>
-          <div class="item-title">Failed to display this cluster.</div>
+          <div class="item-title">${t('components.newsPanel.failedToDisplayCluster')}</div>
         </div>
       `;
     }
@@ -581,7 +581,7 @@ export class NewsPanel extends Panel {
 
     const velocity = cluster.velocity;
     const velocityBadge = velocity && velocity.level !== 'normal' && cluster.sourceCount > 1
-      ? `<span class="velocity-badge ${velocity.level}">${velocity.trend === 'rising' ? '↑' : ''}+${velocity.sourcesPerHour}/hr</span>`
+      ? `<span class="velocity-badge ${velocity.level}">${velocity.trend === 'rising' ? '↑' : ''}+${velocity.sourcesPerHour}${t('components.newsPanel.perHourSuffix')}</span>`
       : '';
 
     const sentimentIcon = velocity?.sentiment === 'negative' ? '⚠' : velocity?.sentiment === 'positive' ? '✓' : '';
@@ -597,25 +597,25 @@ export class NewsPanel extends Panel {
     // Propaganda risk indicator for primary source
     const primaryPropRisk = getSourcePropagandaRisk(cluster.primarySource);
     const primaryPropBadge = primaryPropRisk.risk !== 'low'
-      ? `<span class="propaganda-badge ${primaryPropRisk.risk}" title="${escapeHtml(primaryPropRisk.note || `State-affiliated: ${primaryPropRisk.stateAffiliated || 'Unknown'}`)}">${primaryPropRisk.risk === 'high' ? '⚠ State Media' : '! Caution'}</span>`
+      ? `<span class="propaganda-badge ${primaryPropRisk.risk}" title="${escapeHtml(primaryPropRisk.note || `${t('components.newsPanel.stateAffiliated')}: ${primaryPropRisk.stateAffiliated || t('common.unknown')}`)}">${primaryPropRisk.risk === 'high' ? t('components.newsPanel.stateMediaWarning') : t('components.newsPanel.caution')}</span>`
       : '';
 
     // Source credibility badge for primary source (T1=Wire, T2=Verified outlet)
     const primaryTier = getSourceTier(cluster.primarySource);
     const primaryType = getSourceType(cluster.primarySource);
-    const tierLabel = primaryTier === 1 ? 'Wire' : ''; // Don't show "Major" - confusing with story importance
+    const tierLabel = primaryTier === 1 ? t('components.newsPanel.tierWire') : ''; // Don't show "Major" - confusing with story importance
     const tierBadge = primaryTier <= 2
-      ? `<span class="tier-badge tier-${primaryTier}" title="${primaryType === 'wire' ? 'Wire Service - Highest reliability' : primaryType === 'gov' ? 'Official Government Source' : 'Verified News Outlet'}">${primaryTier === 1 ? '★' : '●'}${tierLabel ? ` ${tierLabel}` : ''}</span>`
+      ? `<span class="tier-badge tier-${primaryTier}" title="${primaryType === 'wire' ? t('components.newsPanel.tierWireTooltip') : primaryType === 'gov' ? t('components.newsPanel.tierGovTooltip') : t('components.newsPanel.tierVerifiedTooltip')}">${primaryTier === 1 ? '★' : '●'}${tierLabel ? ` ${tierLabel}` : ''}</span>`
       : '';
 
     // Build "Also reported by" section for multi-source confirmation
     const otherSources = cluster.topSources.filter(s => s.name !== cluster.primarySource);
     const topSourcesHtml = otherSources.length > 0
-      ? `<span class="also-reported">Also:</span>` + otherSources
+      ? `<span class="also-reported">${t('components.newsPanel.alsoReported')}:</span>` + otherSources
         .map(s => {
           const propRisk = getSourcePropagandaRisk(s.name);
           const propBadge = propRisk.risk !== 'low'
-            ? `<span class="propaganda-badge ${propRisk.risk}" title="${escapeHtml(propRisk.note || `State-affiliated: ${propRisk.stateAffiliated || 'Unknown'}`)}">${propRisk.risk === 'high' ? '⚠' : '!'}</span>`
+            ? `<span class="propaganda-badge ${propRisk.risk}" title="${escapeHtml(propRisk.note || `${t('components.newsPanel.stateAffiliated')}: ${propRisk.stateAffiliated || t('common.unknown')}`)}">${propRisk.risk === 'high' ? '⚠' : '!'}</span>`
             : '';
           return `<span class="top-source tier-${s.tier}">${escapeHtml(s.name)}${propBadge}</span>`;
         })
@@ -689,7 +689,7 @@ export class NewsPanel extends Panel {
           ${sourceBadge}
           ${velocityBadge}
           ${sentimentBadge}
-          ${cluster.isAlert ? '<span class="alert-tag">ALERT</span>' : ''}
+          ${cluster.isAlert ? `<span class="alert-tag">${t('components.newsPanel.alertTag')}</span>` : ''}
           ${categoryBadge}
           ${riskBadge}
         </div>
@@ -697,7 +697,7 @@ export class NewsPanel extends Panel {
         <div class="cluster-meta">
           <span class="top-sources">${topSourcesHtml}</span>
           <span class="item-time">${formatTime(cluster.lastUpdated)}</span>
-          ${getCurrentLanguage() !== 'en' ? `<button class="item-translate-btn" title="Translate" data-text="${escapeHtml(cluster.primaryTitle)}">文</button>` : ''}
+          ${getCurrentLanguage() !== 'en' ? `<button class="item-translate-btn" title="${t('components.newsPanel.translate')}" data-text="${escapeHtml(cluster.primaryTitle)}">文</button>` : ''}
         </div>
         ${relatedAssetsHtml}
       </div>

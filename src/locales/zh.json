@@ -204,7 +204,24 @@
     "panelCatCentralBanks": "央行与经济",
     "panelCatDeals": "交易与机构",
     "panelCatGulfMena": "海湾与中东",
-    "panelCatTradePolicy": "贸易政策"
+    "panelCatTradePolicy": "贸易政策",
+    "cached": "CACHED",
+    "unavailable": "UNAVAILABLE",
+    "commodity": "COMMODITY",
+    "panelCatCorrelation": "Correlation",
+    "panelCatCommodityPrices": "Prices & Markets",
+    "panelCatMining": "采矿 & Supply Chain",
+    "panelCatCommodityEcon": "Economy & Trade",
+    "panelCatHappyNews": "好消息",
+    "panelCatHappyPlanet": "Planet & Giving",
+    "menu": "菜单",
+    "goodNews": "好消息",
+    "tvMode": "电视模式（Shift+T）",
+    "closeMenu": "关闭菜单",
+    "goodNewsMap": "好消息地图",
+    "map2d": "2D 地图",
+    "globe3d": "3D 地球",
+    "exitTvMode": "退出电视模式"
   },
   "panels": {
     "liveNews": "实时新闻",
@@ -283,7 +300,33 @@
     "gulfCurrencies": "海湾货币",
     "gulfOil": "海湾石油",
     "bigmac": "Real Big Mac Index",
-    "fearGreed": "Fear & Greed"
+    "fearGreed": "Fear & Greed",
+    "marketImplications": "AI Market Implications",
+    "energyComplex": "能源 Complex",
+    "internetDisruptions": "Internet Disruptions",
+    "internetDisruptionsTabs": {
+      "outages": "Outages",
+      "ddos": "DDoS",
+      "anomalies": "Anomalies"
+    },
+    "liveWebcams": "Live Webcams",
+    "windyWebcams": "Windy Live Webcam",
+    "groceryBasket": "Grocery Index",
+    "groceryItem": "Item",
+    "bigmacDesc": "Big Mac prices across Middle East countries (Big Mac Index)",
+    "bigmacWow": "WoW",
+    "bigmacCountry": "国家",
+    "faoFoodPriceIndex": "FAO Food Price Index",
+    "fuelPrices": "Fuel Prices",
+    "fuelPricesDesc": "Retail gasoline and diesel prices across 30+ countries worldwide",
+    "fuelPricesCountry": "国家",
+    "fuelPricesGasoline": "Gasoline",
+    "fuelPricesDiesel": "Diesel",
+    "fuelPricesSource": "来源",
+    "groceryBasketDesc": "Grocery basket price comparison across 24 countries worldwide",
+    "airlineIntel": "✈️ Airline Intelligence",
+    "consumerPrices": "Consumer Prices",
+    "climateNews": "Climate News"
   },
   "commands": {
     "prefixes": {
@@ -321,7 +364,9 @@
       "briefExample": "brief china",
       "layersExample": "military layers",
       "timeExample": "24h",
-      "settingsExample": "dark mode"
+      "settingsExample": "dark mode",
+      "flight": "Search live flights by callsign (PRO)",
+      "flightExample": "UAE528"
     },
     "keywords": {
       "military": "军事",
@@ -417,8 +462,15 @@
         "startup": "创业公司",
         "techevent": "科技活动",
         "techhq": "科技总部",
-        "accelerator": "加速器"
-      }
+        "accelerator": "加速器",
+        "flight": "Flight"
+      },
+      "flightOnGround": "On ground",
+      "flightAirborne": "FL{{fl}} · {{kts}} kts",
+      "flightMilitary": "Military · {{type}} · FL{{fl}}",
+      "flightMilitaryOnGround": "Military · {{type}} · on ground",
+      "flightSearchHint": "Press Enter or click to look up live position",
+      "flightNotFound": "No live position found for {{callsign}}"
     },
     "signal": {
       "title": "情报发现",
@@ -526,7 +578,8 @@
         "NASA_FIRMS_API_KEY": "消防信息资源管理系统。",
         "OLLAMA_API_URL": "e.g. http://127.0.0.1:11434 (Ollama) or http://127.0.0.1:1234/v1 (LM Studio) — OpenAI-compatible endpoint.",
         "OLLAMA_MODEL": "e.g. llama3.1:8b — model tag to use for summarization."
-      }
+      },
+      "reserveEarlyAccess": "Reserve Your Early Access"
     },
     "settingsWindow": {
       "validating": "正在验证API密钥...",
@@ -574,7 +627,9 @@
         "path": "路径",
         "status": "状态",
         "duration": "耗时"
-      }
+      },
+      "freePanelLimit": "Free plan: max {{max}} panels. Upgrade to PRO for unlimited.",
+      "freeSourceLimit": "Free plan: max {{max}} sources. Upgrade to PRO for unlimited."
     },
     "countryIntel": {
       "identifying": "正在识别国家...",
@@ -763,7 +818,17 @@
       "change": "Change",
       "cut": "cut",
       "hike": "hike",
-      "hold": "hold"
+      "hold": "hold",
+      "pressure": {
+        "label": "Macro pressure",
+        "stress": "Stress",
+        "watch": "Watch",
+        "steady": "Steady",
+        "stressDetail": "Volatility and curve pressure are elevated.",
+        "watchDetail": "Cross-market conditions need closer monitoring.",
+        "steadyDetail": "Macro conditions are stable for now."
+      },
+      "infoTooltip": "<strong>Macro Stress</strong> Macro gauges, government spending, and central bank data:<ul><li><strong>Indicators</strong>: VIX, rates, yield curve, labor, inflation</li><li><strong>Gov</strong>: Recent US government contract awards</li><li><strong>Central Banks</strong>: BIS policy rates and exchange rate data</li></ul>"
     },
     "supplyChain": {
       "chokepoints": "咽喉要道",
@@ -787,7 +852,18 @@
       "mineral": "矿产",
       "topProducers": "主要生产国",
       "risk": "风险",
-      "sources": "FRED / NGA / USGS"
+      "sources": "FRED / NGA / USGS",
+      "transit24h": "24h",
+      "tankers": "tankers",
+      "cargo": "cargo",
+      "wowChange": "WoW change",
+      "vesselTransits": "Vessel Transits (180d)",
+      "riskLevel": "Risk level",
+      "flowUnavailable": "Flow data unavailable",
+      "containerRates": "Container Rates",
+      "bulkShipping": "Bulk Shipping",
+      "economicIndicators": "Economic Indicators",
+      "infoTooltip": "<strong>Supply Chain Monitor</strong> Global logistics and resource tracking:<ul><li><strong>Chokepoints</strong>: Maritime transit status, disruption scores, and vessel counts</li><li><strong>Shipping</strong>: Baltic Dry Index and freight rate trends</li><li><strong>Minerals</strong>: Critical mineral concentration risk (HHI) and top producers</li></ul>Click a chokepoint card to expand transit history chart."
     },
     "tradePolicy": {
       "restrictions": "限制措施",
@@ -807,7 +883,39 @@
       "yoyChange": "同比变化",
       "highTariff": "高",
       "moderateTariff": "中等",
-      "lowTariff": "低"
+      "lowTariff": "低",
+      "overview": "Overview",
+      "noOverviewData": "No tariff overview data available",
+      "mfnAppliedRate": "MFN Applied Rate",
+      "baselineMfnTariff": "Baseline MFN tariff",
+      "effectiveTariffRateLabel": "Effective tariff rate",
+      "gapLabel": "Gap",
+      "gapVsMfnLabel": "Gap vs MFN",
+      "noEffectiveCoverageForCountry": "No effective-rate coverage for this country",
+      "effectiveMinusBaseline": "Effective rate minus WTO MFN baseline",
+      "wtoBaselineMeta": "WTO MFN applied rate | {{year}}",
+      "overviewNoteNoEffective": "These figures are WTO MFN baseline rates, not the current tariff burden from unilateral tariff 项行动.",
+      "usBaselineLabel": "US WTO MFN baseline",
+      "overviewNoteTail": "These cards show WTO baseline commitments, not the live effective tariff burden.",
+      "revenue": "US Revenue",
+      "noRevenueData": "No customs revenue data available",
+      "treasuryUnavailable": "Treasury data temporarily unavailable",
+      "fytdLabel": "FY{{year}} YTD",
+      "vsPriorFy": "vs FY{{year}}",
+      "sourceWto": "WTO",
+      "sourceTreasury": "US Treasury",
+      "colDate": "Date",
+      "colMonthly": "Monthly",
+      "colFytd": "FY YTD",
+      "strategicFlows": "Strategic Flows",
+      "noComtradeData": "No strategic flow data available",
+      "comtradeUnavailable": "UN Comtrade data temporarily unavailable",
+      "sourceComtrade": "UN Comtrade",
+      "anomalyBadge": "Anomaly",
+      "colReporter": "国家",
+      "colCommodity": "Commodity",
+      "colTradeValue": "Trade Value",
+      "infoTooltip": "<strong>Trade Policy</strong> WTO baseline and tariff-impact monitoring:<ul><li><strong>Overview</strong>: WTO MFN baseline rates with US effective-rate context when available</li><li><strong>Tariffs</strong>: WTO MFN tariff trends vs the US effective tariff estimate</li><li><strong>Trade Flows</strong>: Export/import volumes with year-over-year changes</li><li><strong>Barriers</strong>: Technical barriers to trade (TBT/SPS notifications)</li><li><strong>Revenue</strong>: Monthly US customs duties revenue (US Treasury MTS data)</li></ul>"
     },
     "gdelt": {
       "empty": "该主题暂无近期文章"
@@ -948,7 +1056,10 @@
         "east-med-theater": "东地中海",
         "israel-gaza-theater": "以色列/加沙",
         "yemen-redsea-theater": "也门/红海"
-      }
+      },
+      "emojiKeyLabel": "Emoji Key",
+      "emojiKeyAir": "Air 资产s",
+      "emojiKeyNaval": "Naval 资产s"
     },
     "countryBrief": {
       "shareLink": "分享链接",
@@ -1003,7 +1114,15 @@
         "ciiNormal": "正常 (31–50)",
         "ciiElevated": "偏高 (51–65)",
         "ciiHigh": "高 (66–80)",
-        "ciiCritical": "危急 (81–100)"
+        "ciiCritical": "危急 (81–100)",
+        "miningSite": "采矿 Site",
+        "commodityPort": "Commodity Port",
+        "pipeline": "Pipeline",
+        "processingPlant": "Processing Plant",
+        "conflict": "Conflict Zone",
+        "diseaseAlert": "Disease Alert",
+        "diseaseWarning": "Disease Warning",
+        "diseaseWatch": "Disease Watch"
       },
       "layerGuide": "图层指南",
       "layerWarningTitle": "性能提示",
@@ -1068,7 +1187,9 @@
         "kindness": "善举",
         "happiness": "世界幸福度",
         "speciesRecovery": "物种恢复",
-        "renewableInstallations": "清洁能源"
+        "renewableInstallations": "清洁能源",
+        "radiationSpike": "Radiation spike",
+        "radiationElevated": "Elevated radiation"
       },
       "tooltip": {
         "earthquake": "地震",
@@ -1233,7 +1354,16 @@
       "headlineMemoryLabel": "标题记忆",
       "headlineMemoryDesc": "记住已阅标题以突出显示新内容",
       "streamAlwaysOnLabel": "保持实时流持续播放",
-      "streamAlwaysOnDesc": "防止 Live Cams 和 Live News 在你空闲时自动暂停。建议用于副屏 / 墙面看板场景。关闭（Eco）可节省 CPU/带宽。"
+      "streamAlwaysOnDesc": "防止 Live Cams 和 Live News 在你空闲时自动暂停。建议用于副屏 / 墙面看板场景。关闭（Eco）可节省 CPU/带宽。",
+      "analysisFrameworksLabel": "Analysis Frameworks",
+      "analysisFrameworksActivePerPanel": "Active per panel",
+      "analysisFrameworksSkillLibrary": "Skill library",
+      "analysisFrameworksImportBtn": "Import framework",
+      "analysisFrameworksDefaultNeutral": "Default (Neutral)",
+      "analysisFrameworksImportTitle": "Import Framework",
+      "analysisFrameworksFromAgentskills": "From agentskills.io",
+      "analysisFrameworksPasteJson": "Paste JSON",
+      "analysisFrameworksSaveToLibrary": "保存 to Library"
     },
     "settings": {
       "dataManagementLabel": "数据管理",
@@ -1243,7 +1373,13 @@
       "exportFailed": "设置导出失败",
       "importSuccess": "已导入{{count}}项设置",
       "importFailed": "设置导入失败",
-      "reloadNow": "立即重新加载"
+      "reloadNow": "立即重新加载",
+      "renewsOn": "续费日期：{{date}}",
+      "onHoldUpdatePayment": "已暂停 — 请更新付款方式",
+      "cancelledUntil": "已取消 — 可用至 {{date}}",
+      "expired": "已过期",
+      "manageBilling": "管理账单",
+      "upgradeProDesc": "解锁全部面板、AI 分析和优先数据刷新。"
     },
     "cascade": {
       "noImpacts": "未检测到国家影响",
@@ -1400,7 +1536,9 @@
         "minutesAgo": "{{count}}分钟前",
         "hoursAgo": "{{count}}小时前"
       },
-      "infoTooltip": "NASA FIRMS VIIRS卫星在监控冲突区域的热异常探测。高强度 = 亮度温度>360K且置信度>80%。"
+      "infoTooltip": "NASA FIRMS VIIRS卫星在监控冲突区域的热异常探测。高强度 = 亮度温度>360K且置信度>80%。",
+      "possibleExplosions": "{{count}} possible explosion(s) detected",
+      "explosionTooltip": "Thermal signature consistent with explosion (FRP >80 MW, brightness >380 K)"
     },
     "ucdpEvents": {
       "stateBased": "国家冲突",
@@ -1481,7 +1619,21 @@
       "summaryError": "无法生成摘要",
       "summaryFailed": "摘要失败",
       "sources": "{{count}}个来源",
-      "relatedAssetsNear": "{{location}}附近的相关资产"
+      "relatedAssetsNear": "{{location}}附近的相关资产",
+      "sortBy": "Sort by",
+      "sortNewest": "Newest",
+      "sortRelevance": "Relevance",
+      "translating": "...",
+      "originalPrefix": "原文： ",
+      "failedToDisplayCluster": "无法显示此聚类。",
+      "translate": "翻译",
+      "noItemsIn": "{{timeRange}}内无条目",
+      "rangeLastHour": "过去 1 小时",
+      "rangeLast6Hours": "过去 6 小时",
+      "rangeLast24Hours": "过去 24 小时",
+      "rangeLast48Hours": "过去 48 小时",
+      "rangeLast7Days": "过去 7 天",
+      "rangeAllTime": "全部时间"
     },
     "export": {
       "exportData": "导出数据"
@@ -1611,7 +1763,8 @@
         "estFlow": "预估流量",
         "volume": "成交量",
         "change": "涨跌幅"
-      }
+      },
+      "infoTooltip": "<strong>BTC ETF Tracker</strong> Tracks daily estimated fund flows for US spot Bitcoin ETFs:<ul><li>Inflow/outflow direction and magnitude</li><li>Volume and price change per fund</li><li>Net aggregate flow across all tracked ETFs</li></ul>"
     },
     "macroSignals": {
       "overall": "综合",
@@ -1628,12 +1781,17 @@
         "hashRate": "Hash Rate",
         "momentum": "Momentum",
         "fearGreed": "恐惧 &amp; 贪婪"
-      }
+      },
+      "infoTooltip": "<strong>BTC Regime</strong> Composite signal dashboard for Bitcoin positioning and risk appetite:<ul><li><strong>Liquidity</strong>: Net Fed liquidity proxy</li><li><strong>Flow</strong>: BTC vs QQQ 5-day returns</li><li><strong>Regime</strong>: QQQ vs XLP rotation (risk-on/off)</li><li><strong>BTC Trend</strong>: Price vs SMA50/200, Mayer Multiple</li><li><strong>Hash Rate</strong>: 30-day network hash change</li><li><strong>Fear & Greed</strong>: Market sentiment index</li></ul>This panel is for regime and positioning, not broad macro data."
     },
     "panel": {
       "showMethodologyInfo": "Show methodology info",
       "dragToResize": "Drag to resize (double-click to reset)",
-      "openSettings": "Open Settings"
+      "openSettings": "Open Settings",
+      "closePanel": "关闭 panel",
+      "collapsePanel": "Collapse panel",
+      "expandPanel": "Expand panel",
+      "addPanel": "Add Panel"
     },
     "languageSelector": {
       "selectLanguage": "Select Language",
@@ -1723,10 +1881,17 @@
     },
     "map": {
       "showMap": "显示地图",
-      "hideMap": "隐藏地图"
+      "hideMap": "隐藏地图",
+      "clearTrails": "Clear trails"
     },
     "internetDisruptions": {
-      "infoTooltip": "<strong>Internet Disruptions</strong> Real-time internet outages, DDoS attacks, and traffic anomalies from global network monitoring:<ul><li><strong>Outages</strong>: BGP-detected connectivity failures by country</li><li><strong>DDoS</strong>: Volumetric attack reports by protocol and vector</li><li><strong>Anomalies</strong>: Unusual traffic patterns from Cloudflare Radar</li></ul>"
+      "infoTooltip": "<strong>Internet Disruptions</strong> Real-time internet outages, DDoS attacks, and traffic anomalies from global network monitoring:<ul><li><strong>Outages</strong>: BGP-detected connectivity failures by country</li><li><strong>DDoS</strong>: Volumetric attack reports by protocol and vector</li><li><strong>Anomalies</strong>: Unusual traffic patterns from Cloudflare Radar</li></ul>",
+      "noOutages": "No active outages detected",
+      "noDdos": "No DDoS data available",
+      "noAnomalies": "No traffic anomalies detected",
+      "byProtocol": "Attack Protocol",
+      "byVector": "Attack Vector",
+      "topTargets": "Top Target Countries"
     },
     "commodities": {
       "infoTooltip": "<strong>Commodities</strong> Tradeable non-energy commodity tape focused on metals and materials. Energy prices live in Energy Complex; macro stress indicators live in Macro Stress."
@@ -1765,7 +1930,26 @@
       "infoTooltip": "<strong>Central Bank Watch</strong> Latest statements, rate decisions, and communications from the Federal Reserve, ECB, Bank of England, and other major central banks worldwide."
     },
     "airlineIntel": {
-      "infoTooltip": "<strong>航空情报</strong> 实时航空公司运营数据：航线暂停、空域关闭、承运商公告和紧急改航。来源：航空当局NOTAM和承运商通报。"
+      "infoTooltip": "<strong>航空情报</strong> 实时航空公司运营数据：航线暂停、空域关闭、承运商公告和紧急改航。来源：航空当局NOTAM和承运商通报。",
+      "noOpsData": "No ops data — loading…",
+      "noFlights": "No flights — select airport in settings.",
+      "noCarrierData": "No carrier data yet.",
+      "noTrackingData": "No aircraft tracking data.",
+      "noNews": "No aviation news.",
+      "enterRoute": "Enter route and search for prices.",
+      "cachedInsight": "Cached insight",
+      "demoMode": "DEMO MODE",
+      "pricesIndicative": "全部 prices indicative",
+      "searchFlights": "Search Flights",
+      "bestDates": "Best Dates",
+      "cabinClass": "Cabin",
+      "enterRouteAndDate": "Enter a route and date to search",
+      "enterDateRange": "Enter a route and date range",
+      "degradedResults": "Some results may be incomplete",
+      "nonstop": "nonstop",
+      "roundTrip": "Round-trip",
+      "tripDays": "Trip 天",
+      "cheapest": "Cheapest"
     },
     "chatAnalyst": {
       "infoTooltip": "<strong>WM 分析师</strong> 具有地缘政治、市场、军事和经济领域实时上下文的AI分析师。由Claude驱动，注入WorldMonitor活跃数据源的实时数据。"
@@ -1814,6 +1998,110 @@
     },
     "yieldCurve": {
       "infoTooltip": "<strong>收益率曲线 &amp; 利率</strong> 美国国债收益率曲线（2Y、5Y、10Y、30Y）和关键利率利差，包括10Y-2Y倒挂指标。还显示欧元区利率（EURIBOR、ESTR）。倒挂曲线在历史上通常先于经济衰退出现。来源：FRED。"
+    },
+    "pinnedWebcams": {
+      "pinFromMap": "Pin a webcam from the map"
+    },
+    "breakthroughsTicker": {
+      "noData": "No science breakthroughs yet"
+    },
+    "energyComplex": {
+      "noData": "能源 data temporarily unavailable - will retry",
+      "liveTape": "Live Tape",
+      "liveTapeSource": "Market quotes",
+      "infoTooltip": "<strong>能源 Complex</strong> Physical and tradeable energy signals in one place:<ul><li><strong>EIA metrics</strong>: WTI, Brent, US production, and inventories</li><li><strong>Live tape</strong>: Tradeable energy prices like crude and natural gas</li><li><strong>Purpose</strong>: Separate physical energy stress from broader macro and commodity panels</li></ul>"
+    },
+    "consumerPrices": {
+      "title": "Consumer Prices",
+      "subtitle": "Basket price tracking across key markets",
+      "tabs": {
+        "overview": "Overview",
+        "categories": "Categories",
+        "movers": "Movers",
+        "spread": "Retailer Spread",
+        "health": "Data Health"
+      },
+      "essentialsIndex": "Essentials Index",
+      "valueBasketIndex": "Value Basket",
+      "wowChange": "WoW",
+      "momChange": "MoM",
+      "retailerSpread": "Retailer Spread",
+      "coveragePct": "Coverage",
+      "freshnessLag": "Freshness Lag",
+      "noCategories": "No category data available",
+      "noMovers": "No price movers available",
+      "noSpread": "No retailer spread data available",
+      "noHealth": "No data health information",
+      "upstreamUnavailable": "Consumer price data temporarily unavailable",
+      "allCategories": "全部 Categories",
+      "risers": "Rising",
+      "fallers": "Falling",
+      "unitPrice": "Unit price",
+      "freshLabel": "Fresh",
+      "staleLabel": "Stale",
+      "laggingLabel": "Lagging",
+      "stalledLabel": "Stalled",
+      "retailer": "Retailer",
+      "lastUpdated": "Last updated",
+      "retailers": "retailers",
+      "items": "items",
+      "infoTooltip": "<strong>Consumer Prices</strong> Real-time basket price tracking:<ul><li><strong>Overview</strong>: Essentials index, value basket, and week-on-week change</li><li><strong>Categories</strong>: Per-category price trends with 30-day range</li><li><strong>Movers</strong>: Biggest rising and falling items this week</li><li><strong>Spread</strong>: Price variance across retailers for the same basket</li></ul>Data sourced from live retailer price scraping."
+    },
+    "marketImplications": {
+      "infoTooltip": "<strong>AI Market Implications</strong> LLM-generated trade signals derived from live geopolitical, commodity, and macro state after each forecast cycle.<ul><li><strong>Direction</strong>: LONG / SHORT / HEDGE with confidence rating</li><li><strong>Timeframe</strong>: 1W, 2W, 1M, or 3M horizon</li><li><strong>Driver</strong>: Key catalyst behind the signal</li><li><strong>Risk</strong>: Caveat or invalidation condition</li></ul><em>For informational purposes only. Not investment advice.</em>"
+    },
+    "forecast": {
+      "infoTooltip": "<strong>AI Forecasts</strong> AI-generated probability estimates for geopolitical and economic events:<ul><li>Cross-domain coverage: conflict, markets, supply chain, cyber, political</li><li>Each forecast shows estimated probability, confidence level, and time horizon</li><li>Calibrated against prediction market baselines where available</li></ul>Forecasts update as new intelligence signals arrive. Filter by domain using the tabs above."
+    },
+    "escalationCorrelation": {
+      "infoTooltip": "<strong>Escalation Monitor</strong> Detects converging geopolitical signals:<ul><li>Correlates military movements, conflict events, and news spikes</li><li>Scores convergence zones by severity (critical/high/medium/low)</li><li>Tracks escalation or de-escalation trends over time</li></ul>Click a card to zoom to the region on the map."
+    },
+    "economicCorrelation": {
+      "infoTooltip": "<strong>Economic Warfare</strong> Detects converging economic pressure signals:<ul><li>Sanctions, trade restrictions, and currency movements</li><li>Commodity disruptions linked to geopolitical actors</li><li>Cross-domain correlation between economic and security events</li></ul>Click a card to zoom to the affected region."
+    },
+    "militaryCorrelation": {
+      "infoTooltip": "<strong>Force Posture</strong> Correlates military activity with geopolitical context:<ul><li>Military aircraft and naval vessel concentrations by region</li><li>Cross-references with active conflict zones and news spikes</li><li>Highlights unusual force buildups or repositioning</li></ul>Click a card to zoom to the region on the map."
+    },
+    "disasterCorrelation": {
+      "infoTooltip": "<strong>Disaster Cascade</strong> Detects converging natural disaster and infrastructure signals:<ul><li>Correlates earthquakes, wildfires, floods, and weather extremes</li><li>Tracks cascading effects on infrastructure and supply chains</li><li>Highlights regions with compounding disaster risk</li></ul>Click a card to zoom to the affected region."
+    },
+    "markets": {
+      "infoTooltip": "<strong>Markets</strong> Real-time stock indices, equities, and crypto prices. Customize your watchlist with the 观察列表 button. Sparklines show recent price trend.",
+      "customizeWatchlist": "自定义市场观察列表",
+      "watchlist": "观察列表",
+      "watchlistTitle": "市场观察列表",
+      "watchlistHelpLine1": "添加额外代码（逗号或换行分隔）。支持友好标签：SYMBOL|标签。",
+      "watchlistHelpLine2": "示例：TSLA|特斯拉，AAPL|苹果，^GSPC|标普500",
+      "watchlistHelpLine3": "提示：建议控制在约 30 个以内，避免频繁滚动。",
+      "cryptoSectors": "加密板块",
+      "defiTokens": "DeFi 代币",
+      "aiTokens": "AI 代币",
+      "altTokens": "山寨币代币"
+    },
+    "heatmap": {
+      "infoTooltip": "<strong>行业 Heatmap</strong> S&P 500 sector performance at a glance. Color intensity reflects the magnitude of daily change. Green = gains, Red = losses."
+    },
+    "fuelPrices": {
+      "infoTooltip": "<strong>Fuel Prices</strong> Retail pump prices for gasoline and diesel across 30+ countries, normalized to USD/liter for comparison. Prices are sourced from official government open-data programs and updated weekly. Cheapest and most expensive countries are highlighted. WoW change shown when prior week data is available.",
+      "countries": "countries"
+    },
+    "faoFoodPriceIndex": {
+      "infoTooltip": "<strong>FAO Food Price Index</strong> The UN Food and Agriculture Organization's FFPI tracks international export prices for a basket of food commodities (Cereals, Dairy, Meat, Oils, Sugar), base 2014-2016=100. Updated monthly on the first Friday of each month.",
+      "indexLabel": "FFPI (2014-16=100)",
+      "mom": "MoM",
+      "yoy": "YoY",
+      "asOf": "As of",
+      "baseNote": "Base: 2014-2016 = 100 | 来源: UN FAO",
+      "ffpi": "Food",
+      "cereals": "Cereals",
+      "meat": "Meat",
+      "dairy": "Dairy",
+      "oils": "Oils",
+      "sugar": "Sugar"
+    },
+    "climateNews": {
+      "infoTooltip": "<strong>Climate News</strong> Latest environment and climate intelligence from Carbon Brief, UNEP, NASA, The Guardian, and other authoritative sources. Updated every 30 minutes.",
+      "loadError": "Climate news temporarily unavailable"
     }
   },
   "popups": {
@@ -1897,7 +2185,9 @@
         "apac": "亚太地区",
         "mena": "中东",
         "africa": "非洲"
-      }
+      },
+      "scheduled": "Sched",
+      "estimated": "Est"
     },
     "aircraft": {
       "altitude": "高度",
@@ -2193,7 +2483,9 @@
       "lastReport": "LATEST",
       "nearChokepoint": "NEAR CHOKEPOINT",
       "nearBase": "NEAR BASE",
-      "lastSeen": "LAST SEEN"
+      "lastSeen": "LAST SEEN",
+      "estPosition": "EST. POSITION",
+      "aisLive": "AIS LIVE"
     },
     "militaryCluster": {
       "flightActivity": {
@@ -2225,7 +2517,13 @@
       "active": "活跃",
       "reported": "已报告",
       "viewOnSource": "在{{source}}上查看",
-      "attribution": "数据：NASA EONET"
+      "attribution": "数据：NASA EONET",
+      "storm": "Storm",
+      "classification": "Classification",
+      "maxWind": "Max Wind",
+      "pressure": "Pressure",
+      "movement": "Movement",
+      "tropicalSystem": "Tropical System"
     },
     "port": {
       "types": {
@@ -2480,7 +2778,9 @@
     "currentVariant": "(当前)",
     "retry": "Retry",
     "refresh": "Refresh",
-    "all": "全部"
+    "all": "全部",
+    "dataTemporarilyUnavailable": "Data temporarily unavailable",
+    "cancel": "取消"
   },
   "preferences": {
     "display": "显示",
@@ -2498,10 +2798,127 @@
     "mapTheme": "地图主题",
     "mapThemeDesc": "地图图块的视觉风格。",
     "globePreset": "视觉预设",
-    "globePresetDesc": "在经典和增强的地球视觉之间切换。"
+    "globePresetDesc": "在经典和增强的地球视觉之间切换。",
+    "fontFamily": "Font Family",
+    "fontFamilyDesc": "Monospace for a technical look, system default for easier reading.",
+    "fontMono": "Monospace",
+    "fontSystem": "System Default"
   },
   "contextMenu": {
     "openCountryBrief": "打开国家简报",
     "copyCoordinates": "复制坐标"
+  },
+  "widgets": {
+    "createWithAi": "Create with AI",
+    "confirmDelete": "Remove this widget permanently?",
+    "chatTitle": "Widget Builder",
+    "modifyTitle": "Modify Widget",
+    "inputPlaceholder": "Describe your widget...",
+    "addToDashboard": "Add to Dashboard",
+    "applyChanges": "Apply Changes",
+    "send": "Send",
+    "changeAccent": "Change accent color",
+    "modifyWithAi": "Modify widget with AI",
+    "ready": "Widget ready: {{title}}",
+    "fetching": "Fetching {{target}}...",
+    "requestTimedOut": "Request timed out. Please try again.",
+    "serverError": "Server error: {{status}}",
+    "unknownError": "Unknown error",
+    "generatedWidget": "Generated widget: {{title}}",
+    "checkingConnection": "检查中 widget access…",
+    "preflightConnected": "Connected to the widget agent",
+    "preflightInvalidKey": "Widget key rejected. Update wm-widget-key and reload.",
+    "preflightUnavailable": "Widget agent is temporarily unavailable.",
+    "preflightAiUnavailable": "AI backend is unavailable. Try again later.",
+    "readyToGenerate": "Ready to generate. Pick an example or describe your widget.",
+    "readyToApply": "Preview ready for {{title}}. Review it, then add it to the dashboard.",
+    "modifyHint": "Previewing the current widget. Submit a change request to revise it.",
+    "generating": "Generating…",
+    "examplesTitle": "Prompt ideas",
+    "previewTitle": "Live Preview",
+    "phaseChecking": "检查中",
+    "phaseReadyToPrompt": "Ready",
+    "phaseFetching": "Fetching",
+    "phaseComposing": "Composing",
+    "phaseComplete": "Ready",
+    "phaseError": "Error",
+    "previewCheckingHeading": "Connecting the widget builder",
+    "previewReadyHeading": "Describe the widget you want",
+    "previewFetchingHeading": "Fetching live WorldMonitor data",
+    "previewComposingHeading": "Composing the widget layout",
+    "previewErrorHeading": "The preview needs attention",
+    "previewCheckingCopy": "We are validating your widget key and backend availability before enabling generation.",
+    "previewReadyCopy": "Use a prompt example or describe the exact live view you want. The preview will update here before you save it.",
+    "previewFetchingCopy": "The agent is calling approved WorldMonitor endpoints and shaping the dataset for the widget.",
+    "previewComposingCopy": "The preview is rendering with the latest live data and dashboard styling.",
+    "previewErrorCopy": "Fix the issue, then retry. Your existing widgets are unaffected.",
+    "createInteractive": "Create Interactive Widget",
+    "proBadge": "PRO",
+    "preflightProUnavailable": "PRO widget agent unavailable. Check PRO_WIDGET_KEY on the server.",
+    "preflightInvalidProKey": "PRO key rejected. Update wm-pro-key and reload.",
+    "examples": {
+      "oilGold": "Show me today's crude oil price versus gold",
+      "cryptoMovers": "Create a widget for the top crypto movers in 过去 24 小时",
+      "flightDelays": "Summarize the worst international flight delays right now",
+      "conflictHotspots": "Map the latest UCDP conflict hotspots with short labels"
+    },
+    "proExamples": {
+      "interactiveChart": "Interactive Chart.js chart comparing oil and gold prices",
+      "sortableTable": "Sortable crypto price table with search filter",
+      "animatedCounters": "Animated counters for key economic indicators",
+      "tabbedComparison": "Tabbed comparison of conflict events by region"
+    }
+  },
+  "connectivity": {
+    "offlineCached": "Offline — showing cached data from {{freshness}}.",
+    "offlineUnavailable": "Offline — live data is currently unavailable.",
+    "cachedFallback": "Live data unavailable — showing cached data from {{freshness}}."
+  },
+  "premium": {
+    "pro": "PRO",
+    "lockedDesc": "Requires a World Monitor license key",
+    "joinWaitlist": "Join Waitlist",
+    "signInToUnlock": "Sign in to unlock premium features",
+    "signIn": "Sign In to Unlock",
+    "verifyEmailToUnlock": "Verify your email to access premium features",
+    "resendVerification": "Resend Verification",
+    "upgradeDesc": "Upgrade to Pro for full access to premium analytics",
+    "upgradeToPro": "Upgrade to Pro",
+    "features": {
+      "orefSirens1": "Real-time Israel missile & rocket alerts",
+      "orefSirens2": "Siren zone mapping with threat classification",
+      "telegramIntel1": "Curated Telegram OSINT channels",
+      "telegramIntel2": "Near-real-time conflict & geopolitical updates"
+    }
+  },
+  "mcp": {
+    "connectPanel": "Connect MCP",
+    "modalTitle": "Connect MCP Server",
+    "serverUrl": "Server URL",
+    "authHeader": "Auth Header",
+    "optional": "optional",
+    "apiKey": "API Key",
+    "apiKeyPlaceholder": "Paste your API key",
+    "useCustomHeaders": "Advanced: use custom headers ↓",
+    "useApiKey": "← Use API key",
+    "connectBtn": "Connect & List Tools",
+    "connecting": "Connecting...",
+    "foundTools": "Found {{count}} tool(s)",
+    "connectFailed": "Connection failed",
+    "selectTool": "Select a tool",
+    "toolArgs": "Arguments (JSON)",
+    "panelTitle": "Panel Title",
+    "panelTitlePlaceholder": "My MCP Panel",
+    "refreshEvery": "刷新 every",
+    "seconds": "seconds",
+    "addPanel": "Add Panel",
+    "configure": "Configure MCP",
+    "refreshNow": "刷新 now",
+    "invalidJson": "Invalid JSON",
+    "confirmDelete": "Remove this MCP panel?",
+    "quickConnect": "Quick Connect",
+    "or": "or enter a custom server",
+    "generatingVisualization": "Building visualization...",
+    "visualizationFailed": "Visualization failed"
   }
 }

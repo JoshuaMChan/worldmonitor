@@ -303,7 +303,7 @@ export class PanelLayoutManager implements AppModule {
       ${this.ctx.isDesktopApp ? '<div class="tauri-titlebar" data-tauri-drag-region></div>' : ''}
       <div class="header">
         <div class="header-left">
-          <button class="hamburger-btn" id="hamburgerBtn" aria-label="Menu">
+          <button class="hamburger-btn" id="hamburgerBtn" aria-label="${t('header.menu')}">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
           </button>
           <div class="variant-switcher">${(() => {
@@ -352,9 +352,9 @@ export class PanelLayoutManager implements AppModule {
                class="variant-option ${SITE_VARIANT === 'happy' ? 'active' : ''}"
                data-variant="happy"
                ${vTarget('happy')}
-               title="Good News${SITE_VARIANT === 'happy' ? ` ${t('common.currentVariant')}` : ''}">
+               title="${t('header.goodNews')}${SITE_VARIANT === 'happy' ? ` ${t('common.currentVariant')}` : ''}">
               <span class="variant-icon">☀️</span>
-              <span class="variant-label">Good News</span>
+              <span class="variant-label">${t('header.goodNews')}</span>
             </a>`;
       })()}</div>
           <span class="logo">MONITOR</span><span class="logo-mobile">World Monitor</span><span class="version">v${__APP_VERSION__}</span>${BETA_MODE ? '<span class="beta-badge">BETA</span>' : ''}
@@ -393,7 +393,7 @@ export class PanelLayoutManager implements AppModule {
           <button class="search-btn" id="searchBtn"><kbd>⌘K</kbd> ${t('header.search')}</button>
           ${this.ctx.isDesktopApp ? '' : `<button class="copy-link-btn" id="copyLinkBtn">${t('header.copyLink')}</button>`}
           ${this.ctx.isDesktopApp ? '' : `<button class="fullscreen-btn" id="fullscreenBtn" title="${t('header.fullscreen')}">⛶</button>`}
-          ${SITE_VARIANT === 'happy' ? `<button class="tv-mode-btn" id="tvModeBtn" title="TV Mode (Shift+T)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></button>` : ''}
+          ${SITE_VARIANT === 'happy' ? `<button class="tv-mode-btn" id="tvModeBtn" title="${t('header.tvMode')}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></button>` : ''}
           <span id="unifiedSettingsMount"></span>
           <span id="authWidgetMount"></span>
         </div>
@@ -402,7 +402,7 @@ export class PanelLayoutManager implements AppModule {
       <nav class="mobile-menu" id="mobileMenu">
         <div class="mobile-menu-header">
           <span class="mobile-menu-title">WORLD MONITOR</span>
-          <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close menu">
+          <button class="mobile-menu-close" id="mobileMenuClose" aria-label="${t('header.closeMenu')}">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
           </button>
         </div>
@@ -413,7 +413,7 @@ export class PanelLayoutManager implements AppModule {
           { key: 'tech', icon: '💻', label: t('header.tech') },
           { key: 'finance', icon: '📈', label: t('header.finance') },
           { key: 'commodity', icon: '⛏️', label: t('header.commodity') },
-          { key: 'happy', icon: '☀️', label: 'Good News' },
+          { key: 'happy', icon: '☀️', label: t('header.goodNews') },
         ];
         return variants.map(v =>
           `<button class="mobile-menu-item mobile-menu-variant ${v.key === SITE_VARIANT ? 'active' : ''}" data-variant="${v.key}">
@@ -436,7 +436,7 @@ export class PanelLayoutManager implements AppModule {
         </button>
         <button class="mobile-menu-item" id="mobileMenuTheme">
           <span class="mobile-menu-item-icon">${getCurrentTheme() === 'dark' ? '☀️' : '🌙'}</span>
-          <span class="mobile-menu-item-label">${getCurrentTheme() === 'dark' ? 'Light Mode' : 'Dark Mode'}</span>
+          <span class="mobile-menu-item-label">${getCurrentTheme() === 'dark' ? t('preferences.themeLight') : t('preferences.themeDark')}</span>
         </button>
         ${cleanMode ? '' : `<a class="mobile-menu-item" href="https://x.com/eliehabib" target="_blank" rel="noopener">
           <span class="mobile-menu-item-icon"><svg class="x-logo" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></span>
@@ -475,15 +475,15 @@ export class PanelLayoutManager implements AppModule {
         <div class="map-section" id="mapSection">
           <div class="panel-header">
             <div class="panel-header-left">
-              <span class="panel-title">${SITE_VARIANT === 'tech' ? t('panels.techMap') : SITE_VARIANT === 'happy' ? 'Good News Map' : t('panels.map')}</span>
+              <span class="panel-title">${SITE_VARIANT === 'tech' ? t('panels.techMap') : SITE_VARIANT === 'happy' ? t('header.goodNewsMap') : t('panels.map')}</span>
             </div>
             <span class="header-clock" id="headerClock" translate="no"></span>
             <div class="map-header-actions">
               <div class="map-dimension-toggle" id="mapDimensionToggle">
-                <button class="map-dim-btn${loadFromStorage<string>(STORAGE_KEYS.mapMode, 'flat') === 'globe' ? '' : ' active'}" data-mode="flat" title="2D Map">2D</button>
-                <button class="map-dim-btn${loadFromStorage<string>(STORAGE_KEYS.mapMode, 'flat') === 'globe' ? ' active' : ''}" data-mode="globe" title="3D Globe">3D</button>
+                <button class="map-dim-btn${loadFromStorage<string>(STORAGE_KEYS.mapMode, 'flat') === 'globe' ? '' : ' active'}" data-mode="flat" title="${t('header.map2d')}">${t('header.mapMode2dShort')}</button>
+                <button class="map-dim-btn${loadFromStorage<string>(STORAGE_KEYS.mapMode, 'flat') === 'globe' ? ' active' : ''}" data-mode="globe" title="${t('header.globe3d')}">${t('header.mapMode3dShort')}</button>
               </div>
-              <button class="map-pin-btn" id="mapFullscreenBtn" title="Fullscreen">
+              <button class="map-pin-btn" id="mapFullscreenBtn" title="${t('header.fullscreen')}">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3"/><path d="M21 8V5a2 2 0 0 0-2-2h-3"/><path d="M3 16v3a2 2 0 0 0 2 2h3"/><path d="M16 21h3a2 2 0 0 0 2-2v-3"/></svg>
               </button>
               <button class="map-pin-btn" id="mapPinBtn" title="${t('header.pinMap')}">
@@ -494,13 +494,13 @@ export class PanelLayoutManager implements AppModule {
             </div>
           </div>
           <div class="map-container" id="mapContainer"></div>
-          ${SITE_VARIANT === 'happy' ? '<button class="tv-exit-btn" id="tvExitBtn">Exit TV Mode</button>' : ''}
+          ${SITE_VARIANT === 'happy' ? `<button class="tv-exit-btn" id="tvExitBtn">${t('header.exitTvMode')}</button>` : ''}
           <div class="map-resize-handle" id="mapResizeHandle"></div>
           <div class="map-bottom-grid" id="mapBottomGrid"></div>
         </div>
         <div class="map-width-resize-handle" id="mapWidthResizeHandle"></div>
         <div class="panels-grid" id="panelsGrid"></div>
-        <button class="search-mobile-fab" id="searchMobileFab" aria-label="Search">\u{1F50D}</button>
+        <button class="search-mobile-fab" id="searchMobileFab" aria-label="${t('header.search')}">\u{1F50D}</button>
       </div>
       ${cleanMode ? '' : `<footer class="site-footer">
         <div class="site-footer-brand">
@@ -601,10 +601,10 @@ export class PanelLayoutManager implements AppModule {
       <div class="banner-content">
         <span class="banner-icon">${isCritical ? '🚨' : '⚠️'}</span>
         <span class="banner-headline">${escapeHtml(top.headline)}</span>
-        <span class="banner-stats">${top.totalAircraft} aircraft • ${escapeHtml(top.summary)}</span>
-        ${top.strikeCapable ? '<span class="banner-strike">STRIKE CAPABLE</span>' : ''}
+        <span class="banner-stats">${top.totalAircraft} ${t('components.strategicPosture.units.aircraft')} • ${escapeHtml(top.summary)}</span>
+        ${top.strikeCapable ? `<span class="banner-strike">${t('components.strategicPosture.strike')}</span>` : ''}
       </div>
-      <button class="banner-view" data-lat="${top.centerLat}" data-lon="${top.centerLon}">View Region</button>
+      <button class="banner-view" data-lat="${top.centerLat}" data-lon="${top.centerLon}">${t('modals.signal.viewOnMap')}</button>
       <button class="banner-dismiss">×</button>
     `;
 
@@ -1372,7 +1372,7 @@ export class PanelLayoutManager implements AppModule {
       if (!panel) return;
       const filtered = this.filterItemsByTimeRange(items);
       if (filtered.length === 0 && items.length > 0) {
-        panel.renderFilteredEmpty(`No items in ${this.getTimeRangeLabel()}`);
+        panel.renderFilteredEmpty(t('components.newsPanel.noItemsIn', { timeRange: this.getTimeRangeLabel() }));
         return;
       }
       panel.renderNews(filtered);
@@ -1395,11 +1395,11 @@ export class PanelLayoutManager implements AppModule {
 
   private getTimeRangeLabel(): string {
     const labels: Record<string, string> = {
-      '1h': 'the last hour', '6h': 'the last 6 hours',
-      '24h': 'the last 24 hours', '48h': 'the last 48 hours',
-      '7d': 'the last 7 days', 'all': 'all time',
+      '1h': t('components.newsPanel.rangeLastHour'), '6h': t('components.newsPanel.rangeLast6Hours'),
+      '24h': t('components.newsPanel.rangeLast24Hours'), '48h': t('components.newsPanel.rangeLast48Hours'),
+      '7d': t('components.newsPanel.rangeLast7Days'), 'all': t('components.newsPanel.rangeAllTime'),
     };
-    return labels[this.ctx.currentTimeRange] ?? 'the last 7 days';
+    return labels[this.ctx.currentTimeRange] ?? t('components.newsPanel.rangeLast7Days');
   }
 
   private applyInitialUrlState(): void {

@@ -130,6 +130,12 @@ Copyright (C) 2024-2026 Elie Habib. All rights reserved.
 
 ---
 
+## Acknowledgment
+
+Special thanks to **Elie Habib** for open-sourcing World Monitor and sharing this work with the community. Your generosity makes learning, collaboration, and innovation possible for many developers.
+
+---
+
 ## Author
 
 **Elie Habib** — [GitHub](https://github.com/koala73)

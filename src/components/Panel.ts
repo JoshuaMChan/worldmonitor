@@ -855,7 +855,7 @@ export class Panel {
     }
 
     if (!isCleanModeEnabled()) {
-      const ctaBtn = h('button', { type: 'button', className: 'panel-locked-cta' }, 'Upgrade to Pro');
+      const ctaBtn = h('button', { type: 'button', className: 'panel-locked-cta' }, t('premium.upgradeToPro'));
       if (isDesktopRuntime()) {
         ctaBtn.addEventListener('click', () => void invokeTauri<void>('open_url', { url: 'https://worldmonitor.app/pro' }).catch(() => window.open('https://worldmonitor.app/pro', '_blank')));
       } else {
