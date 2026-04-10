@@ -3,6 +3,7 @@ import { invokeTauri } from '@/services/tauri-bridge';
 import { trackUpdateShown, trackUpdateClicked, trackUpdateDismissed } from '@/services/analytics';
 import { escapeHtml } from '@/utils/sanitize';
 import { getDismissed, setDismissed } from '@/utils/cross-domain-storage';
+import { t } from '@/services/i18n';
 
 interface DesktopRuntimeInfo {
   os: string;
@@ -178,11 +179,11 @@ export class DesktopUpdater implements AppModule {
         </svg>
       </div>
       <div class="update-toast-body">
-        <div class="update-toast-title">Update Available</div>
+        <div class="update-toast-title">${t('updater.updateAvailable')}</div>
         <div class="update-toast-detail">v${escapeHtml(__APP_VERSION__)} \u2192 v${escapeHtml(version)}</div>
       </div>
-      <button class="update-toast-action" data-action="download">Download</button>
-      <button class="update-toast-dismiss" data-action="dismiss" aria-label="Dismiss">\u00d7</button>
+      <button class="update-toast-action" data-action="download">${t('updater.download')}</button>
+      <button class="update-toast-dismiss" data-action="dismiss" aria-label="${t('updater.dismiss')}">\u00d7</button>
     `;
 
     const dismissToast = () => {

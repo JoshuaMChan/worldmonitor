@@ -666,7 +666,7 @@ export class NewsPanel extends Panel {
           return Math.round(base * (cluster.threat.confidence ?? 1));
         })();
     const riskBadge = riskScore !== null && riskScore >= 50
-      ? `<span class="risk-score-badge" style="color:${catColor || getCSSColor('--text-dim')};border-color:${catColor ? catColor + '40' : 'var(--border)'};background:${catColor ? catColor + '15' : 'transparent'}" title="Event risk score">${riskScore}</span>`
+      ? `<span class="risk-score-badge" style="color:${catColor || getCSSColor('--text-dim')};border-color:${catColor ? catColor + '40' : 'var(--border)'};background:${catColor ? catColor + '15' : 'transparent'}" title="${t('components.newsPanel.eventRiskScore')}">${riskScore}</span>`
       : '';
 
     // Build class list for item

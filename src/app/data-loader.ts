@@ -1220,7 +1220,7 @@ export class DataLoaderManager implements AppModule {
       const results = await fetchStockAnalysesForTargets(staleTargets);
       if (results.length === 0) {
         if (cachedSnapshots.length === 0) {
-          panel.showRetrying('Stock analysis is waiting for eligible watchlist symbols.');
+          panel.showRetrying(t('components.stockAnalysis.waitingEligibleSymbols'));
         }
         return;
       }
@@ -1234,7 +1234,7 @@ export class DataLoaderManager implements AppModule {
         panel.renderAnalyses(cachedSnapshots, cachedHistory, 'cached');
         return;
       }
-      panel.showError('Premium stock analysis is temporarily unavailable.');
+      panel.showError(t('components.stockAnalysis.temporarilyUnavailable'));
     }
   }
 
@@ -1258,7 +1258,7 @@ export class DataLoaderManager implements AppModule {
       const results = await fetchStockBacktestsForTargets(staleTargets);
       if (results.length === 0) {
         if (stored.length === 0) {
-          panel.showRetrying('Backtesting is waiting for eligible watchlist symbols.');
+          panel.showRetrying(t('components.stockBacktest.waitingEligibleSymbols'));
         }
         return;
       }
@@ -1270,7 +1270,7 @@ export class DataLoaderManager implements AppModule {
         panel.renderBacktests(stored, 'cached');
         return;
       }
-      panel.showError('Premium stock backtesting is temporarily unavailable.');
+      panel.showError(t('components.stockBacktest.temporarilyUnavailable'));
     }
   }
 

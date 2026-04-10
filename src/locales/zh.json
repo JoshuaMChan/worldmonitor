@@ -133,6 +133,43 @@
       "languages": "语言",
       "currencies": "货币",
       "area": "面积"
+    },
+    "distanceKm": "{{distance}} 公里",
+    "stateAffiliated": "国家关联：{{source}}",
+    "loadingInfrastructure": "正在计算附近关键基础设施…",
+    "economic": {
+      "stockIndex": "股票指数",
+      "weeklyMomentum": "周度动量",
+      "marketService": "市场服务"
+    },
+    "meta": {
+      "cached": "已缓存",
+      "fallback": "回退",
+      "updated": "更新于 {{time}}"
+    },
+    "markets": {
+      "probability": "概率：{{value}}%",
+      "volumeUsd": "成交量：${{value}}"
+    },
+    "maritime": {
+      "port": "港口",
+      "tankerCalls30d": "油轮靠港（30天）",
+      "trend": "趋势",
+      "importDwt": "进口 DWT",
+      "exportDwt": "出口 DWT",
+      "trafficAnomalyDetected": "检测到流量异常"
+    },
+    "energy": {
+      "unavailable": "该国家暂无能源数据。",
+      "dataOwId": "数据：{{year}}（OWID）",
+      "importDependency": "进口依赖：",
+      "oilProductSupply": "石油产品供应（{{month}}）",
+      "sourceJodi": "来源：JODI",
+      "shockScenario": "冲击情景",
+      "computing": "计算中…",
+      "computeFailed": "情景计算失败。",
+      "modelAssumptions": "模型假设",
+      "gasLngImpact": "天然气 / LNG 影响"
     }
   },
   "header": {
@@ -223,7 +260,15 @@
     "globe3d": "3D 地球",
     "mapMode2dShort": "2D",
     "mapMode3dShort": "3D",
-    "exitTvMode": "退出电视模式"
+    "exitTvMode": "退出电视模式",
+    "worldMonitor": "WORLD MONITOR",
+    "pro": "Pro",
+    "blog": "Blog",
+    "docs": "Docs",
+    "status": "Status",
+    "github": "GitHub",
+    "discord": "Discord",
+    "x": "X"
   },
   "panels": {
     "liveNews": "实时新闻",
@@ -312,6 +357,7 @@
       "anomalies": "异常现象"
     },
     "liveWebcams": "实时网络摄像头",
+    "economicCalendar": "经济日历",
     "windyWebcams": "有风的实时网络摄像头",
     "groceryBasket": "杂货指数",
     "groceryItem": "物品",
@@ -733,6 +779,17 @@
       "expand": "展开",
       "paused": "摄像头已暂停",
       "pausedIdle": "摄像头已暂停 — 移动鼠标以恢复",
+      "loadingPreview": "正在加载预览...",
+      "previewUnavailable": "预览不可用",
+      "pin": "📌 固定",
+      "pinned": "📌 已固定",
+      "loadingList": "正在加载列表...",
+      "webcam": "网络摄像头",
+      "countLoading": "📷 {{count}} 个摄像头 — 加载中...",
+      "count": "📷 {{count}} 个摄像头",
+      "loadFailed": "📷 加载摄像头列表失败",
+      "openOnWindy": "在 Windy 打开 ↗",
+      "poweredByWindy": "由 Windy 提供",
       "regions": {
         "iran": "伊朗袭击",
         "all": "全部",
@@ -1648,7 +1705,8 @@
       "rangeLast24Hours": "过去 24 小时",
       "rangeLast48Hours": "过去 48 小时",
       "rangeLast7Days": "过去 7 天",
-      "rangeAllTime": "全部时间"
+      "rangeAllTime": "全部时间",
+      "eventRiskScore": "事件风险评分"
     },
     "export": {
       "exportData": "导出数据"
@@ -1942,10 +2000,14 @@
       "infoTooltip": "<strong>Alt 代币</strong> 主要市值层之外的替代和新兴加密代币的价格和 24 小时/7 天表现。"
     },
     "stockAnalysis": {
-      "infoTooltip": "<strong>优质股票分析</strong> 对您的观察列表中的股票进行人工智能分析 — 买入/持有/卖出信号、价格目标、主要风险和每日更新的催化剂。"
+      "infoTooltip": "<strong>优质股票分析</strong> 对您的观察列表中的股票进行人工智能分析 — 买入/持有/卖出信号、价格目标、主要风险和每日更新的催化剂。",
+      "waitingEligibleSymbols": "股票分析正在等待符合条件的自选股代码。",
+      "temporarilyUnavailable": "高级股票分析暂时不可用。"
     },
     "stockBacktest": {
-      "infoTooltip": "<strong>高级回测</strong> 观察列表中股票的历史表现回测 - 过去的回报、最大回撤和波动率指标。"
+      "infoTooltip": "<strong>高级回测</strong> 观察列表中股票的历史表现回测 - 过去的回报、最大回撤和波动率指标。",
+      "waitingEligibleSymbols": "回测正在等待符合条件的自选股代码。",
+      "temporarilyUnavailable": "高级股票回测暂时不可用。"
     },
     "dailyMarketBrief": {
       "infoTooltip": "<strong>每日市场简报</strong> 人工智能生成的全球市场状况、主要宏观趋势和行业级信号的每日摘要 - 每个交易日都会刷新。"
@@ -1973,7 +2035,48 @@
       "nonstop": "马不停蹄",
       "roundTrip": "往返",
       "tripDays": "Trip 天",
-      "cheapest": "最便宜"
+      "cheapest": "最便宜",
+      "tabs": {
+        "ops": "运行",
+        "flights": "航班",
+        "airlines": "航司",
+        "track": "追踪",
+        "news": "新闻",
+        "prices": "票价"
+      },
+      "labels": {
+        "from": "出发",
+        "to": "到达",
+        "flightsShort": "班",
+        "delayed": "延误",
+        "canceledShort": "取消",
+        "stopsCount": "{{count}} 次中转"
+      },
+      "cabins": {
+        "economy": "经济舱",
+        "premiumEconomy": "超级经济舱",
+        "business": "商务舱",
+        "first": "头等舱"
+      },
+      "tracking": {
+        "backToLiveFeed": "返回实时流",
+        "placeholder": "航班 (EK3) 或呼号 (UAE3)",
+        "depart": "起飞",
+        "arrive": "到达",
+        "gate": "登机口",
+        "terminalShort": "航站楼",
+        "delay": "延误",
+        "noResultsFor": "未找到结果："
+      },
+      "errors": {
+        "iataCodes": "请输入有效的 3 位 IATA 代码",
+        "departureDateFuture": "出发日期必须是今天或未来",
+        "startEndDates": "请输入开始和结束日期",
+        "startDateFuture": "开始日期必须是今天或未来",
+        "startBeforeEnd": "开始日期必须早于结束日期",
+        "tripDurationMin": "行程天数至少为 1 天",
+        "rangeOver90": "范围超过 90 天，结果可能不完整"
+      }
     },
     "chatAnalyst": {
       "infoTooltip": "<strong>WM 分析师</strong> 具有地缘政治、市场、军事和经济领域实时上下文的AI分析师。由Claude驱动，注入WorldMonitor活跃数据源的实时数据。"
@@ -1991,7 +2094,27 @@
       "infoTooltip": "<strong>财报日历</strong> 大型上市公司即将和近期的财报发布。显示EPS预期与实际对比、营收及超预期/不及预期分类。来源：金融数据提供商。"
     },
     "economicCalendar": {
-      "infoTooltip": "<strong>经济日历</strong> 预定的宏观经济数据发布：CPI、NFP、GDP、PMI和央行决议。显示预测值、实际值和前值。高影响事件突出显示。来源：经济数据提供商。"
+      "infoTooltip": "<strong>经济日历</strong> 预定的宏观经济数据发布：CPI、NFP、GDP、PMI和央行决议。显示预测值、实际值和前值。高影响事件突出显示。来源：经济数据提供商。",
+      "unknown": "未知",
+      "loading": "正在加载经济日历...",
+      "dataUnavailable": "经济日历数据不可用。",
+      "failedLoad": "加载经济日历失败。",
+      "noUpcomingEvents": "暂无即将发布的经济事件。",
+      "noSelectedRegionEvents": "所选地区暂无事件",
+      "event": "事件",
+      "regions": {
+    "all": "全部",
+    "notAvailable": "无",
+    "open": "打开"
+      },
+      "countdown": {
+        "today": "今天",
+        "tomorrow": "明天",
+        "daysAgo": "{{count}}天前",
+        "weeksAgo": "{{count}}周前",
+        "inDays": "{{count}}天后",
+        "inWeeks": "{{count}}周后"
+      }
     },
     "fsi": {
       "infoTooltip": "<strong>金融压力指标</strong> 堪萨斯城联储金融压力指数（KCFSI）：使用11个指标衡量美国金融市场压力，包括收益率利差、波动率和交叉相关性。正值表示高于平均水平的压力。来源：堪萨斯城联邦储备银行。"
@@ -2000,7 +2123,13 @@
       "infoTooltip": "<strong>霍尔木兹贸易追踪器</strong> 通过全球最关键的石油咽喉要道霍尔木兹海峡的AIS船舶实时追踪。监控油轮数量、中断事件和每周流量变化。全球约20%的石油供应每天经此通过。"
     },
     "liveWebcams": {
-      "infoTooltip": "<strong>实时摄像头</strong> 来自全球地缘政治重要地点的直播：冲突区、首都、边境口岸和战略咽喉要道。流媒体来自YouTube和公共网络。"
+      "infoTooltip": "<strong>实时摄像头</strong> 来自全球地缘政治重要地点的直播：冲突区、首都、边境口岸和战略咽喉要道。流媒体来自YouTube和公共网络。",
+      "fullscreen": "全屏",
+      "exitFullscreen": "退出全屏",
+      "gridView": "网格视图",
+      "singleView": "单屏视图",
+      "grid": "网格",
+      "streamBlocked": "该视频流被拦截或加载失败。"
     },
     "macroTiles": {
       "infoTooltip": "<strong>宏观指标</strong> 美国和欧元区关键宏观经济指标：CPI、失业率、GDP和央行利率。显示值含与前期的差值。来源：FRED（联邦储备经济数据）。"
@@ -2806,6 +2935,11 @@
     "dataTemporarilyUnavailable": "数据暂时不可用",
     "cancel": "取消",
     "unknown": "未知"
+  },
+  "updater": {
+    "updateAvailable": "有可用更新",
+    "download": "下载",
+    "dismiss": "关闭"
   },
   "preferences": {
     "display": "显示",

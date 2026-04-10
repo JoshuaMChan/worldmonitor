@@ -194,6 +194,43 @@
       "languages": "Languages",
       "currencies": "Currencies",
       "area": "Area"
+    },
+    "distanceKm": "{{distance}} km",
+    "stateAffiliated": "State-affiliated: {{source}}",
+    "loadingInfrastructure": "Computing nearby critical infrastructure…",
+    "economic": {
+      "stockIndex": "Stock Index",
+      "weeklyMomentum": "Weekly Momentum",
+      "marketService": "Market Service"
+    },
+    "meta": {
+      "cached": "Cached",
+      "fallback": "Fallback",
+      "updated": "Updated {{time}}"
+    },
+    "markets": {
+      "probability": "Probability: {{value}}%",
+      "volumeUsd": "Volume: ${{value}}"
+    },
+    "maritime": {
+      "port": "Port",
+      "tankerCalls30d": "Tanker Calls (30d)",
+      "trend": "Trend",
+      "importDwt": "Import DWT",
+      "exportDwt": "Export DWT",
+      "trafficAnomalyDetected": "Traffic anomaly detected"
+    },
+    "energy": {
+      "unavailable": "Energy data unavailable for this country.",
+      "dataOwId": "Data: {{year}} (OWID)",
+      "importDependency": "Import dependency:",
+      "oilProductSupply": "Oil Product Supply ({{month}})",
+      "sourceJodi": "Source: JODI",
+      "shockScenario": "Shock Scenario",
+      "computing": "Computing…",
+      "computeFailed": "Failed to compute scenario.",
+      "modelAssumptions": "Model assumptions",
+      "gasLngImpact": "Gas / LNG Impact"
     }
   },
   "header": {
@@ -284,7 +321,15 @@
     "globe3d": "3D Globe",
     "mapMode2dShort": "2D",
     "mapMode3dShort": "3D",
-    "exitTvMode": "Exit TV Mode"
+    "exitTvMode": "Exit TV Mode",
+    "worldMonitor": "WORLD MONITOR",
+    "pro": "Pro",
+    "blog": "Blog",
+    "docs": "Docs",
+    "status": "Status",
+    "github": "GitHub",
+    "discord": "Discord",
+    "x": "X"
   },
   "panels": {
     "liveNews": "Live News",
@@ -365,6 +410,7 @@
     "gccInvestments": "GCC Investments",
     "geoHubs": "Geopolitical Hubs",
     "liveWebcams": "Live Webcams",
+    "economicCalendar": "Economic Calendar",
     "windyWebcams": "Windy Live Webcam",
     "gulfEconomies": "Gulf Economies",
     "groceryBasket": "Grocery Index",
@@ -792,6 +838,17 @@
       "expand": "Expand",
       "paused": "Webcams paused",
       "pausedIdle": "Webcams paused — move mouse to resume",
+      "loadingPreview": "Loading preview...",
+      "previewUnavailable": "Preview unavailable",
+      "pin": "📌 Pin",
+      "pinned": "📌 Pinned",
+      "loadingList": "Loading list...",
+      "webcam": "Webcam",
+      "countLoading": "📷 {{count}} webcams — loading...",
+      "count": "📷 {{count}} webcams",
+      "loadFailed": "📷 Failed to load webcam list",
+      "openOnWindy": "Open on Windy ↗",
+      "poweredByWindy": "Powered by Windy",
       "regions": {
         "iran": "IRAN ATTACKS",
         "all": "ALL",
@@ -831,7 +888,48 @@
       "nonstop": "nonstop",
       "roundTrip": "Round-trip",
       "tripDays": "Trip days",
-      "cheapest": "Cheapest"
+      "cheapest": "Cheapest",
+      "tabs": {
+        "ops": "Ops",
+        "flights": "Flights",
+        "airlines": "Airlines",
+        "track": "Track",
+        "news": "News",
+        "prices": "Prices"
+      },
+      "labels": {
+        "from": "From",
+        "to": "To",
+        "flightsShort": "flt",
+        "delayed": "delayed",
+        "canceledShort": "cxl",
+        "stopsCount": "{{count}} stop"
+      },
+      "cabins": {
+        "economy": "Economy",
+        "premiumEconomy": "Premium Economy",
+        "business": "Business",
+        "first": "First"
+      },
+      "tracking": {
+        "backToLiveFeed": "Back to live feed",
+        "placeholder": "Flight (EK3) or callsign (UAE3)",
+        "depart": "Dep",
+        "arrive": "Arr",
+        "gate": "Gate",
+        "terminalShort": "T",
+        "delay": "delay",
+        "noResultsFor": "No results for"
+      },
+      "errors": {
+        "iataCodes": "Enter valid 3-letter IATA codes",
+        "departureDateFuture": "Departure date must be today or future",
+        "startEndDates": "Enter start and end dates",
+        "startDateFuture": "Start date must be today or future",
+        "startBeforeEnd": "Start date must be before end date",
+        "tripDurationMin": "Trip duration must be at least 1 day",
+        "rangeOver90": "Range exceeds 90 days — results may be incomplete"
+      }
     },
     "goodThingsDigest": {
       "noStories": "No stories available",
@@ -1774,7 +1872,8 @@
       "rangeLast24Hours": "the last 24 hours",
       "rangeLast48Hours": "the last 48 hours",
       "rangeLast7Days": "the last 7 days",
-      "rangeAllTime": "all time"
+      "rangeAllTime": "all time",
+      "eventRiskScore": "Event risk score"
     },
     "export": {
       "exportData": "Export Data"
@@ -1981,10 +2080,14 @@
       "infoTooltip": "<strong>Alt Tokens</strong> Prices and 24h/7d performance for alternative and emerging crypto tokens outside the major-cap tiers."
     },
     "stockAnalysis": {
-      "infoTooltip": "<strong>Premium Stock Analysis</strong> AI-powered analysis for stocks in your watchlist — buy/hold/sell signals, price targets, key risks, and catalysts updated daily."
+      "infoTooltip": "<strong>Premium Stock Analysis</strong> AI-powered analysis for stocks in your watchlist — buy/hold/sell signals, price targets, key risks, and catalysts updated daily.",
+      "waitingEligibleSymbols": "Stock analysis is waiting for eligible watchlist symbols.",
+      "temporarilyUnavailable": "Premium stock analysis is temporarily unavailable."
     },
     "stockBacktest": {
-      "infoTooltip": "<strong>Premium Backtesting</strong> Historical performance backtests for stocks in your watchlist — past returns, max drawdown, and volatility metrics."
+      "infoTooltip": "<strong>Premium Backtesting</strong> Historical performance backtests for stocks in your watchlist — past returns, max drawdown, and volatility metrics.",
+      "waitingEligibleSymbols": "Backtesting is waiting for eligible watchlist symbols.",
+      "temporarilyUnavailable": "Premium stock backtesting is temporarily unavailable."
     },
     "dailyMarketBrief": {
       "infoTooltip": "<strong>Daily Market Brief</strong> AI-generated daily summary of global market conditions, key macro trends, and sector-level signals — refreshes each trading day."
@@ -2148,7 +2251,25 @@
       "infoTooltip": "<strong>Earnings Calendar</strong> Upcoming and recent earnings releases for major public companies. Shows EPS estimates vs actuals, revenue, and beat/miss classification. Source: financial data providers."
     },
     "economicCalendar": {
-      "infoTooltip": "<strong>Economic Calendar</strong> Scheduled macroeconomic releases: CPI, NFP, GDP, PMI, and central bank decisions. Shows forecast vs actual vs prior. High-impact events highlighted. Source: economic data providers."
+      "infoTooltip": "<strong>Economic Calendar</strong> Scheduled macroeconomic releases: CPI, NFP, GDP, PMI, and central bank decisions. Shows forecast vs actual vs prior. High-impact events highlighted. Source: economic data providers.",
+      "unknown": "Unknown",
+      "loading": "Loading economic calendar...",
+      "dataUnavailable": "Economic calendar data unavailable.",
+      "failedLoad": "Failed to load economic calendar.",
+      "noUpcomingEvents": "No upcoming economic events.",
+      "noSelectedRegionEvents": "No events for selected region",
+      "event": "EVENT",
+      "regions": {
+        "all": "All"
+      },
+      "countdown": {
+        "today": "today",
+        "tomorrow": "tomorrow",
+        "daysAgo": "{{count}}d ago",
+        "weeksAgo": "{{count}}w ago",
+        "inDays": "in {{count}}d",
+        "inWeeks": "in {{count}}w"
+      }
     },
     "fsi": {
       "infoTooltip": "<strong>Financial Stress Indicator</strong> Kansas City Fed Financial Stress Index (KCFSI): measures stress in US financial markets using 11 indicators including yield spreads, volatility, and cross-correlations. Positive values indicate above-average stress. Source: Federal Reserve Bank of Kansas City."
@@ -2157,7 +2278,13 @@
       "infoTooltip": "<strong>Hormuz Trade Tracker</strong> Live AIS vessel tracking through the Strait of Hormuz, the world's most critical oil chokepoint. Monitors tanker counts, disruption events, and weekly flow changes. Approximately 20% of global oil supply transits here daily."
     },
     "liveWebcams": {
-      "infoTooltip": "<strong>Live Webcams</strong> Live feeds from geopolitically significant locations worldwide: conflict zones, capital cities, border crossings, and strategic chokepoints. Streams sourced from YouTube and public networks."
+      "infoTooltip": "<strong>Live Webcams</strong> Live feeds from geopolitically significant locations worldwide: conflict zones, capital cities, border crossings, and strategic chokepoints. Streams sourced from YouTube and public networks.",
+      "fullscreen": "Fullscreen",
+      "exitFullscreen": "Exit fullscreen",
+      "gridView": "Grid view",
+      "singleView": "Single view",
+      "grid": "Grid",
+      "streamBlocked": "This stream is blocked or failed to load."
     },
     "macroTiles": {
       "infoTooltip": "<strong>Macro Indicators</strong> Key macroeconomic indicators for the US and Euro Area: CPI, unemployment, GDP, and central bank rates. Values shown with prior period delta. Source: FRED (Federal Reserve Economic Data)."
@@ -2858,7 +2985,14 @@
     "currentVariant": "(current)",
     "retry": "Retry",
     "refresh": "Refresh",
-    "all": "All"
+    "all": "All",
+    "notAvailable": "n/a",
+    "open": "Open"
+  },
+  "updater": {
+    "updateAvailable": "Update Available",
+    "download": "Download",
+    "dismiss": "Dismiss"
   },
   "connectivity": {
     "offlineCached": "Offline — showing cached data from {{freshness}}.",

@@ -1328,7 +1328,7 @@ export class GlobeMap {
       'line-height:1.5',
     ].join(';');
 
-    const closeBtn = `<button style="position:absolute;top:4px;right:4px;background:none;border:none;color:#888;cursor:pointer;font-size:14px;line-height:1;padding:2px 4px;" aria-label="Close">\u00D7</button>`;
+    const closeBtn = `<button style="position:absolute;top:4px;right:4px;background:none;border:none;color:#888;cursor:pointer;font-size:14px;line-height:1;padding:2px 4px;" aria-label="${t('common.close')}">\u00D7</button>`;
 
     const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
@@ -1579,7 +1579,7 @@ export class GlobeMap {
       previewDiv.style.marginTop = '4px';
       const loadingSpan = document.createElement('span');
       loadingSpan.style.cssText = 'opacity:.5;font-size:11px;';
-      loadingSpan.textContent = 'Loading preview...';
+      loadingSpan.textContent = t('components.webcams.loadingPreview');
       previewDiv.appendChild(loadingSpan);
       wrapper.appendChild(previewDiv);
 
@@ -1588,12 +1588,12 @@ export class GlobeMap {
       link.target = '_blank';
       link.rel = 'noopener';
       link.style.cssText = 'display:block;color:#00d4ff;font-size:11px;text-decoration:none;';
-      link.textContent = 'Open on Windy \u2197';
+      link.textContent = t('components.webcams.openOnWindy');
       wrapper.appendChild(link);
 
       const attribution = document.createElement('div');
       attribution.style.cssText = 'opacity:.4;font-size:9px;margin-top:4px;';
-      attribution.textContent = 'Powered by Windy';
+      attribution.textContent = t('components.webcams.poweredByWindy');
       wrapper.appendChild(attribution);
 
       import('@/services/webcams').then(({ fetchWebcamImage }) => {
@@ -1609,7 +1609,7 @@ export class GlobeMap {
           } else {
             const span = document.createElement('span');
             span.style.cssText = 'opacity:.5;font-size:11px;';
-            span.textContent = 'Preview unavailable';
+            span.textContent = t('components.webcams.previewUnavailable');
             previewDiv.appendChild(span);
           }
           const pinBtn = document.createElement('button');
@@ -1617,10 +1617,10 @@ export class GlobeMap {
           pinBtn.style.cssText = 'display:block;margin-top:4px;';
           if (isPinned(d.webcamId)) {
             pinBtn.classList.add('webcam-pin-btn--pinned');
-            pinBtn.textContent = '\u{1F4CC} Pinned';
+            pinBtn.textContent = t('components.webcams.pinned');
             pinBtn.disabled = true;
           } else {
-            pinBtn.textContent = '\u{1F4CC} Pin';
+            pinBtn.textContent = t('components.webcams.pin');
             pinBtn.addEventListener('click', (e) => {
               e.stopPropagation();
               pinWebcam({
@@ -1633,7 +1633,7 @@ export class GlobeMap {
                 playerUrl: img.playerUrl || '',
               });
               pinBtn.classList.add('webcam-pin-btn--pinned');
-              pinBtn.textContent = '\u{1F4CC} Pinned';
+              pinBtn.textContent = t('components.webcams.pinned');
               pinBtn.disabled = true;
             });
           }
@@ -1648,7 +1648,7 @@ export class GlobeMap {
       wrapper.appendChild(header);
       const loadingSpan = document.createElement('span');
       loadingSpan.style.cssText = 'display:block;opacity:.5;font-size:10px;';
-      loadingSpan.textContent = 'Loading list...';
+      loadingSpan.textContent = t('components.webcams.loadingList');
       wrapper.appendChild(loadingSpan);
     }
     el.addEventListener('mouseenter', () => {
@@ -1698,7 +1698,7 @@ export class GlobeMap {
 
           const closeBtn2 = document.createElement('button');
           closeBtn2.style.cssText = 'position:absolute;top:4px;right:4px;background:none;border:none;color:#888;cursor:pointer;font-size:14px;line-height:1;padding:2px 4px;';
-          closeBtn2.setAttribute('aria-label', 'Close');
+          closeBtn2.setAttribute('aria-label', t('common.close'));
           closeBtn2.textContent = '\u00D7';
           closeBtn2.addEventListener('click', () => this.hideTooltip());
           wrapper.appendChild(closeBtn2);
@@ -1716,7 +1716,7 @@ export class GlobeMap {
             item.style.cssText = 'padding:2px 0;cursor:pointer;color:#aaa;border-bottom:1px solid rgba(255,255,255,0.08);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;';
 
             const nameSpan = document.createElement('span');
-            nameSpan.textContent = webcam.title || webcam.category || 'Webcam';
+            nameSpan.textContent = webcam.title || webcam.category || t('components.webcams.webcam');
             item.appendChild(nameSpan);
 
             if (webcam.country) {
@@ -1767,9 +1767,9 @@ export class GlobeMap {
     el.innerHTML = `
       <span class="globe-beta-badge">BETA</span>
       <div class="zoom-controls">
-        <button class="map-btn zoom-in"    title="Zoom in">+</button>
-        <button class="map-btn zoom-out"   title="Zoom out">-</button>
-        <button class="map-btn zoom-reset" title="Reset view">&#8962;</button>
+        <button class="map-btn zoom-in"    title="${t('components.deckgl.zoomIn')}">+</button>
+        <button class="map-btn zoom-out"   title="${t('components.deckgl.zoomOut')}">-</button>
+        <button class="map-btn zoom-reset" title="${t('components.deckgl.resetView')}">&#8962;</button>
       </div>`;
     this.container.appendChild(el);
     el.addEventListener('click', (e) => {

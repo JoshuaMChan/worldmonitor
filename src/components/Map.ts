@@ -286,9 +286,9 @@ export class MapComponent {
     const controls = document.createElement('div');
     controls.className = 'map-controls';
     controls.innerHTML = `
-      <button class="map-control-btn" data-action="zoom-in" aria-label="Zoom in">+</button>
-      <button class="map-control-btn" data-action="zoom-out" aria-label="Zoom out">−</button>
-      <button class="map-control-btn" data-action="reset" aria-label="Reset rotation">⟲</button>
+      <button class="map-control-btn" data-action="zoom-in" aria-label="${t('components.deckgl.zoomIn')}">+</button>
+      <button class="map-control-btn" data-action="zoom-out" aria-label="${t('components.deckgl.zoomOut')}">−</button>
+      <button class="map-control-btn" data-action="reset" aria-label="${t('components.deckgl.resetView')}">⟲</button>
     `;
 
     controls.addEventListener('click', (e) => {
@@ -516,7 +516,7 @@ export class MapComponent {
     const helpHeader = `
       <div class="layer-help-header">
         <span>${t('components.deckgl.layerHelp.title')}</span>
-        <button class="layer-help-close" aria-label="Close">×</button>
+        <button class="layer-help-close" aria-label="${t('common.close')}">×</button>
       </div>
     `;
 
@@ -2890,7 +2890,7 @@ export class MapComponent {
     ].join(';');
     const closeBtn = document.createElement('button');
     closeBtn.style.cssText = 'position:absolute;top:4px;right:4px;background:none;border:none;color:#888;cursor:pointer;font-size:14px;line-height:1;padding:2px 4px;';
-    closeBtn.setAttribute('aria-label', 'Close');
+    closeBtn.setAttribute('aria-label', t('common.close'));
     closeBtn.textContent = '×';
     closeBtn.addEventListener('click', () => tooltip.remove());
     tooltip.appendChild(closeBtn);
@@ -2926,7 +2926,7 @@ export class MapComponent {
     previewDiv.style.marginTop = '6px';
     const loadingSpan = document.createElement('span');
     loadingSpan.style.cssText = 'opacity:0.5;font-size:10px;';
-    loadingSpan.textContent = 'Loading preview...';
+    loadingSpan.textContent = t('components.webcams.loadingPreview');
     previewDiv.appendChild(loadingSpan);
     tooltip.appendChild(previewDiv);
 
@@ -2956,7 +2956,7 @@ export class MapComponent {
           } else {
             const span = document.createElement('span');
             span.style.cssText = 'opacity:0.5;font-size:10px;';
-            span.textContent = 'Preview unavailable';
+            span.textContent = t('components.webcams.previewUnavailable');
             previewDiv.appendChild(span);
           }
 
@@ -2965,10 +2965,10 @@ export class MapComponent {
           const wcId = cam.webcamId;
           if (isPinned(wcId)) {
             pinBtn.classList.add('webcam-pin-btn--pinned');
-            pinBtn.textContent = '\u{1F4CC} Pinned';
+            pinBtn.textContent = t('components.webcams.pinned');
             pinBtn.disabled = true;
           } else {
-            pinBtn.textContent = '\u{1F4CC} Pin';
+            pinBtn.textContent = t('components.webcams.pin');
             pinBtn.addEventListener('click', (e) => {
               e.stopPropagation();
               pinWebcam({
@@ -2981,7 +2981,7 @@ export class MapComponent {
                 playerUrl: img?.playerUrl || '',
               });
               pinBtn.classList.add('webcam-pin-btn--pinned');
-              pinBtn.textContent = '\u{1F4CC} Pinned';
+              pinBtn.textContent = t('components.webcams.pinned');
               pinBtn.disabled = true;
             });
           }
@@ -2998,7 +2998,7 @@ export class MapComponent {
 
     const header = document.createElement('div');
     header.style.cssText = 'font-weight:bold;color:#00d4ff;padding-right:18px;';
-    header.textContent = `\u{1F4F7} ${cam.count} webcams — loading...`;
+    header.textContent = t('components.webcams.countLoading', { count: String(cam.count) });
     tooltip.appendChild(header);
 
     this.placeWebcamTooltip(tooltip, clientX, clientY);
@@ -3012,7 +3012,7 @@ export class MapComponent {
       }).then(result => {
         if (!tooltip.isConnected) return;
         const webcams = result.webcams.slice(0, 20);
-        header.textContent = `\u{1F4F7} ${webcams.length} webcams`;
+        header.textContent = t('components.webcams.count', { count: String(webcams.length) });
 
         const list = document.createElement('div');
         list.style.cssText = 'max-height:200px;overflow-y:auto;margin-top:6px;';
@@ -3020,7 +3020,7 @@ export class MapComponent {
           const item = document.createElement('div');
           item.style.cssText = 'padding:3px 2px;cursor:pointer;color:#aaa;border-bottom:1px solid rgba(255,255,255,0.08);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;';
           const nameSpan = document.createElement('span');
-          nameSpan.textContent = webcam.title || webcam.category || 'Webcam';
+          nameSpan.textContent = webcam.title || webcam.category || t('components.webcams.webcam');
           item.appendChild(nameSpan);
           if (webcam.country) {
             const cc = document.createElement('span');
@@ -3039,7 +3039,7 @@ export class MapComponent {
         tooltip.appendChild(list);
       }).catch(() => {
         if (!tooltip.isConnected) return;
-        header.textContent = '\u{1F4F7} Failed to load webcam list';
+        header.textContent = t('components.webcams.loadFailed');
       });
     });
   }

@@ -60,7 +60,7 @@ function groupByDate(events: EconomicEvent[]): Map<string, EconomicEvent[]> {
 }
 
 function formatDateGroup(dateStr: string): string {
-  if (!dateStr || dateStr === 'Unknown') return 'Unknown';
+  if (!dateStr || dateStr === 'Unknown') return t('components.economicCalendar.unknown');
   const d = new Date(`${dateStr}T00:00:00`);
   if (Number.isNaN(d.getTime())) return dateStr;
   return d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
@@ -77,11 +77,13 @@ function countdown(dateStr: string): string {
   const d = new Date(`${dateStr}T00:00:00`);
   if (Number.isNaN(d.getTime())) return '';
   const days = Math.round((d.getTime() - today.getTime()) / 86_400_000);
-  if (days === 0) return 'today';
-  if (days === 1) return 'tomorrow';
-  if (days < 0) return Math.abs(days) < 14 ? `${Math.abs(days)}d ago` : `${Math.round(Math.abs(days) / 7)}w ago`;
-  if (days < 14) return `in ${days}d`;
-  return `in ${Math.round(days / 7)}w`;
+  if (days === 0) return t('components.economicCalendar.countdown.today');
+  if (days === 1) return t('components.economicCalendar.countdown.tomorrow');
+  if (days < 0) return Math.abs(days) < 14
+    ? t('components.economicCalendar.countdown.daysAgo', { count: Math.abs(days) })
+    : t('components.economicCalendar.countdown.weeksAgo', { count: Math.round(Math.abs(days) / 7) });
+  if (days < 14) return t('components.economicCalendar.countdown.inDays', { count: days });
+  return t('components.economicCalendar.countdown.inWeeks', { count: Math.round(days / 7) });
 }
 
 export class EconomicCalendarPanel extends Panel {
@@ -90,7 +92,7 @@ export class EconomicCalendarPanel extends Panel {
   private _region: RegionFilter = 'all';
 
   constructor() {
-    super({ id: 'economic-calendar', title: 'Economic Calendar', showCount: false, infoTooltip: t('components.economicCalendar.infoTooltip') });
+    super({ id: 'economic-calendar', title: t('panels.economicCalendar'), showCount: false, infoTooltip: t('components.economicCalendar.infoTooltip') });
     this.content.addEventListener('click', (e) => {
       const btn = (e.target as HTMLElement).closest<HTMLButtonElement>('button[data-region]');
       if (!btn) return;
@@ -103,7 +105,7 @@ export class EconomicCalendarPanel extends Panel {
   }
 
   public async fetchData(): Promise<boolean> {
-    this.showLoading('Loading economic calendar...');
+    this.showLoading(t('components.economicCalendar.loading'));
     try {
       const client = await getEconomicClient();
       const today = new Date();
@@ -112,7 +114,7 @@ export class EconomicCalendarPanel extends Panel {
       const resp = await client.getEconomicCalendar({ fromDate, toDate });
 
       if (resp.unavailable || !resp.events || resp.events.length === 0) {
-        if (!this._hasData) this.showError('Economic calendar data unavailable.', () => void this.fetchData());
+        if (!this._hasData) this.showError(t('components.economicCalendar.dataUnavailable'), () => void this.fetchData());
         return false;
       }
 
@@ -122,7 +124,7 @@ export class EconomicCalendarPanel extends Panel {
       return true;
     } catch (err) {
       if (this.isAbortError(err)) return false;
-      if (!this._hasData) this.showError('Failed to load economic calendar.', () => void this.fetchData());
+      if (!this._hasData) this.showError(t('components.economicCalendar.failedLoad'), () => void this.fetchData());
       return false;
     }
   }
@@ -135,7 +137,7 @@ export class EconomicCalendarPanel extends Panel {
 
   private _renderRegionTabs(): string {
     const tabs: { key: RegionFilter; label: string }[] = [
-      { key: 'all', label: 'All' },
+      { key: 'all', label: t('components.economicCalendar.regions.all') },
       { key: 'us',  label: 'US' },
       { key: 'eu',  label: 'EU' },
     ];
@@ -154,7 +156,7 @@ export class EconomicCalendarPanel extends Panel {
 
   private _render(): void {
     if (!this._hasData) {
-      this.showError('No upcoming economic events.', () => void this.fetchData());
+      this.showError(t('components.economicCalendar.noUpcomingEvents'), () => void this.fetchData());
       return;
     }
 
@@ -207,8 +209,8 @@ export class EconomicCalendarPanel extends Panel {
     }
 
     const emptyMsgText = this._region === 'all'
-      ? 'No upcoming economic events'
-      : 'No events for selected region';
+      ? t('components.economicCalendar.noUpcomingEvents')
+      : t('components.economicCalendar.noSelectedRegionEvents');
     const emptyMsg = filtered.length === 0
       ? `<tr><td colspan="3" style="padding:20px 0;text-align:center;color:rgba(255,255,255,0.3);font-size:12px">${escapeHtml(emptyMsgText)}</td></tr>`
       : '';
@@ -222,7 +224,7 @@ export class EconomicCalendarPanel extends Panel {
         </colgroup>
         <thead>
           <tr style="font-size:9px;font-weight:600;color:rgba(255,255,255,0.25);text-transform:uppercase;letter-spacing:0.06em">
-            <th style="text-align:left;padding:0 8px 8px 0;font-weight:600">EVENT</th>
+            <th style="text-align:left;padding:0 8px 8px 0;font-weight:600">${escapeHtml(t('components.economicCalendar.event'))}</th>
             <th style="padding:0 0 8px;font-weight:600"></th>
             <th style="text-align:right;padding:0 0 8px;font-weight:600"></th>
           </tr>
