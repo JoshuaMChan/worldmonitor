@@ -836,6 +836,8 @@
   "components": {
     "webcams": {
       "expand": "Expand",
+      "toggleMarkerStyle": "Toggle webcam marker style",
+      "markerLabel": "Marker: ",
       "paused": "Webcams paused",
       "pausedIdle": "Webcams paused — move mouse to resume",
       "loadingPreview": "Loading preview...",
@@ -860,10 +862,13 @@
       }
     },
     "pinnedWebcams": {
-      "pinFromMap": "Pin a webcam from the map"
+      "pinFromMap": "Pin a webcam from the map",
+      "hideStream": "Hide stream",
+      "unpin": "Unpin"
     },
     "positiveNewsFeed": {
-      "noStories": "No stories in this category yet"
+      "noStories": "No stories in this category yet",
+      "shareStory": "Share this story"
     },
     "breakthroughsTicker": {
       "noData": "No science breakthroughs yet"
@@ -1385,6 +1390,7 @@
         "militaryBases": "Military Bases",
         "nuclearSites": "Nuclear Sites",
         "gammaIrradiators": "Gamma Irradiators",
+        "radiationWatch": "Radiation Watch",
         "radiationSpike": "Radiation spike",
         "radiationElevated": "Elevated radiation",
         "spaceports": "Spaceports",
@@ -1636,6 +1642,7 @@
       "countriesAffected": "Countries Affected ({{count}})",
       "links": "links",
       "selectInfrastructureHint": "Select infrastructure to analyze cascade impact",
+      "filterGroupLabel": "Infrastructure type filter",
       "infoTooltip": "<strong>Cascade Analysis</strong> Models infrastructure dependencies:<ul><li>Subsea cables, pipelines, ports, chokepoints</li><li>Select infrastructure to simulate failure</li><li>Shows affected countries and capacity loss</li><li>Identifies redundant routes</li></ul>Data from TeleGeography and industry sources."
     },
     "strategicRisk": {
@@ -1823,7 +1830,8 @@
       "country": "Country",
       "status": "Status",
       "count": "Count",
-      "infoTooltip": "<strong>UNHCR Displacement Data</strong> Global refugee, asylum seeker, and IDP counts from UNHCR.<ul><li><strong>Origins</strong>: Countries people flee FROM</li><li><strong>Hosts</strong>: Countries hosting refugees</li><li>Crisis badges: >1M | High: >500K displaced</li></ul>Data updates yearly. CC BY 4.0 license."
+      "infoTooltip": "<strong>UNHCR Displacement Data</strong> Global refugee, asylum seeker, and IDP counts from UNHCR.<ul><li><strong>Origins</strong>: Countries people flee FROM</li><li><strong>Hosts</strong>: Countries hosting refugees</li><li>Crisis badges: >1M | High: >500K displaced</li></ul>Data updates yearly. CC BY 4.0 license.",
+      "tablistLabel": "Displacement data view"
     },
     "climate": {
       "noAnomalies": "No significant anomalies detected",
@@ -1951,6 +1959,8 @@
     "investments": {
       "infoTooltip": "Database of Saudi Arabia and UAE foreign direct investments in global critical infrastructure. Click a row to fly to the investment on the map.",
       "searchPlaceholder": "Search assets, countries, entities…",
+      "filters": "Filters",
+      "toggleFilters": "Toggle filters",
       "allCountries": "All Countries",
       "saudiArabia": "Saudi Arabia",
       "uae": "UAE",
@@ -2191,6 +2201,11 @@
     },
     "liveNews": {
       "retry": "Retry",
+      "loadPlayer": "Load Player",
+      "togglePlayback": "Toggle playback",
+      "toggleSound": "Toggle sound",
+      "fullscreen": "Fullscreen",
+      "exitFullscreen": "Exit fullscreen",
       "notLive": "{{name}} is not currently live",
       "cannotEmbed": "{{name}} can't be played here — it may be restricted in your region (error {{code}})",
       "botCheck": "YouTube is requesting sign-in to play {{name}}",
@@ -2224,7 +2239,19 @@
       "channelNotFound": "YouTube channel not found",
       "verifying": "Verifying…",
       "hlsUrl": "HLS Stream URL (optional)",
-      "invalidHlsUrl": "Enter a valid HLS stream URL (.m3u8)"
+      "invalidHlsUrl": "Enter a valid HLS stream URL (.m3u8)",
+      "liveFeedTitle": "{{name}} live feed",
+      "channelNames": {
+        "bloomberg": "Bloomberg",
+        "sky": "Sky News",
+        "euronews": "Euronews",
+        "dw": "DW",
+        "cnbc": "CNBC",
+        "cnn": "CNN",
+        "france24": "France 24",
+        "alarabiya": "Al Arabiya",
+        "aljazeera": "Al Jazeera"
+      }
     },
     "map": {
       "showMap": "Show Map",
@@ -2302,7 +2329,12 @@
       "infoTooltip": "<strong>Conservation Wins</strong> Positive conservation news: species population recoveries, habitat restoration milestones, and de-extinction efforts. Sourced from IUCN, WWF, and conservation research publications."
     },
     "worldClock": {
-      "infoTooltip": "<strong>World Clock</strong> Live local times and market session status for major global financial centers. Shows open/closed status for NYSE, LSE, TSE, SGX, and other exchanges."
+      "infoTooltip": "<strong>World Clock</strong> Live local times and market session status for major global financial centers. Shows open/closed status for NYSE, LSE, TSE, SGX, and other exchanges.",
+      "selectCities": "Select cities",
+      "done": "Done"
+    },
+    "nationalDebt": {
+      "searchPlaceholder": "Search country..."
     },
     "yieldCurve": {
       "infoTooltip": "<strong>Yield Curve &amp; Rates</strong> US Treasury yield curve (2Y, 5Y, 10Y, 30Y) and key rate spreads including the 10Y-2Y inversion indicator. Also shows Euro area rates (EURIBOR, ESTR). An inverted curve historically precedes recessions. Source: FRED."

@@ -46,7 +46,7 @@ export function showProBanner(container: HTMLElement): void {
   `;
 
   /* TODO: re-enable close button after pro launch promotion period
-  banner.innerHTML += `<button class="pro-banner-close" aria-label="Dismiss">×</button>`;
+  banner.innerHTML += `<button class="pro-banner-close" aria-label="${t('common.dismiss')}">×</button>`;
   banner.querySelector('.pro-banner-close')!.addEventListener('click', (e) => {
     e.preventDefault();
     dismiss();

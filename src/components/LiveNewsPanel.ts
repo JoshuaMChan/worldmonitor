@@ -444,7 +444,7 @@ export class LiveNewsPanel extends Panel {
 
     const playBtn = document.createElement('button');
     playBtn.className = 'offline-retry';
-    playBtn.textContent = 'Load Player';
+    playBtn.textContent = t('components.liveNews.loadPlayer');
     playBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       this.triggerInit();
@@ -709,7 +709,7 @@ export class LiveNewsPanel extends Panel {
   private createLiveButton(): void {
     this.liveBtn = document.createElement('button');
     this.liveBtn.className = 'live-mute-btn';
-    this.liveBtn.title = 'Toggle playback';
+    this.liveBtn.title = t('components.liveNews.togglePlayback');
     this.updateLiveIndicator();
     this.liveBtn.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -739,7 +739,7 @@ export class LiveNewsPanel extends Panel {
   private createMuteButton(): void {
     this.muteBtn = document.createElement('button');
     this.muteBtn.className = 'live-mute-btn';
-    this.muteBtn.title = 'Toggle sound';
+    this.muteBtn.title = t('components.liveNews.toggleSound');
     this.updateMuteIcon();
     this.muteBtn.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -756,7 +756,7 @@ export class LiveNewsPanel extends Panel {
   private createFullscreenButton(): void {
     this.fullscreenBtn = document.createElement('button');
     this.fullscreenBtn.className = 'live-mute-btn';
-    this.fullscreenBtn.title = 'Fullscreen';
+    this.fullscreenBtn.title = t('components.liveNews.fullscreen');
     this.fullscreenBtn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3"/><path d="M21 8V5a2 2 0 0 0-2-2h-3"/><path d="M3 16v3a2 2 0 0 0 2 2h3"/><path d="M16 21h3a2 2 0 0 0 2-2v-3"/></svg>';
     this.fullscreenBtn.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -773,7 +773,7 @@ export class LiveNewsPanel extends Panel {
     document.body.classList.toggle('live-news-fullscreen-active', this.isFullscreen);
 
     if (this.fullscreenBtn) {
-      this.fullscreenBtn.title = this.isFullscreen ? 'Exit fullscreen' : 'Fullscreen';
+      this.fullscreenBtn.title = this.isFullscreen ? t('components.liveNews.exitFullscreen') : t('components.liveNews.fullscreen');
       this.fullscreenBtn.innerHTML = this.isFullscreen
         ? '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 14h6v6"/><path d="M20 10h-6V4"/><path d="M14 10l7-7"/><path d="M3 21l7-7"/></svg>'
         : '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3"/><path d="M21 8V5a2 2 0 0 0-2-2h-3"/><path d="M3 16v3a2 2 0 0 0 2 2h3"/><path d="M16 21h3a2 2 0 0 0 2-2v-3"/></svg>';
@@ -799,7 +799,9 @@ export class LiveNewsPanel extends Panel {
   }
 
   private getChannelDisplayName(channel: LiveChannel): string {
-    return channel.name;
+    const key = `components.liveNews.channelNames.${channel.id}`;
+    const localized = t(key);
+    return localized === key ? channel.name : localized;
   }
 
   /** Creates a single channel tab button with click and drag handlers. */
@@ -1049,7 +1051,7 @@ export class LiveNewsPanel extends Panel {
 
   private showOfflineMessage(channel: LiveChannel): void {
     this.destroyPlayer();
-    const safeName = escapeHtml(channel.name);
+    const safeName = escapeHtml(this.getChannelDisplayName(channel));
     this.content.innerHTML = `
       <div class="live-offline">
         <div class="offline-icon">📺</div>
@@ -1066,7 +1068,7 @@ export class LiveNewsPanel extends Panel {
       : channel.handle
       ? `https://www.youtube.com/${encodeURIComponent(channel.handle)}`
       : 'https://www.youtube.com';
-    const safeName = escapeHtml(channel.name);
+    const safeName = escapeHtml(this.getChannelDisplayName(channel));
 
     this.content.innerHTML = `
       <div class="live-offline">
@@ -1165,7 +1167,7 @@ export class LiveNewsPanel extends Panel {
     const iframe = document.createElement('iframe');
     iframe.className = 'live-news-embed-frame';
     iframe.src = embedUrl;
-    iframe.title = `${this.activeChannel.name} live feed`;
+    iframe.title = t('components.liveNews.liveFeedTitle', { name: this.getChannelDisplayName(this.activeChannel) });
     iframe.style.width = '100%';
     iframe.style.height = '100%';
     iframe.style.border = '0';

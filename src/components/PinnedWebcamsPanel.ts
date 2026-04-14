@@ -62,14 +62,14 @@ export class PinnedWebcamsPanel extends Panel {
 
         const toggleBtn = document.createElement('button');
         toggleBtn.className = 'pinned-webcam-toggle';
-        toggleBtn.title = 'Hide stream';
+        toggleBtn.title = t('components.pinnedWebcams.hideStream');
         toggleBtn.textContent = '\u23F8';
         toggleBtn.addEventListener('click', () => toggleWebcam(cam.webcamId));
         labelBar.appendChild(toggleBtn);
 
         const unpinBtn = document.createElement('button');
         unpinBtn.className = 'pinned-webcam-unpin';
-        unpinBtn.title = 'Unpin';
+        unpinBtn.title = t('components.pinnedWebcams.unpin');
         unpinBtn.textContent = '\u2716';
         unpinBtn.addEventListener('click', () => unpinWebcam(cam.webcamId));
         labelBar.appendChild(unpinBtn);
@@ -121,7 +121,7 @@ export class PinnedWebcamsPanel extends Panel {
         const removeBtn = document.createElement('button');
         removeBtn.className = 'pinned-webcam-row-remove';
         removeBtn.textContent = '\u2716';
-        removeBtn.title = 'Unpin';
+        removeBtn.title = t('components.pinnedWebcams.unpin');
         removeBtn.addEventListener('click', () => unpinWebcam(cam.webcamId));
         row.appendChild(removeBtn);
 

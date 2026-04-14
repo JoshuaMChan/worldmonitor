@@ -1862,7 +1862,7 @@ export class GlobeMap {
       const renderModeLabel = (): string => currentMode() === 'emoji' ? '&#128247; icon mode' : '&#128512; emoji mode';
       const modeBtn = document.createElement('button');
       modeBtn.style.cssText = 'background:rgba(0,212,255,0.1);border:1px solid rgba(0,212,255,0.3);color:#00d4ff;font-size:10px;padding:1px 6px;border-radius:3px;cursor:pointer;margin-left:2px;';
-      modeBtn.title = 'Toggle webcam marker style';
+      modeBtn.title = t('components.webcams.toggleMarkerStyle');
       modeBtn.innerHTML = renderModeLabel();
       modeBtn.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -1873,7 +1873,7 @@ export class GlobeMap {
         this.flushMarkers();
       });
       const modeLabel = document.createElement('span');
-      modeLabel.textContent = 'Marker: ';
+      modeLabel.textContent = t('components.webcams.markerLabel');
       modeRow.appendChild(modeLabel);
       modeRow.appendChild(modeBtn);
       webcamToggleEl.insertAdjacentElement('afterend', modeRow);

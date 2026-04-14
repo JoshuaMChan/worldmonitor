@@ -63,7 +63,7 @@ import { mlWorker } from '@/services/ml-worker';
 import { UnifiedSettings } from '@/components/UnifiedSettings';
 import { AuthLauncher } from '@/components/AuthLauncher';
 import { AuthHeaderWidget } from '@/components/AuthHeaderWidget';
-import { t } from '@/services/i18n';
+import { getLocale, t } from '@/services/i18n';
 import { TvModeController } from '@/services/tv-mode';
 import { getAuthState, subscribeAuthState } from '@/services/auth-state';
 
@@ -962,8 +962,20 @@ export class EventHandlerManager implements AppModule {
   startHeaderClock(): void {
     const el = document.getElementById('headerClock');
     if (!el) return;
+    const formatter = new Intl.DateTimeFormat(getLocale(), {
+      timeZone: 'UTC',
+      weekday: 'short',
+      day: '2-digit',
+      month: 'short',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: false,
+      timeZoneName: 'short',
+    });
     const tick = () => {
-      el.textContent = new Date().toUTCString().replace('GMT', 'UTC');
+      el.textContent = formatter.format(new Date()).replace('GMT', 'UTC');
     };
     tick();
     this.clockIntervalId = setInterval(tick, 1000);

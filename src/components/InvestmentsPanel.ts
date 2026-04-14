@@ -155,7 +155,7 @@ export class InvestmentsPanel extends Panel {
         <input class="fdi-search" type="text"
           placeholder="${t('components.investments.searchPlaceholder')}"
           value="${escapeHtml(this.filters.search)}"/>
-        <button class="${toggleCls}" data-action="toggle-filters" title="Filters" aria-label="Toggle filters" aria-pressed="${this.filtersExpanded}">⚙</button>
+        <button class="${toggleCls}" data-action="toggle-filters" title="${t('components.investments.filters')}" aria-label="${t('components.investments.toggleFilters')}" aria-pressed="${this.filtersExpanded}">⚙</button>
       </div>
       <div class="${filtersCls}">
         <select class="fdi-filter" data-filter="investingCountry">

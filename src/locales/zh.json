@@ -777,6 +777,8 @@
   "components": {
     "webcams": {
       "expand": "展开",
+      "toggleMarkerStyle": "切换摄像头标记样式",
+      "markerLabel": "标记：",
       "paused": "摄像头已暂停",
       "pausedIdle": "摄像头已暂停 — 移动鼠标以恢复",
       "loadingPreview": "正在加载预览...",
@@ -801,7 +803,8 @@
       }
     },
     "positiveNewsFeed": {
-      "noStories": "此类别暂无报道"
+      "noStories": "此类别暂无报道",
+      "shareStory": "分享这条报道"
     },
     "goodThingsDigest": {
       "noStories": "暂无报道",
@@ -1218,6 +1221,7 @@
         "militaryBases": "军事基地",
         "nuclearSites": "核设施",
         "gammaIrradiators": "伽马辐照器",
+        "radiationWatch": "辐射监测",
         "spaceports": "航天发射场",
         "satellites": "轨道监视",
         "pipelines": "管道",
@@ -1469,6 +1473,7 @@
       "countriesAffected": "受影响国家（{{count}}）",
       "links": "条链路",
       "selectInfrastructureHint": "选择基础设施以分析级联影响",
+      "filterGroupLabel": "基础设施类型筛选",
       "infoTooltip": "<strong>级联分析</strong>建模基础设施依赖关系：<ul><li>海底电缆、管道、港口、咽喉要道</li><li>选择基础设施模拟故障</li><li>显示受影响的国家和容量损失</li><li>识别冗余路线</li></ul>数据来自TeleGeography和行业来源。"
     },
     "strategicRisk": {
@@ -1656,7 +1661,8 @@
       "country": "国家",
       "status": "状态",
       "count": "数量",
-      "infoTooltip": "<strong>UNHCR流离失所数据</strong>来自UNHCR的全球难民、寻求庇护者和国内流离失所者统计。<ul><li><strong>来源国</strong>：人们逃离的国家</li><li><strong>收容国</strong>：接收难民的国家</li><li>危机标志：>100万 | 高：>50万流离失所</li></ul>数据每年更新。CC BY 4.0许可。"
+      "infoTooltip": "<strong>UNHCR流离失所数据</strong>来自UNHCR的全球难民、寻求庇护者和国内流离失所者统计。<ul><li><strong>来源国</strong>：人们逃离的国家</li><li><strong>收容国</strong>：接收难民的国家</li><li>危机标志：>100万 | 高：>50万流离失所</li></ul>数据每年更新。CC BY 4.0许可。",
+      "tablistLabel": "流离失所数据视图"
     },
     "climate": {
       "noAnomalies": "未检测到显著异常",
@@ -1784,6 +1790,8 @@
     "investments": {
       "infoTooltip": "沙特阿拉伯和阿联酋在全球关键基础设施领域的对外直接投资数据库。点击某行可在地图上飞到该投资所在位置。",
       "searchPlaceholder": "搜索资产、国家、实体……",
+      "filters": "筛选",
+      "toggleFilters": "切换筛选",
       "allCountries": "所有国家",
       "saudiArabia": "沙特阿拉伯",
       "uae": "阿联酋",
@@ -1917,6 +1925,11 @@
     },
     "liveNews": {
       "retry": "重试",
+      "loadPlayer": "加载播放器",
+      "togglePlayback": "切换播放",
+      "toggleSound": "切换声音",
+      "fullscreen": "全屏",
+      "exitFullscreen": "退出全屏",
       "notLive": "{{name}} 目前未上线",
       "cannotEmbed": "{{name}} 无法在此播放 — 可能在您所在的地区受到限制（错误 {{code}}）",
       "botCheck": "YouTube要求登录才能播放{{name}}",
@@ -1950,7 +1963,19 @@
       "channelNotFound": "未找到YouTube频道",
       "verifying": "验证中…",
       "hlsUrl": "HLS流地址（可选）",
-      "invalidHlsUrl": "请输入有效的HLS流地址（.m3u8）"
+      "invalidHlsUrl": "请输入有效的HLS流地址（.m3u8）",
+      "liveFeedTitle": "{{name}} 直播流",
+      "channelNames": {
+        "bloomberg": "彭博",
+        "sky": "天空新闻",
+        "euronews": "欧洲新闻台",
+        "dw": "德国之声",
+        "cnbc": "CNBC",
+        "cnn": "CNN",
+        "france24": "法国 24 台",
+        "alarabiya": "阿拉比亚电视台",
+        "aljazeera": "半岛电视台"
+      }
     },
     "map": {
       "showMap": "显示地图",
@@ -2147,13 +2172,20 @@
       "infoTooltip": "<strong>保育成就</strong> 正面的保育新闻：物种种群恢复、栖息地修复里程碑和反灭绝努力。来源：IUCN、WWF和保育研究出版物。"
     },
     "worldClock": {
-      "infoTooltip": "<strong>世界时钟</strong> 主要全球金融中心的实时当地时间和市场交易时段状态。显示NYSE、LSE、TSE、SGX等交易所的开盘/收盘状态。"
+      "infoTooltip": "<strong>世界时钟</strong> 主要全球金融中心的实时当地时间和市场交易时段状态。显示NYSE、LSE、TSE、SGX等交易所的开盘/收盘状态。",
+      "selectCities": "选择城市",
+      "done": "完成"
     },
     "yieldCurve": {
       "infoTooltip": "<strong>收益率曲线 &amp; 利率</strong> 美国国债收益率曲线（2Y、5Y、10Y、30Y）和关键利率利差，包括10Y-2Y倒挂指标。还显示欧元区利率（EURIBOR、ESTR）。倒挂曲线在历史上通常先于经济衰退出现。来源：FRED。"
     },
     "pinnedWebcams": {
-      "pinFromMap": "从地图固定网络摄像头"
+      "pinFromMap": "从地图固定网络摄像头",
+      "hideStream": "隐藏流",
+      "unpin": "取消固定"
+    },
+    "nationalDebt": {
+      "searchPlaceholder": "搜索国家..."
     },
     "breakthroughsTicker": {
       "noData": "科学尚未取得突破"

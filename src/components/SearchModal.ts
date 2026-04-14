@@ -209,7 +209,7 @@ export class SearchModal {
           <div class="search-sheet-header">
             <span class="search-sheet-icon">\u{1F50D}</span>
             <input type="text" class="search-input" placeholder="${this.placeholder}" autofocus />
-            <button class="search-sheet-cancel" aria-label="Close">\u00D7</button>
+            <button class="search-sheet-cancel" aria-label="${t('common.close')}">\u00D7</button>
           </div>
           <div class="search-sheet-chips"></div>
           <div class="search-results"></div>

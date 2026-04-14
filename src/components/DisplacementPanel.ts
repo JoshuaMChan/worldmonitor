@@ -68,7 +68,7 @@ export class DisplacementPanel extends Panel {
     ).join('');
 
     const tabsHtml = `
-      <div class="panel-tabs" role="tablist" aria-label="Displacement data view">
+      <div class="panel-tabs" role="tablist" aria-label="${t('components.displacement.tablistLabel')}">
         <button class="panel-tab ${this.activeTab === 'origins' ? 'active' : ''}" data-tab="origins" role="tab" aria-selected="${this.activeTab === 'origins'}" id="disp-tab-origins" aria-controls="disp-tab-panel">${t('components.displacement.origins')}</button>
         <button class="panel-tab ${this.activeTab === 'hosts' ? 'active' : ''}" data-tab="hosts" role="tab" aria-selected="${this.activeTab === 'hosts'}" id="disp-tab-hosts" aria-controls="disp-tab-panel">${t('components.displacement.hosts')}</button>
       </div>

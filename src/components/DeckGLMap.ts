@@ -4451,7 +4451,7 @@ export class DeckGLMap {
     const helpHeader = `
       <div class="layer-help-header">
         <span>${t('components.deckgl.layerHelp.title')}</span>
-        <button class="layer-help-close" aria-label="Close">×</button>
+        <button class="layer-help-close" aria-label="${t('common.close')}">×</button>
       </div>
     `;
 

@@ -34,7 +34,7 @@ export class PositiveNewsFeedPanel extends Panel {
     // "All" button (active by default)
     const allBtn = document.createElement('button');
     allBtn.className = 'positive-filter-btn active';
-    allBtn.textContent = 'All';
+    allBtn.textContent = t('common.all');
     allBtn.dataset.category = 'all';
     const allHandler = () => this.setFilter('all');
     allBtn.addEventListener('click', allHandler);
@@ -164,7 +164,7 @@ export class PositiveNewsFeedPanel extends Panel {
     </div>
     <span class="positive-card-title">${escapeHtml(item.title)}</span>
     <span class="positive-card-time">${formatTime(item.pubDate)}</span>
-    <button class="positive-card-share" aria-label="Share this story" data-idx="${idx}">
+    <button class="positive-card-share" aria-label="${escapeHtml(t('components.positiveNewsFeed.shareStory'))}" data-idx="${idx}">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8"/>
         <polyline points="16 6 12 2 8 6"/>

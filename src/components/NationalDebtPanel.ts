@@ -1,6 +1,7 @@
 import { Panel } from './Panel';
 import { getNationalDebtData, type NationalDebtEntry } from '@/services/economic';
 import { escapeHtml } from '@/utils/sanitize';
+import { t } from '@/services/i18n';
 
 type SortMode = 'total' | 'gdp-ratio' | 'growth';
 
@@ -244,7 +245,7 @@ export class NationalDebtPanel extends Panel {
             <button class="debt-tab${this.sortMode === 'gdp-ratio' ? ' active' : ''}" data-sort="gdp-ratio">Debt/GDP</button>
             <button class="debt-tab${this.sortMode === 'growth' ? ' active' : ''}" data-sort="growth">1Y Growth</button>
           </div>
-          <input class="debt-search" type="text" placeholder="Search country..." value="${escapeHtml(this.searchQuery)}">
+          <input class="debt-search" type="text" placeholder="${escapeHtml(t('components.nationalDebt.searchPlaceholder'))}" value="${escapeHtml(this.searchQuery)}">
         </div>
         <div class="debt-list">
           ${this.filteredEntries.slice(0, this.visibleCount).map((entry, idx) => this.renderRow(entry, idx + 1)).join('')}
