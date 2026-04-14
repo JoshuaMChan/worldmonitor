@@ -1799,12 +1799,14 @@ export class GlobeMap {
   private createLayerToggles(): void {
     const layerDefs = getLayersForVariant((SITE_VARIANT || 'full') as MapVariant, 'globe');
     const _wmKey = getSecretState('WORLDMONITOR_API_KEY').present;
-    const layers = layerDefs.map(def => ({
-      key: def.key,
-      label: resolveLayerLabel(def, t),
-      icon: def.icon,
-      premium: def.premium,
-    }));
+    const layers = layerDefs
+      .filter((def) => !(def.premium === 'locked' && !_wmKey))
+      .map(def => ({
+        key: def.key,
+        label: resolveLayerLabel(def, t),
+        icon: def.icon,
+        premium: def.premium,
+      }));
 
     const el = document.createElement('div');
     el.className = 'layer-toggles deckgl-layer-toggles';
@@ -1828,10 +1830,6 @@ export class GlobeMap {
           </label>`;
         }).join('')}
       </div>`;
-    const authorBadge = document.createElement('div');
-    authorBadge.className = 'map-author-badge';
-    authorBadge.textContent = '© Elie Habib · Someone™';
-    el.appendChild(authorBadge);
     this.container.appendChild(el);
 
     el.querySelectorAll('.layer-toggle input').forEach(input => {

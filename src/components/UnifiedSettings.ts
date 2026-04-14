@@ -4,7 +4,7 @@ import { PANEL_CATEGORY_MAP, ALL_PANELS, VARIANT_DEFAULTS, getEffectivePanelConf
 import { isProUser } from '@/services/widget-store';
 import { SITE_VARIANT } from '@/config/variant';
 import { isCleanModeEnabled } from '@/config/clean-mode';
-import { t } from '@/services/i18n';
+import { getLocale, t } from '@/services/i18n';
 import type { MapProvider } from '@/config/basemap';
 import { escapeHtml } from '@/utils/sanitize';
 import type { PanelConfig } from '@/types';
@@ -25,6 +25,77 @@ function showToast(msg: string): void {
 }
 
 const GEAR_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>`;
+
+const SOURCE_NAME_OVERRIDES_ZH: Record<string, string> = {
+  'ABC News': 'ABC 新闻',
+  'ABC News Australia': 'ABC 澳大利亚新闻',
+  'Africa News': '非洲新闻',
+  Africanews: '非洲新闻台',
+  'AI News': 'AI 新闻',
+  'Al Arabiya': '阿拉比亚电视台',
+  'Al Jazeera': '半岛电视台',
+  ANSA: '安莎社',
+  'AP Mexico': '美联社墨西哥',
+  'AP News': '美联社',
+  'Arab News': '阿拉伯新闻',
+  'Arms Control Assn': '军控协会',
+  'Ars Technica': 'Ars 科技',
+  Axios: 'Axios 新闻',
+  'Bangkok Post': '曼谷邮报',
+  'BBC Africa': 'BBC 非洲',
+  'BBC Afrique': 'BBC 非洲（法语）',
+  'BBC Asia': 'BBC 亚洲',
+  'BBC Latin America': 'BBC 拉丁美洲',
+  'BBC Middle East': 'BBC 中东',
+  'BBC Mundo': 'BBC 世界（西语）',
+  'BBC Persian': 'BBC 波斯语',
+  'BBC Russian': 'BBC 俄语',
+  'BBC Turkce': 'BBC 土耳其语',
+  'BBC World': 'BBC 世界',
+  Bellingcat: '贝灵猫',
+  Brookings: '布鲁金斯学会',
+  Carnegie: '卡内基',
+  'CBS News': 'CBS 新闻',
+  CDC: '美国疾控中心',
+  'Channels TV': 'Channels 电视台',
+  'Chatham House': '皇家国际事务研究所',
+  'Chosun Ilbo': '朝鲜日报',
+  CNBC: 'CNBC',
+  CNN: 'CNN',
+};
+
+function localizeSourceLabel(source: string): string {
+  if (!getLocale().toLowerCase().startsWith('zh')) return source;
+  const override = SOURCE_NAME_OVERRIDES_ZH[source];
+  if (override) return override;
+
+  return source
+    .replace(/\bNews\b/gi, '新闻')
+    .replace(/\bWorld\b/gi, '世界')
+    .replace(/\bGlobal\b/gi, '全球')
+    .replace(/\bBusiness\b/gi, '商业')
+    .replace(/\bMarket(s)?\b/gi, '市场')
+    .replace(/\bFinance\b/gi, '财经')
+    .replace(/\bTech(nology)?\b/gi, '科技')
+    .replace(/\bPolicy\b/gi, '政策')
+    .replace(/\bRegulation\b/gi, '监管')
+    .replace(/\bResearch\b/gi, '研究')
+    .replace(/\bInstitute\b/gi, '研究所')
+    .replace(/\bCouncil\b/gi, '理事会')
+    .replace(/\bCenter\b/gi, '中心')
+    .replace(/\bPost\b/gi, '邮报')
+    .replace(/\bWatch\b/gi, '观察')
+    .replace(/\bDaily\b/gi, '日报')
+    .replace(/\bWeekly\b/gi, '周报')
+    .replace(/\bAfrica\b/gi, '非洲')
+    .replace(/\bAsia\b/gi, '亚洲')
+    .replace(/\bEurope\b/gi, '欧洲')
+    .replace(/\bMiddle East\b/gi, '中东')
+    .replace(/\bLatin America\b/gi, '拉丁美洲')
+    .replace(/\bAustralia\b/gi, '澳大利亚')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
 
 export interface UnifiedSettingsConfig {
   getPanelSettings: () => Record<string, PanelConfig>;
@@ -390,9 +461,11 @@ export class UnifiedSettings {
 
   private getVisiblePanelEntries(): Array<[string, PanelConfig]> {
     const panelSettings = this.draftPanelSettings;
+    const pro = isProUser();
     let entries = Object.entries(panelSettings)
       .filter(([key]) => key !== 'runtime-config' || this.config.isDesktopApp)
-      .filter(([key]) => !key.startsWith('cw-'));
+      .filter(([key]) => !key.startsWith('cw-'))
+      .filter(([key, panel]) => isPanelEntitled(key, ALL_PANELS[key] ?? panel, pro));
 
     if (this.activePanelCategory !== 'all') {
       const catDef = PANEL_CATEGORY_MAP[this.activePanelCategory];
@@ -429,18 +502,14 @@ export class UnifiedSettings {
     if (!container) return;
 
     const savedSettings = this.config.getPanelSettings();
-    const pro = isProUser();
     const entries = this.getVisiblePanelEntries();
     container.innerHTML = entries.map(([key, panel]) => {
-      const entitled = isPanelEntitled(key, ALL_PANELS[key] ?? panel, pro);
-      const locked = !entitled;
-      const changed = !locked && savedSettings[key]?.enabled !== panel.enabled;
+      const changed = savedSettings[key]?.enabled !== panel.enabled;
       const displayName = this.config.getLocalizedPanelName(key, getEffectivePanelConfig(key, SITE_VARIANT).name ?? panel.name);
       return `
-        <div class="panel-toggle-item ${panel.enabled && !locked ? 'active' : ''}${changed ? ' changed' : ''}${locked ? ' pro-locked' : ''}" data-panel="${escapeHtml(key)}" aria-pressed="${panel.enabled && !locked}" ${locked ? 'data-pro-locked="1"' : ''}>
-          <div class="panel-toggle-checkbox">${panel.enabled && !locked ? '\u2713' : ''}${locked ? '\uD83D\uDD12' : ''}</div>
+        <div class="panel-toggle-item ${panel.enabled ? 'active' : ''}${changed ? ' changed' : ''}" data-panel="${escapeHtml(key)}" aria-pressed="${panel.enabled}">
+          <div class="panel-toggle-checkbox">${panel.enabled ? '\u2713' : ''}</div>
           <span class="panel-toggle-label">${escapeHtml(displayName)}</span>
-          ${(locked || (ALL_PANELS[key] ?? panel).premium) ? `<span class="panel-toggle-pro-badge">${t('premium.pro')}</span>` : ''}
         </div>
       `;
     }).join('');
@@ -572,7 +641,10 @@ export class UnifiedSettings {
 
     if (this.sourceFilter) {
       const lower = this.sourceFilter.toLowerCase();
-      sources = sources.filter(s => s.toLowerCase().includes(lower));
+      sources = sources.filter((s) => {
+        const localized = localizeSourceLabel(s).toLowerCase();
+        return s.toLowerCase().includes(lower) || localized.includes(lower);
+      });
     }
 
     return sources;
@@ -598,10 +670,11 @@ export class UnifiedSettings {
     container.innerHTML = sources.map(source => {
       const isEnabled = !disabled.has(source);
       const escaped = escapeHtml(source);
+      const localized = escapeHtml(localizeSourceLabel(source));
       return `
         <div class="source-toggle-item ${isEnabled ? 'active' : ''}" data-source="${escaped}">
           <div class="source-toggle-checkbox">${isEnabled ? '\u2713' : ''}</div>
-          <span class="source-toggle-label">${escaped}</span>
+          <span class="source-toggle-label">${localized}</span>
         </div>
       `;
     }).join('');

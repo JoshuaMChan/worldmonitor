@@ -51,36 +51,36 @@ const THEME_STORAGE_PREFIX = 'wm-map-theme:';
 
 export { hasTilesUrl as hasPMTilesUrl };
 
-export const MAP_PROVIDER_OPTIONS: { value: MapProvider; label: string }[] = (() => {
-  const opts: { value: MapProvider; label: string }[] = [];
+export const MAP_PROVIDER_OPTIONS: { value: MapProvider; label: string; labelKey: string }[] = (() => {
+  const opts: { value: MapProvider; label: string; labelKey: string }[] = [];
   if (hasTilesUrl) {
-    opts.push({ value: 'auto', label: 'Auto (PMTiles → OpenFreeMap fallback)' });
-    opts.push({ value: 'pmtiles', label: 'PMTiles (self-hosted)' });
+    opts.push({ value: 'auto', label: 'Auto (PMTiles → OpenFreeMap fallback)', labelKey: 'preferences.mapProviderOptions.auto' });
+    opts.push({ value: 'pmtiles', label: 'PMTiles (self-hosted)', labelKey: 'preferences.mapProviderOptions.pmtiles' });
   }
-  opts.push({ value: 'openfreemap', label: 'OpenFreeMap' });
-  opts.push({ value: 'carto', label: 'CARTO' });
+  opts.push({ value: 'openfreemap', label: 'OpenFreeMap', labelKey: 'preferences.mapProviderOptions.openfreemap' });
+  opts.push({ value: 'carto', label: 'CARTO', labelKey: 'preferences.mapProviderOptions.carto' });
   return opts;
 })();
 
-const PMTILES_THEMES: { value: string; label: string }[] = [
-  { value: 'black', label: 'Black (deepest dark)' },
-  { value: 'dark', label: 'Dark' },
-  { value: 'grayscale', label: 'Grayscale' },
-  { value: 'light', label: 'Light' },
-  { value: 'white', label: 'White' },
+const PMTILES_THEMES: { value: string; label: string; labelKey: string }[] = [
+  { value: 'black', label: 'Black (deepest dark)', labelKey: 'preferences.mapThemeOptions.black' },
+  { value: 'dark', label: 'Dark', labelKey: 'preferences.mapThemeOptions.dark' },
+  { value: 'grayscale', label: 'Grayscale', labelKey: 'preferences.mapThemeOptions.grayscale' },
+  { value: 'light', label: 'Light', labelKey: 'preferences.mapThemeOptions.light' },
+  { value: 'white', label: 'White', labelKey: 'preferences.mapThemeOptions.white' },
 ];
 
-export const MAP_THEME_OPTIONS: Record<MapProvider, { value: string; label: string }[]> = {
+export const MAP_THEME_OPTIONS: Record<MapProvider, { value: string; label: string; labelKey: string }[]> = {
   pmtiles: PMTILES_THEMES,
   auto: PMTILES_THEMES,
   openfreemap: [
-    { value: 'dark', label: 'Dark' },
-    { value: 'positron', label: 'Positron (light)' },
+    { value: 'dark', label: 'Dark', labelKey: 'preferences.mapThemeOptions.dark' },
+    { value: 'positron', label: 'Positron (light)', labelKey: 'preferences.mapThemeOptions.positron' },
   ],
   carto: [
-    { value: 'dark-matter', label: 'Dark Matter' },
-    { value: 'voyager', label: 'Voyager (light)' },
-    { value: 'positron', label: 'Positron (light)' },
+    { value: 'dark-matter', label: 'Dark Matter', labelKey: 'preferences.mapThemeOptions.darkMatter' },
+    { value: 'voyager', label: 'Voyager (light)', labelKey: 'preferences.mapThemeOptions.voyager' },
+    { value: 'positron', label: 'Positron (light)', labelKey: 'preferences.mapThemeOptions.positron' },
   ],
 };
 

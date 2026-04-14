@@ -79,7 +79,11 @@ function renderMapThemeDropdown(container: HTMLElement, provider: MapProvider): 
   if (!select) return;
   const currentTheme = getMapTheme(provider);
   select.innerHTML = MAP_THEME_OPTIONS[provider]
-    .map(opt => `<option value="${opt.value}"${opt.value === currentTheme ? ' selected' : ''}>${escapeHtml(opt.label)}</option>`)
+    .map((opt) => {
+      const label = t(opt.labelKey);
+      const resolved = label === opt.labelKey ? opt.label : label;
+      return `<option value="${opt.value}"${opt.value === currentTheme ? ' selected' : ''}>${escapeHtml(resolved)}</option>`;
+    })
     .join('');
 }
 
@@ -164,7 +168,9 @@ export function renderPreferences(host: PreferencesHost): PreferencesResult {
   html += `<select class="unified-settings-select" id="us-map-provider">`;
   for (const opt of MAP_PROVIDER_OPTIONS) {
     const selected = opt.value === currentProvider ? ' selected' : '';
-    html += `<option value="${opt.value}"${selected}>${escapeHtml(opt.label)}</option>`;
+    const label = t(opt.labelKey);
+    const resolved = label === opt.labelKey ? opt.label : label;
+    html += `<option value="${opt.value}"${selected}>${escapeHtml(resolved)}</option>`;
   }
   html += `</select>`;
 
@@ -179,7 +185,9 @@ export function renderPreferences(host: PreferencesHost): PreferencesResult {
   html += `<select class="unified-settings-select" id="us-map-theme">`;
   for (const opt of MAP_THEME_OPTIONS[currentProvider]) {
     const selected = opt.value === currentMapTheme ? ' selected' : '';
-    html += `<option value="${opt.value}"${selected}>${escapeHtml(opt.label)}</option>`;
+    const label = t(opt.labelKey);
+    const resolved = label === opt.labelKey ? opt.label : label;
+    html += `<option value="${opt.value}"${selected}>${escapeHtml(resolved)}</option>`;
   }
   html += `</select>`;
 
@@ -196,7 +204,9 @@ export function renderPreferences(host: PreferencesHost): PreferencesResult {
   html += `<select class="unified-settings-select" id="us-globe-visual-preset">`;
   for (const opt of GLOBE_VISUAL_PRESET_OPTIONS) {
     const selected = opt.value === currentPreset ? ' selected' : '';
-    html += `<option value="${opt.value}"${selected}>${escapeHtml(opt.label)}</option>`;
+    const label = t(opt.labelKey);
+    const resolved = label === opt.labelKey ? opt.label : label;
+    html += `<option value="${opt.value}"${selected}>${escapeHtml(resolved)}</option>`;
   }
   html += `</select>`;
 

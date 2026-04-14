@@ -113,9 +113,9 @@ export type GlobeVisualPreset = 'classic' | 'enhanced';
 const PRESET_STORAGE_KEY = 'wm-globe-visual-preset';
 const PRESET_EVENT_NAME = 'wm-globe-visual-preset-changed';
 
-export const GLOBE_VISUAL_PRESET_OPTIONS: { value: GlobeVisualPreset; label: string }[] = [
-  { value: 'classic', label: 'Earth' },
-  { value: 'enhanced', label: 'Cosmos' },
+export const GLOBE_VISUAL_PRESET_OPTIONS: { value: GlobeVisualPreset; label: string; labelKey: string }[] = [
+  { value: 'classic', label: 'Earth', labelKey: 'preferences.globePresetOptions.classic' },
+  { value: 'enhanced', label: 'Cosmos', labelKey: 'preferences.globePresetOptions.enhanced' },
 ];
 
 export function getGlobeVisualPreset(): GlobeVisualPreset {

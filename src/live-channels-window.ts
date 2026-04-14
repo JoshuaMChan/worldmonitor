@@ -73,6 +73,16 @@ function isHlsUrl(raw: string): boolean {
 // Persist active region tab across re-renders
 let activeRegionTab = 'na';
 
+function getLocalizedChannelName(channel: LiveChannel): string {
+  const primaryKey = `components.liveNews.channelNames.${channel.id}`;
+  const primary = t(primaryKey);
+  if (primary && primary !== primaryKey) return primary;
+  const manageKey = `components.liveNews.manageChannelNames.${channel.id}`;
+  const managed = t(manageKey);
+  if (managed && managed !== manageKey) return managed;
+  return channel.name;
+}
+
 function channelInitials(name: string): string {
   return name.split(/[\s-]+/).map((w) => w[0] ?? '').join('').slice(0, 2).toUpperCase();
 }
@@ -177,7 +187,7 @@ export async function initLiveChannelsWindow(containerEl?: HTMLElement): Promise
 
       const nameSpan = document.createElement('span');
       nameSpan.className = 'live-news-manage-row-name';
-      nameSpan.textContent = ch.name ?? '';
+      nameSpan.textContent = getLocalizedChannelName(ch);
       row.appendChild(nameSpan);
 
       const removeX = document.createElement('span');
@@ -321,14 +331,18 @@ export async function initLiveChannelsWindow(containerEl?: HTMLElement): Promise
         if (r.key !== activeRegionTab) return false;
         return r.channelIds.some(id => {
           const ch = optionalChannelMap.get(id);
-          return ch && (ch.name.toLowerCase().includes(term) || ch.handle?.toLowerCase().includes(term));
+          if (!ch) return false;
+          const localizedName = getLocalizedChannelName(ch).toLowerCase();
+          return localizedName.includes(term) || ch.name.toLowerCase().includes(term) || ch.handle?.toLowerCase().includes(term);
         });
       });
       if (!activeHasMatch) {
         const firstMatch = filteredRegions.find(r =>
           r.channelIds.some(id => {
             const ch = optionalChannelMap.get(id);
-            return ch && (ch.name.toLowerCase().includes(term) || ch.handle?.toLowerCase().includes(term));
+            if (!ch) return false;
+            const localizedName = getLocalizedChannelName(ch).toLowerCase();
+            return localizedName.includes(term) || ch.name.toLowerCase().includes(term) || ch.handle?.toLowerCase().includes(term);
           }),
         );
         if (firstMatch) activeRegionTab = firstMatch.key;
@@ -343,7 +357,10 @@ export async function initLiveChannelsWindow(containerEl?: HTMLElement): Promise
         .filter((ch): ch is LiveChannel => !!ch);
 
       const matchingChannels = term
-        ? regionChannels.filter(ch => ch.name.toLowerCase().includes(term) || ch.handle?.toLowerCase().includes(term))
+        ? regionChannels.filter(ch => {
+            const localizedName = getLocalizedChannelName(ch).toLowerCase();
+            return localizedName.includes(term) || ch.name.toLowerCase().includes(term) || ch.handle?.toLowerCase().includes(term);
+          })
         : regionChannels;
 
       const addedCount = matchingChannels.filter(ch => currentIds.has(ch.id)).length;
@@ -375,7 +392,10 @@ export async function initLiveChannelsWindow(containerEl?: HTMLElement): Promise
       for (const chId of region.channelIds) {
         const ch = optionalChannelMap.get(chId);
         if (!ch) continue;
-        if (term && !ch.name.toLowerCase().includes(term) && !ch.handle?.toLowerCase().includes(term)) continue;
+        if (term) {
+          const localizedName = getLocalizedChannelName(ch).toLowerCase();
+          if (!localizedName.includes(term) && !ch.name.toLowerCase().includes(term) && !ch.handle?.toLowerCase().includes(term)) continue;
+        }
         const isAdded = currentIds.has(chId);
         grid.appendChild(createCard(ch, isAdded, listEl));
         matchCount++;
@@ -396,16 +416,17 @@ export async function initLiveChannelsWindow(containerEl?: HTMLElement): Promise
   function createCard(ch: LiveChannel, isAdded: boolean, listEl: HTMLElement): HTMLElement {
     const card = document.createElement('div');
     card.className = 'live-news-manage-card' + (isAdded ? ' added' : '');
+    const localizedName = getLocalizedChannelName(ch);
 
     const icon = document.createElement('div');
     icon.className = 'live-news-manage-card-icon';
-    icon.textContent = channelInitials(ch.name);
+    icon.textContent = channelInitials(localizedName);
 
     const info = document.createElement('div');
     info.className = 'live-news-manage-card-info';
     const nameEl = document.createElement('span');
     nameEl.className = 'live-news-manage-card-name';
-    nameEl.textContent = ch.name;
+    nameEl.textContent = localizedName;
     const handleEl = document.createElement('span');
     handleEl.className = 'live-news-manage-card-handle';
     handleEl.textContent = ch.handle ?? '';

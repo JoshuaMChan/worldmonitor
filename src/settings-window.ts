@@ -48,7 +48,10 @@ export function initSettingsWindow(): void {
 
   function render(): void {
     const panelEntries = Object.entries(panelSettings).filter(
-      ([key]) => (key !== 'runtime-config' || isDesktopApp) && (!key.startsWith('cw-') || isProUser())
+      ([key, panel]) =>
+        (key !== 'runtime-config' || isDesktopApp) &&
+        (!key.startsWith('cw-') || isProUser()) &&
+        isPanelEntitled(key, ALL_PANELS[key] ?? panel, isProUser())
     );
     const panelHtml = panelEntries
       .map(
