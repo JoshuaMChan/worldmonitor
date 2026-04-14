@@ -84,7 +84,7 @@ import {
   VARIANT_DEFAULTS,
 } from '@/config';
 import { BETA_MODE } from '@/config/beta';
-import { t } from '@/services/i18n';
+import { getLocale, t } from '@/services/i18n';
 import { getCurrentTheme } from '@/utils';
 import { isCleanModeEnabled } from '@/config/clean-mode';
 import { trackCriticalBannerAction } from '@/services/analytics';
@@ -2088,7 +2088,34 @@ export class PanelLayoutManager implements AppModule {
     const key = panelKey.replace(/-([a-z])/g, (_match, group: string) => group.toUpperCase());
     const lookup = `panels.${key}`;
     const localized = t(lookup);
-    return localized === lookup ? fallback : localized;
+    if (localized !== lookup) return localized;
+    if (!getLocale().toLowerCase().startsWith('zh')) return fallback;
+    if (/[\u4e00-\u9fff]/.test(fallback)) return fallback;
+    return fallback
+      .replace(/\bAI\b/g, 'AI')
+      .replace(/\bNews\b/gi, '新闻')
+      .replace(/\bWorld\b/gi, '世界')
+      .replace(/\bGlobal\b/gi, '全球')
+      .replace(/\bMarket(s)?\b/gi, '市场')
+      .replace(/\bCrypto\b/gi, '加密货币')
+      .replace(/\bFinance\b/gi, '金融')
+      .replace(/\bTech(nology)?\b/gi, '科技')
+      .replace(/\bPolicy\b/gi, '政策')
+      .replace(/\bRisk\b/gi, '风险')
+      .replace(/\bSignal(s)?\b/gi, '信号')
+      .replace(/\bTracker\b/gi, '追踪')
+      .replace(/\bAnalysis\b/gi, '分析')
+      .replace(/\bWatch\b/gi, '观察')
+      .replace(/\bClock\b/gi, '时钟')
+      .replace(/\bCalendar\b/gi, '日历')
+      .replace(/\bStress\b/gi, '压力')
+      .replace(/\bCurve\b/gi, '曲线')
+      .replace(/\bCounter(s)?\b/gi, '计数器')
+      .replace(/\bCommodit(y|ies)\b/gi, '大宗商品')
+      .replace(/\bGood\b/gi, '好')
+      .replace(/\bFeed\b/gi, '流')
+      .replace(/\s+/g, ' ')
+      .trim();
   }
 
   getAllSourceNames(): string[] {

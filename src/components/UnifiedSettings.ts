@@ -31,17 +31,35 @@ const SOURCE_NAME_OVERRIDES_ZH: Record<string, string> = {
   'ABC News Australia': 'ABC 澳大利亚新闻',
   'Africa News': '非洲新闻',
   Africanews: '非洲新闻台',
+  Agriculture: '农业',
+  'AI Interviews': 'AI 访谈',
   'AI News': 'AI 新闻',
+  'AI Now Institute': 'AI Now 研究所',
+  'AI Podcasts': 'AI 播客',
+  'AI Regulation': 'AI 监管',
+  'AI Weekly': 'AI 周报',
   'Al Arabiya': '阿拉比亚电视台',
   'Al Jazeera': '半岛电视台',
+  'All-In Podcast': 'All-In 播客',
+  'Aluminum & Zinc': '铝与锌',
+  'AngelList News': 'AngelList 新闻',
   ANSA: '安莎社',
+  'Anthropic News': 'Anthropic 新闻',
   'AP Mexico': '美联社墨西哥',
   'AP News': '美联社',
   'Arab News': '阿拉伯新闻',
+  'Arabian Business': '阿拉伯商业',
   'Arms Control Assn': '军控协会',
   'Ars Technica': 'Ars 科技',
+  'ArXiv AI': 'ArXiv AI',
+  'ArXiv ML': 'ArXiv 机器学习',
+  'Asia News': '亚洲新闻',
+  'Atlantic Council': '大西洋理事会',
+  'AWS Status': 'AWS 状态',
   Axios: 'Axios 新闻',
   'Bangkok Post': '曼谷邮报',
+  'Bank Research': '银行研究',
+  'Banking Rules': '银行业规则',
   'BBC Africa': 'BBC 非洲',
   'BBC Afrique': 'BBC 非洲（法语）',
   'BBC Asia': 'BBC 亚洲',
@@ -53,48 +71,78 @@ const SOURCE_NAME_OVERRIDES_ZH: Record<string, string> = {
   'BBC Turkce': 'BBC 土耳其语',
   'BBC World': 'BBC 世界',
   Bellingcat: '贝灵猫',
+  Bild: '图片报',
+  'Bitcoin Magazine': '比特币杂志',
+  'Blockchain Finance': '区块链金融',
+  Blockworks: 'Blockworks',
+  'Bloomberg Commodities': '彭博大宗商品',
+  'Bloomberg Crypto': '彭博加密货币',
+  'Bloomberg Markets': '彭博市场',
+  'BoE Watch': '英国央行观察',
+  'BoJ Watch': '日本央行观察',
+  'Bond Market': '债券市场',
+  'Brasil Paralelo': 'Brasil Paralelo',
   Brookings: '布鲁金斯学会',
+  'Bulletin of Atomic Scientists': '原子科学家公报',
   Carnegie: '卡内基',
+  'CB Insights': 'CB Insights',
   'CBS News': 'CBS 新闻',
   CDC: '美国疾控中心',
+  'Central Bank Rates': '央行利率',
   'Channels TV': 'Channels 电视台',
   'Chatham House': '皇家国际事务研究所',
   'Chosun Ilbo': '朝鲜日报',
+  CISA: '美国网络安全与基础设施安全局',
   CNBC: 'CNBC',
+  'CNBC Commodities': 'CNBC 大宗商品',
+  'CNBC Markets': 'CNBC 市场',
+  'CNBC Tech': 'CNBC 科技',
   CNN: 'CNN',
+  'CNN World': 'CNN 世界',
+  CoinDesk: 'CoinDesk',
+  Cointelegraph: 'Cointelegraph',
+  'Commodity Trading': '大宗商品交易',
+  'Corporate Bonds': '公司债',
+  'Corriere della Sera': '晚邮报',
+  CrisisWatch: '危机观察',
+  'Crypto News': '加密货币新闻',
+  'Crypto Regulation': '加密货币监管',
+  CryptoSlate: 'CryptoSlate',
+  CSIS: '战略与国际研究中心',
+  'Daily Maverick': '每日马弗里克',
+  'Defense News': '防务新闻',
+  'Deutsche Welle': '德国之声',
+  'DW News': '德国之声新闻',
+  'Economic Times': '经济时报',
+  Euronews: '欧洲新闻台',
+  'Financial Times': '金融时报',
+  'Fox News': '福克斯新闻',
+  'France 24': '法国 24 台',
+  'Global Times': '环球时报',
+  'Hindustan Times': '印度斯坦时报',
+  'Japan Times': '日本时报',
+  'Le Monde': '世界报',
+  'MarketWatch': '市场观察',
+  'Nikkei Asia': '日经亚洲',
+  'Reuters Business': '路透商业',
+  'Reuters Markets': '路透市场',
+  Reuters: '路透',
+  'RT Arabic': 'RT 阿拉伯语',
+  'South China Morning Post': '南华早报',
+  'The Economist': '经济学人',
+  'The Guardian': '卫报',
+  'Wall Street Journal': '华尔街日报',
+  'Washington Post': '华盛顿邮报',
+  WION: 'WION',
+  'Yahoo Finance': '雅虎财经',
 };
 
 function localizeSourceLabel(source: string): string {
   if (!getLocale().toLowerCase().startsWith('zh')) return source;
   const override = SOURCE_NAME_OVERRIDES_ZH[source];
   if (override) return override;
-
-  return source
-    .replace(/\bNews\b/gi, '新闻')
-    .replace(/\bWorld\b/gi, '世界')
-    .replace(/\bGlobal\b/gi, '全球')
-    .replace(/\bBusiness\b/gi, '商业')
-    .replace(/\bMarket(s)?\b/gi, '市场')
-    .replace(/\bFinance\b/gi, '财经')
-    .replace(/\bTech(nology)?\b/gi, '科技')
-    .replace(/\bPolicy\b/gi, '政策')
-    .replace(/\bRegulation\b/gi, '监管')
-    .replace(/\bResearch\b/gi, '研究')
-    .replace(/\bInstitute\b/gi, '研究所')
-    .replace(/\bCouncil\b/gi, '理事会')
-    .replace(/\bCenter\b/gi, '中心')
-    .replace(/\bPost\b/gi, '邮报')
-    .replace(/\bWatch\b/gi, '观察')
-    .replace(/\bDaily\b/gi, '日报')
-    .replace(/\bWeekly\b/gi, '周报')
-    .replace(/\bAfrica\b/gi, '非洲')
-    .replace(/\bAsia\b/gi, '亚洲')
-    .replace(/\bEurope\b/gi, '欧洲')
-    .replace(/\bMiddle East\b/gi, '中东')
-    .replace(/\bLatin America\b/gi, '拉丁美洲')
-    .replace(/\bAustralia\b/gi, '澳大利亚')
-    .replace(/\s+/g, ' ')
-    .trim();
+  if (/[\u4e00-\u9fff]/.test(source)) return source;
+  return source;
 }
 
 export interface UnifiedSettingsConfig {

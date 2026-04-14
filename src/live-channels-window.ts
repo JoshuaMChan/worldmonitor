@@ -73,6 +73,38 @@ function isHlsUrl(raw: string): boolean {
 // Persist active region tab across re-renders
 let activeRegionTab = 'na';
 
+function localizeEnglishLabelToZh(label: string): string {
+  return label
+    .replace(/\bNews\b/gi, '新闻')
+    .replace(/\bLive\b/gi, '直播')
+    .replace(/\bWorld\b/gi, '世界')
+    .replace(/\bBusiness\b/gi, '商业')
+    .replace(/\bFinance\b/gi, '财经')
+    .replace(/\bTV\b/g, '电视')
+    .replace(/\bEnglish\b/gi, '英语')
+    .replace(/\bArabic\b/gi, '阿拉伯语')
+    .replace(/\bPersian\b/gi, '波斯语')
+    .replace(/\bRussian\b/gi, '俄语')
+    .replace(/\bTurkce\b/gi, '土耳其语')
+    .replace(/\bAsia\b/gi, '亚洲')
+    .replace(/\bAfrica\b/gi, '非洲')
+    .replace(/\bMiddle East\b/gi, '中东')
+    .replace(/\bLatin America\b/gi, '拉丁美洲')
+    .replace(/\bNorth America\b/gi, '北美')
+    .replace(/\bJapan\b/gi, '日本')
+    .replace(/\bBrasil\b/gi, '巴西')
+    .replace(/\bMexico\b/gi, '墨西哥')
+    .replace(/\bReuters\b/gi, '路透')
+    .replace(/\bBloomberg\b/gi, '彭博')
+    .replace(/\bYahoo\b/gi, '雅虎')
+    .replace(/\bFox\b/gi, '福克斯')
+    .replace(/\bGuardian\b/gi, '卫报')
+    .replace(/\bSpace\b/gi, '太空')
+    .replace(/\bChannel(s)?\b/gi, '频道')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
 function getLocalizedChannelName(channel: LiveChannel): string {
   const primaryKey = `components.liveNews.channelNames.${channel.id}`;
   const primary = t(primaryKey);
@@ -80,7 +112,8 @@ function getLocalizedChannelName(channel: LiveChannel): string {
   const manageKey = `components.liveNews.manageChannelNames.${channel.id}`;
   const managed = t(manageKey);
   if (managed && managed !== manageKey) return managed;
-  return channel.name;
+  if (/[\u4e00-\u9fff]/.test(channel.name)) return channel.name;
+  return localizeEnglishLabelToZh(channel.name);
 }
 
 function channelInitials(name: string): string {

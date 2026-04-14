@@ -1308,6 +1308,7 @@ export class DataLoaderManager implements AppModule {
           sparkline: q.sparkline?.length > 0 ? q.sparkline : undefined,
         }));
         this.ctx.latestMarkets = data;
+        marketsPanel?.show();
         marketsPanel?.renderMarkets(data);
         stocksResult = { data, skipped: hydratedMarkets.finnhubSkipped || undefined, rateLimited: hydratedMarkets.rateLimited || undefined };
       } else {
@@ -1318,10 +1319,9 @@ export class DataLoaderManager implements AppModule {
           },
         });
         this.ctx.latestMarkets = stocksResult.data;
+        if (stocksResult.data.length > 0) marketsPanel?.show();
         marketsPanel?.renderMarkets(stocksResult.data, stocksResult.rateLimited);
       }
-
-      const finnhubConfigMsg = 'FINNHUB_API_KEY not configured — add in Settings';
 
       if (stocksResult.rateLimited && stocksResult.data.length === 0) {
         const rlMsg = 'Market data temporarily unavailable (rate limited) — retrying shortly';
@@ -1329,7 +1329,7 @@ export class DataLoaderManager implements AppModule {
       } else if (stocksResult.skipped) {
         this.ctx.statusPanel?.updateApi('Finnhub', { status: 'error' });
         if (stocksResult.data.length === 0) {
-          this.ctx.panels['markets']?.showConfigError(finnhubConfigMsg);
+          this.ctx.panels['markets']?.hide();
         }
       } else {
         this.ctx.statusPanel?.updateApi('Finnhub', { status: 'ok' });
@@ -1350,15 +1350,17 @@ export class DataLoaderManager implements AppModule {
         warmSectorCache(hydratedSectors);
         const items = hydratedSectors.sectors.map(toHeatmapItem);
         const sectorBars = items.map(toSectorBar).filter((s): s is NonNullable<typeof s> => s !== null);
+        heatmapPanel?.show();
         heatmapPanel?.renderHeatmap(items, sectorBars.length ? sectorBars : undefined);
       } else {
         const sectorsResp = await fetchSectors();
         if (sectorsResp.sectors.length > 0) {
           const items = sectorsResp.sectors.map(toHeatmapItem);
           const sectorBars = items.map(toSectorBar).filter((s): s is NonNullable<typeof s> => s !== null);
+          heatmapPanel?.show();
           heatmapPanel?.renderHeatmap(items, sectorBars.length ? sectorBars : undefined);
         } else if (stocksResult.skipped) {
-          this.ctx.panels['heatmap']?.showConfigError(finnhubConfigMsg);
+          this.ctx.panels['heatmap']?.hide();
         }
       }
 
@@ -2570,7 +2572,7 @@ export class DataLoaderManager implements AppModule {
 
       if (data.length === 0) {
         if (!isFeatureAvailable('economicFred')) {
-          economicPanel?.setFredError(t('components.economic.fredKeyMissing'));
+          economicPanel?.hide();
           this.ctx.statusPanel?.updateApi('FRED', { status: 'error' });
           return;
         }
@@ -2579,6 +2581,7 @@ export class DataLoaderManager implements AppModule {
         return;
       }
 
+      economicPanel?.show();
       economicPanel?.update(data);
       this.ctx.statusPanel?.updateApi('FRED', { status: 'ok' });
       dataFreshness.recordUpdate('economic', data.length);
@@ -2698,8 +2701,14 @@ export class DataLoaderManager implements AppModule {
   async loadTradePolicy(): Promise<void> {
     const tradePanel = this.ctx.panels['trade-policy'] as TradePolicyPanel | undefined;
     if (!tradePanel) return;
+    if (isDesktopRuntime() && !isFeatureAvailable('wtoTrade')) {
+      tradePanel.hide();
+      this.ctx.statusPanel?.updateApi('WTO', { status: 'error' });
+      return;
+    }
 
     try {
+      tradePanel.show();
       const [restrictions, tariffs, flows, barriers, revenue, comtrade] = await Promise.allSettled([
         fetchTradeRestrictions([], 50),
         fetchTariffTrends('840', '156', '', 10),
