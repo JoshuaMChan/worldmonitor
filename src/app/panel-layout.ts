@@ -88,6 +88,7 @@ import { getLocale, t } from '@/services/i18n';
 import { getCurrentTheme } from '@/utils';
 import { isCleanModeEnabled } from '@/config/clean-mode';
 import { trackCriticalBannerAction } from '@/services/analytics';
+import { isDesktopRuntime } from '@/services/runtime';
 import { CustomWidgetPanel } from '@/components/CustomWidgetPanel';
 import { openWidgetChatModal } from '@/components/WidgetChatModal';
 import { loadWidgets, saveWidget } from '@/services/widget-store';
@@ -115,6 +116,8 @@ const WEB_PREMIUM_PANELS = new Set([
   'market-implications',
   'deduction',
   'chat-analyst',
+  'oref-sirens',
+  'telegram-intel',
 ]);
 
 export interface PanelLayoutManagerCallbacks {
@@ -668,7 +671,13 @@ export class PanelLayoutManager implements AppModule {
   }
 
   private shouldCreatePanel(key: string): boolean {
-    return Object.prototype.hasOwnProperty.call(this.ctx.panelSettings, key);
+    if (!Object.prototype.hasOwnProperty.call(this.ctx.panelSettings, key)) return false;
+    // Desktop-only conservative hide: panels that depend on premium/API access should
+    // not render at all when neither API key nor Pro entitlement is present.
+    if (isDesktopRuntime() && WEB_PREMIUM_PANELS.has(key) && !hasPremiumAccess(getAuthState())) {
+      return false;
+    }
+    return true;
   }
 
   private static readonly NEWS_PANEL_TOOLTIPS: Record<string, string> = {

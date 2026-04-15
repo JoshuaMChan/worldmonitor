@@ -1,7 +1,7 @@
 import { Panel } from './Panel';
 import { getCSSColor } from '@/utils';
 import { calculateCII, type CountryScore } from '@/services/country-instability';
-import { t } from '../services/i18n';
+import { getLocale, t } from '../services/i18n';
 import { h, replaceChildren, rawHtml } from '@/utils/dom-utils';
 import type { CachedRiskScores } from '@/services/cached-risk-scores';
 import { toCountryScore } from '@/services/cached-risk-scores';
@@ -59,13 +59,29 @@ export class CIIPanel extends Panel {
     return h('span', { className: 'trend-stable' }, '→');
   }
 
+  /** Localized country label for list UI (e.g. zh-CN uses standard region names). */
+  private getDisplayCountryName(country: CountryScore): string {
+    const loc = getLocale();
+    if (!loc.toLowerCase().startsWith('zh')) return country.name;
+    const upper = country.code.trim().toUpperCase();
+    if (!/^[A-Z]{2}$/.test(upper) || upper === 'XX') return country.name;
+    try {
+      const dn = new Intl.DisplayNames([loc], { type: 'region' });
+      const localized = dn.of(upper);
+      return localized && localized !== upper ? localized : country.name;
+    } catch {
+      return country.name;
+    }
+  }
+
   private buildCountry(country: CountryScore): HTMLElement {
     const color = this.getLevelColor(country.level);
     const emoji = this.getLevelEmoji(country.level);
+    const displayName = this.getDisplayCountryName(country);
 
     const shareBtn = h('button', {
       className: 'cii-share-btn',
-      dataset: { code: country.code, name: country.name },
+      dataset: { code: country.code, name: displayName },
       title: t('common.shareStory'),
     });
     shareBtn.appendChild(rawHtml(CIIPanel.SHARE_SVG));
@@ -73,7 +89,7 @@ export class CIIPanel extends Panel {
     return h('div', { className: 'cii-country', dataset: { code: country.code } },
       h('div', { className: 'cii-header' },
         h('span', { className: 'cii-emoji' }, emoji),
-        h('span', { className: 'cii-name' }, country.name),
+        h('span', { className: 'cii-name' }, displayName),
         h('span', { className: 'cii-score' }, String(country.score)),
         this.buildTrendArrow(country.trend, country.change24h),
         shareBtn,
