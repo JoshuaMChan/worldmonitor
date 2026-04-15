@@ -91,7 +91,7 @@ function sparklineSvg(data: number[], width = 80, height = 24, color = '#4fc3f7'
 }
 
 function donutGaugeSvg(value: number | null, size = 48): string {
-  if (value === null) return '<span class="signal-value unknown">N/A</span>';
+  if (value === null) return `<span class="signal-value unknown">${escapeHtml(t('components.macroSignals.naValue'))}</span>`;
   const v = Math.max(0, Math.min(100, value));
   const r = (size - 6) / 2;
   const circumference = 2 * Math.PI * r;
@@ -122,7 +122,7 @@ function statusBadgeClass(status: string): string {
 }
 
 function formatNum(v: number | null, suffix = '%'): string {
-  if (v === null) return 'N/A';
+  if (v === null) return t('components.macroSignals.naValue');
   const sign = v > 0 ? '+' : '';
   return `${sign}${v.toFixed(1)}${suffix}`;
 }
@@ -193,6 +193,12 @@ export class MacroSignalsPanel extends Panel {
 
     const d = this.data;
     const s = d.signals;
+    const cap = (k: string) => t(`components.macroSignals.cardCaptions.${k}`);
+    const btcDetail = t('components.macroSignals.btcMetricsLine', {
+      sma50: `$${s.technicalTrend.sma50?.toLocaleString() ?? '-'}`,
+      vwap: `$${s.technicalTrend.vwap30d?.toLocaleString() ?? '-'}`,
+      mayer: String(s.technicalTrend.mayerMultiple ?? '-'),
+    });
 
     const verdictClass = d.verdict === 'BUY' ? 'verdict-buy' : d.verdict === 'CASH' ? 'verdict-cash' : 'verdict-unknown';
 
@@ -205,12 +211,12 @@ export class MacroSignalsPanel extends Panel {
           <span class="verdict-detail">${t('components.macroSignals.bullish', { count: String(d.bullishCount), total: String(d.totalCount) })}</span>
         </div>
         <div class="signals-grid">
-          ${this.renderSignalCard(t('components.macroSignals.signals.liquidity'), s.liquidity.status, formatNum(s.liquidity.value), sparklineSvg(s.liquidity.sparkline, 60, 20, '#4fc3f7'), 'JPY 30d ROC', 'https://www.tradingview.com/symbols/JPYUSD/')}
-          ${this.renderSignalCard(t('components.macroSignals.signals.flow'), s.flowStructure.status, `BTC ${formatNum(s.flowStructure.btcReturn5)} / QQQ ${formatNum(s.flowStructure.qqqReturn5)}`, '', '5d returns', null)}
-          ${this.renderSignalCard(t('components.macroSignals.signals.regime'), s.macroRegime.status, `QQQ ${formatNum(s.macroRegime.qqqRoc20)} / XLP ${formatNum(s.macroRegime.xlpRoc20)}`, sparklineSvg(d.meta.qqqSparkline, 60, 20, '#ab47bc'), '20d ROC', 'https://www.tradingview.com/symbols/QQQ/')}
-          ${this.renderSignalCard(t('components.macroSignals.signals.btcTrend'), s.technicalTrend.status, `$${s.technicalTrend.btcPrice?.toLocaleString() ?? 'N/A'}`, sparklineSvg(s.technicalTrend.sparkline, 60, 20, '#ff9800'), `SMA50: $${s.technicalTrend.sma50?.toLocaleString() ?? '-'} | VWAP: $${s.technicalTrend.vwap30d?.toLocaleString() ?? '-'} | Mayer: ${s.technicalTrend.mayerMultiple ?? '-'}`, 'https://www.tradingview.com/symbols/BTCUSD/')}
-          ${this.renderSignalCard(t('components.macroSignals.signals.hashRate'), s.hashRate.status, formatNum(s.hashRate.change30d), '', '30d change', 'https://mempool.space/mining')}
-          ${this.renderSignalCard(t('components.macroSignals.signals.momentum'), s.priceMomentum.status, '', '', 'Mayer Multiple', null)}
+          ${this.renderSignalCard(t('components.macroSignals.signals.liquidity'), s.liquidity.status, formatNum(s.liquidity.value), sparklineSvg(s.liquidity.sparkline, 60, 20, '#4fc3f7'), cap('jpy30dRoc'), 'https://www.tradingview.com/symbols/JPYUSD/')}
+          ${this.renderSignalCard(t('components.macroSignals.signals.flow'), s.flowStructure.status, `BTC ${formatNum(s.flowStructure.btcReturn5)} / QQQ ${formatNum(s.flowStructure.qqqReturn5)}`, '', cap('returns5d'), null)}
+          ${this.renderSignalCard(t('components.macroSignals.signals.regime'), s.macroRegime.status, `QQQ ${formatNum(s.macroRegime.qqqRoc20)} / XLP ${formatNum(s.macroRegime.xlpRoc20)}`, sparklineSvg(d.meta.qqqSparkline, 60, 20, '#ab47bc'), cap('roc20d'), 'https://www.tradingview.com/symbols/QQQ/')}
+          ${this.renderSignalCard(t('components.macroSignals.signals.btcTrend'), s.technicalTrend.status, `$${s.technicalTrend.btcPrice?.toLocaleString() ?? t('components.macroSignals.naValue')}`, sparklineSvg(s.technicalTrend.sparkline, 60, 20, '#ff9800'), btcDetail, 'https://www.tradingview.com/symbols/BTCUSD/')}
+          ${this.renderSignalCard(t('components.macroSignals.signals.hashRate'), s.hashRate.status, formatNum(s.hashRate.change30d), '', cap('change30d'), 'https://mempool.space/mining')}
+          ${this.renderSignalCard(t('components.macroSignals.signals.momentum'), s.priceMomentum.status, '', '', cap('mayerMultiple'), null)}
           ${this.renderFearGreedCard(s.fearGreed)}
         </div>
       </div>

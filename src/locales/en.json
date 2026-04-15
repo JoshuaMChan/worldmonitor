@@ -1933,6 +1933,7 @@
       "originalPrefix": "Original: ",
       "failedToDisplayCluster": "Failed to display this cluster.",
       "translate": "Translate",
+      "translateGlyph": "文",
       "noItemsIn": "No items in {{timeRange}}",
       "rangeLastHour": "the last hour",
       "rangeLast6Hours": "the last 6 hours",
@@ -2082,6 +2083,15 @@
         "cash": "CASH"
       },
       "bullish": "{{count}}/{{total}} bullish",
+      "naValue": "N/A",
+      "btcMetricsLine": "SMA50: {{sma50}} | VWAP: {{vwap}} | Mayer: {{mayer}}",
+      "cardCaptions": {
+        "jpy30dRoc": "JPY 30d ROC",
+        "returns5d": "5d returns",
+        "roc20d": "20d ROC",
+        "change30d": "30d change",
+        "mayerMultiple": "Mayer Multiple"
+      },
       "signals": {
         "liquidity": "Liquidity",
         "flow": "Flow",
@@ -3194,5 +3204,12 @@
     "or": "or enter a custom server",
     "generatingVisualization": "Building visualization...",
     "visualizationFailed": "Visualization failed"
+  },
+  "localization": {
+    "panelTitleGlossary": [],
+    "liveChannelTitleGlossary": []
+  },
+  "feeds": {
+    "sourceDisplayOverrides": {}
   }
 }

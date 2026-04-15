@@ -292,13 +292,13 @@ export class NewsPanel extends Panel {
         element.title = `${t('components.newsPanel.originalPrefix')}${originalText}`;
         element.classList.add('translated');
       } else {
-        element.innerHTML = '文';
+        element.innerHTML = t('components.newsPanel.translateGlyph');
         // Shake animation or error state could be added here
       }
     } catch (e) {
       if (!this.element?.isConnected) return;
       console.error('Translation failed', e);
-      element.innerHTML = '文';
+      element.innerHTML = t('components.newsPanel.translateGlyph');
     } finally {
       if (element.isConnected) {
         element.style.pointerEvents = 'auto';

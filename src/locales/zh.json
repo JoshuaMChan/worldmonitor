@@ -1764,6 +1764,7 @@
       "originalPrefix": "原文： ",
       "failedToDisplayCluster": "无法显示此聚类。",
       "translate": "翻译",
+      "translateGlyph": "文",
       "noItemsIn": "{{timeRange}}内无条目",
       "rangeLastHour": "过去 1 小时",
       "rangeLast6Hours": "过去 6 小时",
@@ -1913,6 +1914,15 @@
         "cash": "持币"
       },
       "bullish": "{{count}}/{{total}} 看涨",
+      "naValue": "暂无",
+      "btcMetricsLine": "SMA50：{{sma50}} | VWAP：{{vwap}} | Mayer：{{mayer}}",
+      "cardCaptions": {
+        "jpy30dRoc": "日元 30 日 ROC",
+        "returns5d": "5 日回报",
+        "roc20d": "20 日 ROC",
+        "change30d": "30 日变化",
+        "mayerMultiple": "Mayer 倍数"
+      },
       "signals": {
         "liquidity": "流动性",
         "flow": "资金流",
@@ -2199,9 +2209,9 @@
       "noSelectedRegionEvents": "所选地区暂无事件",
       "event": "事件",
       "regions": {
-    "all": "全部",
-    "notAvailable": "无",
-    "open": "打开"
+        "all": "全部",
+        "notAvailable": "无",
+        "open": "打开"
       },
       "countdown": {
         "today": "今天",
@@ -3202,5 +3212,363 @@
     "or": "或输入自定义服务器",
     "generatingVisualization": "构建可视化...",
     "visualizationFailed": "可视化失败"
+  },
+  "localization": {
+    "panelTitleGlossary": [
+      {
+        "pattern": "\\bAI\\b",
+        "flags": "g",
+        "replace": "AI"
+      },
+      {
+        "pattern": "\\bNews\\b",
+        "flags": "gi",
+        "replace": "新闻"
+      },
+      {
+        "pattern": "\\bWorld\\b",
+        "flags": "gi",
+        "replace": "世界"
+      },
+      {
+        "pattern": "\\bGlobal\\b",
+        "flags": "gi",
+        "replace": "全球"
+      },
+      {
+        "pattern": "\\bMarket(s)?\\b",
+        "flags": "gi",
+        "replace": "市场"
+      },
+      {
+        "pattern": "\\bCrypto\\b",
+        "flags": "gi",
+        "replace": "加密货币"
+      },
+      {
+        "pattern": "\\bFinance\\b",
+        "flags": "gi",
+        "replace": "金融"
+      },
+      {
+        "pattern": "\\bTech(nology)?\\b",
+        "flags": "gi",
+        "replace": "科技"
+      },
+      {
+        "pattern": "\\bPolicy\\b",
+        "flags": "gi",
+        "replace": "政策"
+      },
+      {
+        "pattern": "\\bRisk\\b",
+        "flags": "gi",
+        "replace": "风险"
+      },
+      {
+        "pattern": "\\bSignal(s)?\\b",
+        "flags": "gi",
+        "replace": "信号"
+      },
+      {
+        "pattern": "\\bTracker\\b",
+        "flags": "gi",
+        "replace": "追踪"
+      },
+      {
+        "pattern": "\\bAnalysis\\b",
+        "flags": "gi",
+        "replace": "分析"
+      },
+      {
+        "pattern": "\\bWatch\\b",
+        "flags": "gi",
+        "replace": "观察"
+      },
+      {
+        "pattern": "\\bClock\\b",
+        "flags": "gi",
+        "replace": "时钟"
+      },
+      {
+        "pattern": "\\bCalendar\\b",
+        "flags": "gi",
+        "replace": "日历"
+      },
+      {
+        "pattern": "\\bStress\\b",
+        "flags": "gi",
+        "replace": "压力"
+      },
+      {
+        "pattern": "\\bCurve\\b",
+        "flags": "gi",
+        "replace": "曲线"
+      },
+      {
+        "pattern": "\\bCounter(s)?\\b",
+        "flags": "gi",
+        "replace": "计数器"
+      },
+      {
+        "pattern": "\\bCommodit(y|ies)\\b",
+        "flags": "gi",
+        "replace": "大宗商品"
+      },
+      {
+        "pattern": "\\bGood\\b",
+        "flags": "gi",
+        "replace": "好"
+      },
+      {
+        "pattern": "\\bFeed\\b",
+        "flags": "gi",
+        "replace": "流"
+      }
+    ],
+    "liveChannelTitleGlossary": [
+      {
+        "pattern": "\\bNews\\b",
+        "flags": "gi",
+        "replace": "新闻"
+      },
+      {
+        "pattern": "\\bLive\\b",
+        "flags": "gi",
+        "replace": "直播"
+      },
+      {
+        "pattern": "\\bWorld\\b",
+        "flags": "gi",
+        "replace": "世界"
+      },
+      {
+        "pattern": "\\bBusiness\\b",
+        "flags": "gi",
+        "replace": "商业"
+      },
+      {
+        "pattern": "\\bFinance\\b",
+        "flags": "gi",
+        "replace": "财经"
+      },
+      {
+        "pattern": "\\bTV\\b",
+        "flags": "g",
+        "replace": "电视"
+      },
+      {
+        "pattern": "\\bEnglish\\b",
+        "flags": "gi",
+        "replace": "英语"
+      },
+      {
+        "pattern": "\\bArabic\\b",
+        "flags": "gi",
+        "replace": "阿拉伯语"
+      },
+      {
+        "pattern": "\\bPersian\\b",
+        "flags": "gi",
+        "replace": "波斯语"
+      },
+      {
+        "pattern": "\\bRussian\\b",
+        "flags": "gi",
+        "replace": "俄语"
+      },
+      {
+        "pattern": "\\bTurkce\\b",
+        "flags": "gi",
+        "replace": "土耳其语"
+      },
+      {
+        "pattern": "\\bAsia\\b",
+        "flags": "gi",
+        "replace": "亚洲"
+      },
+      {
+        "pattern": "\\bAfrica\\b",
+        "flags": "gi",
+        "replace": "非洲"
+      },
+      {
+        "pattern": "\\bMiddle East\\b",
+        "flags": "gi",
+        "replace": "中东"
+      },
+      {
+        "pattern": "\\bLatin America\\b",
+        "flags": "gi",
+        "replace": "拉丁美洲"
+      },
+      {
+        "pattern": "\\bNorth America\\b",
+        "flags": "gi",
+        "replace": "北美"
+      },
+      {
+        "pattern": "\\bJapan\\b",
+        "flags": "gi",
+        "replace": "日本"
+      },
+      {
+        "pattern": "\\bBrasil\\b",
+        "flags": "gi",
+        "replace": "巴西"
+      },
+      {
+        "pattern": "\\bMexico\\b",
+        "flags": "gi",
+        "replace": "墨西哥"
+      },
+      {
+        "pattern": "\\bReuters\\b",
+        "flags": "gi",
+        "replace": "路透"
+      },
+      {
+        "pattern": "\\bBloomberg\\b",
+        "flags": "gi",
+        "replace": "彭博"
+      },
+      {
+        "pattern": "\\bYahoo\\b",
+        "flags": "gi",
+        "replace": "雅虎"
+      },
+      {
+        "pattern": "\\bFox\\b",
+        "flags": "gi",
+        "replace": "福克斯"
+      },
+      {
+        "pattern": "\\bGuardian\\b",
+        "flags": "gi",
+        "replace": "卫报"
+      },
+      {
+        "pattern": "\\bSpace\\b",
+        "flags": "gi",
+        "replace": "太空"
+      },
+      {
+        "pattern": "\\bChannel(s)?\\b",
+        "flags": "gi",
+        "replace": "频道"
+      }
+    ]
+  },
+  "feeds": {
+    "sourceDisplayOverrides": {
+      "ABC News": "ABC 新闻",
+      "ABC News Australia": "ABC 澳大利亚新闻",
+      "Africa News": "非洲新闻",
+      "Africanews": "非洲新闻台",
+      "Agriculture": "农业",
+      "AI Interviews": "AI 访谈",
+      "AI News": "AI 新闻",
+      "AI Now Institute": "AI Now 研究所",
+      "AI Podcasts": "AI 播客",
+      "AI Regulation": "AI 监管",
+      "AI Weekly": "AI 周报",
+      "Al Arabiya": "阿拉比亚电视台",
+      "Al Jazeera": "半岛电视台",
+      "All-In Podcast": "All-In 播客",
+      "Aluminum & Zinc": "铝与锌",
+      "AngelList News": "AngelList 新闻",
+      "ANSA": "安莎社",
+      "Anthropic News": "Anthropic 新闻",
+      "AP Mexico": "美联社墨西哥",
+      "AP News": "美联社",
+      "Arab News": "阿拉伯新闻",
+      "Arabian Business": "阿拉伯商业",
+      "Arms Control Assn": "军控协会",
+      "Ars Technica": "Ars 科技",
+      "ArXiv AI": "ArXiv AI",
+      "ArXiv ML": "ArXiv 机器学习",
+      "Asia News": "亚洲新闻",
+      "Atlantic Council": "大西洋理事会",
+      "AWS Status": "AWS 状态",
+      "Axios": "Axios 新闻",
+      "Bangkok Post": "曼谷邮报",
+      "Bank Research": "银行研究",
+      "Banking Rules": "银行业规则",
+      "BBC Africa": "BBC 非洲",
+      "BBC Afrique": "BBC 非洲（法语）",
+      "BBC Asia": "BBC 亚洲",
+      "BBC Latin America": "BBC 拉丁美洲",
+      "BBC Middle East": "BBC 中东",
+      "BBC Mundo": "BBC 世界（西语）",
+      "BBC Persian": "BBC 波斯语",
+      "BBC Russian": "BBC 俄语",
+      "BBC Turkce": "BBC 土耳其语",
+      "BBC World": "BBC 世界",
+      "Bellingcat": "贝灵猫",
+      "Bild": "图片报",
+      "Bitcoin Magazine": "比特币杂志",
+      "Blockchain Finance": "区块链金融",
+      "Blockworks": "Blockworks",
+      "Bloomberg Commodities": "彭博大宗商品",
+      "Bloomberg Crypto": "彭博加密货币",
+      "Bloomberg Markets": "彭博市场",
+      "BoE Watch": "英国央行观察",
+      "BoJ Watch": "日本央行观察",
+      "Bond Market": "债券市场",
+      "Brasil Paralelo": "Brasil Paralelo",
+      "Brookings": "布鲁金斯学会",
+      "Bulletin of Atomic Scientists": "原子科学家公报",
+      "Carnegie": "卡内基",
+      "CB Insights": "CB Insights",
+      "CBS News": "CBS 新闻",
+      "CDC": "美国疾控中心",
+      "Central Bank Rates": "央行利率",
+      "Channels TV": "Channels 电视台",
+      "Chatham House": "皇家国际事务研究所",
+      "Chosun Ilbo": "朝鲜日报",
+      "CISA": "美国网络安全与基础设施安全局",
+      "CNBC": "CNBC",
+      "CNBC Commodities": "CNBC 大宗商品",
+      "CNBC Markets": "CNBC 市场",
+      "CNBC Tech": "CNBC 科技",
+      "CNN": "CNN",
+      "CNN World": "CNN 世界",
+      "CoinDesk": "CoinDesk",
+      "Cointelegraph": "Cointelegraph",
+      "Commodity Trading": "大宗商品交易",
+      "Corporate Bonds": "公司债",
+      "Corriere della Sera": "晚邮报",
+      "CrisisWatch": "危机观察",
+      "Crypto News": "加密货币新闻",
+      "Crypto Regulation": "加密货币监管",
+      "CryptoSlate": "CryptoSlate",
+      "CSIS": "战略与国际研究中心",
+      "Daily Maverick": "每日马弗里克",
+      "Defense News": "防务新闻",
+      "Deutsche Welle": "德国之声",
+      "DW News": "德国之声新闻",
+      "Economic Times": "经济时报",
+      "Euronews": "欧洲新闻台",
+      "Financial Times": "金融时报",
+      "Fox News": "福克斯新闻",
+      "France 24": "法国 24 台",
+      "Global Times": "环球时报",
+      "Hindustan Times": "印度斯坦时报",
+      "Japan Times": "日本时报",
+      "Le Monde": "世界报",
+      "MarketWatch": "市场观察",
+      "Nikkei Asia": "日经亚洲",
+      "Reuters Business": "路透商业",
+      "Reuters Markets": "路透市场",
+      "Reuters": "路透",
+      "RT Arabic": "RT 阿拉伯语",
+      "South China Morning Post": "南华早报",
+      "The Economist": "经济学人",
+      "The Guardian": "卫报",
+      "Wall Street Journal": "华尔街日报",
+      "Washington Post": "华盛顿邮报",
+      "WION": "WION",
+      "Yahoo Finance": "雅虎财经"
+    }
   }
 }
